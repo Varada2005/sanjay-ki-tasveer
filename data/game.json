@@ -1,0 +1,607 @@
+{
+  "version": 2,
+  "title": "Sanjay ki Tasveer",
+  "story": "Dadi's younger brother Sanjay left the village after her wedding in 1982. Every year he comes back to this mela and waits at the peppermint stall at 5:30 in the evening, the peppermints the two of them shared as children. This year he has left a trail of peppermint wrappers, each holding one of his childhood paheliyan (riddles) and one torn piece of his photo. Following the trail retraces his day: Pappu's cart, Pappu's whistle stall, kulfi, the giant wheel, the bangle stall of their mausi, the 1982 wedding photo, and finally the peppermint stall, where he is waiting.",
+  "languages": [
+    "hi",
+    "en",
+    "mr",
+    "gu"
+  ],
+  "timing": {
+    "dwellMs": 800,
+    "candidateDwellMs": 1500,
+    "restMs": 60000,
+    "maxWrongGuesses": 2,
+    "wrongBeforeVisualClue": 3
+  },
+  "slots": [
+    "eyes",
+    "moustache",
+    "ear_murki",
+    "red_headcloth",
+    "mole",
+    "gap_tooth"
+  ],
+  "featureForSlot": {
+    "eyes": "eyebrow_scar",
+    "moustache": "curled_moustache",
+    "ear_murki": "murki",
+    "red_headcloth": "red_headcloth",
+    "mole": "mole",
+    "gap_tooth": "gap_tooth"
+  },
+  "chain": [
+    "p1",
+    "p2",
+    "p3",
+    "p4",
+    "p5",
+    "p6"
+  ],
+  "puzzles": [
+    {
+      "id": "p1",
+      "page": "dadi",
+      "wrapperRegionId": "w_sack",
+      "answer": "23",
+      "photoPiece": "red_headcloth",
+      "place": "Pappu's bullock cart, jute sack stencilled \"PAPPU\"",
+      "meaning": "Pappu's stall number. Sanjay came to the mela on his friend Pappu's cart, then went to Pappu's stall.",
+      "answerSource": {
+        "page": "teen",
+        "regionId": "clue_p1",
+        "object": "board \"पप्पू २३\" on the clay-whistle stall"
+      },
+      "needs": [
+        {
+          "page": "dadi",
+          "item": "Jute sack on the bullock cart stencilled in English: PAPPU"
+        },
+        {
+          "page": "teen",
+          "item": "Toy stall board in Devanagari: पप्पू २३ (stall number 23)"
+        }
+      ],
+      "lines": {
+        "hi": {
+          "riddle": "पप्पू की बैलगाड़ी पर, मैं मेले तक आया,\nबोरी पर उसका नाम लिखा, अंग्रेज़ी में छपाया।\nउस पार उसकी दुकान खड़ी, नाम वहाँ हिंदी में,\nनाम के संग जो अंक लिखा, वो भर दो इन खानों में।",
+          "solved": "हाँ, तेईस! पप्पू की दुकान तेईस नंबर। वहीं से मैंने दीदी के लिए मिट्टी की सीटी ली थी।"
+        },
+        "en": {
+          "riddle": "On Pappu's bullock cart I rode into the fair,\nHis name is on the sack, in English letters there.\nAcross, you'll find his stall, his name in Hindi signs,\nThe number painted with it goes into these lines.",
+          "solved": "Yes, twenty-three! Pappu's stall number. That's where I bought a clay whistle for Didi."
+        },
+        "mr": {
+          "riddle": "TODO",
+          "solved": "TODO"
+        },
+        "gu": {
+          "riddle": "TODO",
+          "solved": "TODO"
+        }
+      }
+    },
+    {
+      "id": "p2",
+      "page": "teen",
+      "wrapperRegionId": "w_pappu",
+      "answer": "15",
+      "photoPiece": "moustache",
+      "place": "Pappu's clay-whistle stall (पप्पू २३)",
+      "meaning": "The price of one kulfi. After buying the whistle Sanjay cooled off with a matka kulfi.",
+      "answerSource": {
+        "page": "dadi",
+        "regionId": "clue_p2",
+        "object": "kulfi seller's slate \"कुल्फ़ी ₹१५\""
+      },
+      "needs": [
+        {
+          "page": "teen",
+          "item": "Clay whistles hanging at Pappu's stall"
+        },
+        {
+          "page": "dadi",
+          "item": "Kulfi seller with matkas wrapped in wet RED cloth, slate reading कुल्फ़ी ₹१५"
+        }
+      ],
+      "lines": {
+        "hi": {
+          "riddle": "पप्पू से ली मिट्टी की सीटी, फिर गर्मी ने सताया,\nलाल कपड़े में लिपटा मटका, ठंडक का घर पाया।\nउस पार कुल्फ़ी वाले की, पट्टी पर दाम लिखा है,\nजितने में मैंने कुल्फ़ी खाई, वही अंक छिपा है।",
+          "solved": "पंद्रह रुपये! इतने में मैंने लाल मटके वाली ठंडी कुल्फ़ी खाई, बचपन जैसी।"
+        },
+        "en": {
+          "riddle": "From Pappu I bought a whistle, then the heat came on strong,\nA matka wrapped in red cloth kept the cold all along.\nAcross, the kulfi seller wrote his price upon a slate,\nThe rupees that I paid for kulfi: that's the number to state.",
+          "solved": "Fifteen rupees! That's what my red-matka kulfi cost, just like when we were children."
+        },
+        "mr": {
+          "riddle": "TODO",
+          "solved": "TODO"
+        },
+        "gu": {
+          "riddle": "TODO",
+          "solved": "TODO"
+        }
+      }
+    },
+    {
+      "id": "p3",
+      "page": "dadi",
+      "wrapperRegionId": "w_kulfi",
+      "answer": "16",
+      "photoPiece": "eyes",
+      "place": "Kulfi stall, with the left half of a torn jhoola ticket",
+      "meaning": "The giant-wheel cabin Sanjay rode. His ticket tore in two at the kulfi stall.",
+      "answerSource": {
+        "page": "teen",
+        "regionId": "clue_p3",
+        "object": "right half of the torn ticket \"6\", on the ground in the wheel queue"
+      },
+      "needs": [
+        {
+          "page": "dadi",
+          "item": "Left half of a pink jhoola ticket on the kulfi counter: \"जायंट व्हील · डिब्बा 1\" (torn after the 1)"
+        },
+        {
+          "page": "teen",
+          "item": "Right half of the same pink ticket on the ground by the queue rope: \"6\""
+        },
+        {
+          "page": "teen",
+          "item": "Giant wheel cabins with number plates 11 to 18"
+        }
+      ],
+      "lines": {
+        "hi": {
+          "riddle": "कुल्फ़ी खा के झूले का, टिकट मैंने निकाला,\nजल्दी में वो फट गया, आधा यहीं पे डाला।\nबाक़ी आधा उड़ के गिरा, झूले की लाइन में,\nदोनों जोड़ो, डिब्बा बोलो, बैठा था मैं जिसमें।",
+          "solved": "डिब्बा सोलह! नीला, पीला, फिर नीला। सबसे ऊपर पहुँच के मैंने पूरा मेला देखा।"
+        },
+        "en": {
+          "riddle": "After kulfi I bought a ticket for the giant wheel's ride,\nIn my hurry it tore in two; one half fell by my side.\nThe other half flew off and landed in the queue,\nJoin both halves: which cabin did I ride? Tell me true.",
+          "solved": "Cabin sixteen! Blue, yellow, then blue. From the very top I saw the whole mela."
+        },
+        "mr": {
+          "riddle": "TODO",
+          "solved": "TODO"
+        },
+        "gu": {
+          "riddle": "TODO",
+          "solved": "TODO"
+        }
+      }
+    },
+    {
+      "id": "p4",
+      "page": "teen",
+      "wrapperRegionId": "w_cabin16",
+      "answer": "40",
+      "photoPiece": "ear_murki",
+      "place": "Giant-wheel cabin 16 (blue-yellow-blue)",
+      "meaning": "Price of a dozen bangles. From the top Sanjay saw the bangle stall where his and Didi's mausi sits, and bought Didi a dozen.",
+      "answerSource": {
+        "page": "dadi",
+        "regionId": "clue_p4",
+        "object": "board at the old mausi's end of the bangle stall \"दर्जन ₹४०\""
+      },
+      "needs": [
+        {
+          "page": "teen",
+          "item": "Cabin 16 striped blue-yellow-blue, high on the wheel"
+        },
+        {
+          "page": "dadi",
+          "item": "Bangle stall with TWO sellers: the old mausi (white hair, crescent godna on chin) and a young seller"
+        },
+        {
+          "page": "dadi",
+          "item": "Small board beside the old mausi only: दर्जन ₹४०"
+        }
+      ],
+      "lines": {
+        "hi": {
+          "riddle": "सोलह नंबर डिब्बे से, मैंने देखा सारा मेला,\nनीचे चूड़ी की दुकान पे, रंगों का था रेला।\nअपनी मौसी बैठी थीं, ठोड़ी पे वही गोदना,\nदर्जन चूड़ी कितने की? उनकी तख़्ती पे खोजना।",
+          "solved": "चालीस रुपये दर्जन! मौसी ने मुझे पहचान लिया, और दीदी के नाप की चूड़ियाँ ख़ुद चुनीं।"
+        },
+        "en": {
+          "riddle": "From cabin number sixteen I looked down on the fair,\nA stall of shining bangles, every colour there.\nOur mausi sat there smiling, that godna on her chin,\nWhat does a dozen cost? Her board has the answer within.",
+          "solved": "Forty rupees a dozen! Mausi knew me at once, and chose Didi's size herself."
+        },
+        "mr": {
+          "riddle": "TODO",
+          "solved": "TODO"
+        },
+        "gu": {
+          "riddle": "TODO",
+          "solved": "TODO"
+        }
+      }
+    },
+    {
+      "id": "p5",
+      "page": "dadi",
+      "wrapperRegionId": "w_bangle",
+      "answer": "1982",
+      "photoPiece": "mole",
+      "place": "Bangle stall, the old mausi",
+      "meaning": "The year of Didi's (Dadi's) wedding, the day brother and sister parted. The jaimala photo at the studio is dated 1982.",
+      "answerSource": {
+        "page": "teen",
+        "regionId": "clue_p5",
+        "object": "year \"1982\" written under the jaimala photo"
+      },
+      "needs": [
+        {
+          "page": "dadi",
+          "item": "Old mausi at the bangle stall"
+        },
+        {
+          "page": "teen",
+          "item": "Photo studio: framed sepia jaimala (wedding) photo on an easel, \"1982\" written under the photo"
+        }
+      ],
+      "lines": {
+        "hi": {
+          "riddle": "मौसी से चूड़ी ली मैंने, दीदी, तेरे नाप की,\nयाद आ गई वो शादी, बात बड़े पुराने साल की।\nउस पार फ़ोटो वाले ने, जयमाला की फ़ोटो सजाई,\nफ़्रेम पे लिखा साल वही, जब तेरी हुई विदाई।",
+          "solved": "उन्नीस सौ बयासी! तेरी शादी का साल, दीदी। उसी दिन के बाद हम बिछड़ गए।"
+        },
+        "en": {
+          "riddle": "From mausi I bought bangles, Didi, made to fit your hand,\nThey brought your wedding back to me, the drums, the dancing band.\nAcross, the photo man has hung your wedding photo high,\nType the year below the picture, the year you said goodbye.",
+          "solved": "Nineteen eighty-two! The year of your wedding, Didi. After that day we lost each other."
+        },
+        "mr": {
+          "riddle": "TODO",
+          "solved": "TODO"
+        },
+        "gu": {
+          "riddle": "TODO",
+          "solved": "TODO"
+        }
+      }
+    },
+    {
+      "id": "p6",
+      "page": "teen",
+      "wrapperRegionId": "w_photo",
+      "answer": "530",
+      "photoPiece": "gap_tooth",
+      "place": "Photo studio, the framed 1982 jaimala photo",
+      "meaning": "The time Sanjay waits every evening: 5:30, when fresh peppermints arrive at the peppermint stall.",
+      "answerSource": {
+        "page": "dadi",
+        "regionId": "clue_p6",
+        "object": "sign on the peppermint stall \"ताज़ी पीपरमिंट रोज़ शाम ५:३०\""
+      },
+      "needs": [
+        {
+          "page": "teen",
+          "item": "In the 1982 photo: a small boy (young Sanjay) standing beside the bride, holding a peppermint"
+        },
+        {
+          "page": "dadi",
+          "item": "Peppermint stall with jars of red-white peppermints and a sign: ताज़ी पीपरमिंट रोज़ शाम ५:३०"
+        }
+      ],
+      "lines": {
+        "hi": {
+          "riddle": "उस फ़ोटो में छोटा-सा मैं, दुल्हन के पास खड़ा,\nआज भी हर शाम आता हूँ, बूढ़ा हो के बड़ा।\nपीपरमिंट की दुकान पे, तख़्ती टँगी है देखो,\nताज़ी पीपरमिंट किस वक़्त आती, वो वक़्त यहाँ लिखो।",
+          "solved": "साढ़े पाँच! हर शाम ठीक इसी वक़्त, मैं पीपरमिंट की दुकान पे तेरी राह देखता हूँ।"
+        },
+        "en": {
+          "riddle": "In that photo I'm the little boy beside the bride,\nNow every single evening, old and grey, I wait outside.\nLook at the peppermint stall, a little sign is there,\nThe time fresh peppermints arrive: type that time with care.",
+          "solved": "Half past five! Every evening at exactly that time, I wait for you at the peppermint stall."
+        },
+        "mr": {
+          "riddle": "TODO",
+          "solved": "TODO"
+        },
+        "gu": {
+          "riddle": "TODO",
+          "solved": "TODO"
+        }
+      }
+    }
+  ],
+  "next": {
+    "hi": {
+      "across": {
+        "p1": "अब पप्पू की बैलगाड़ी पे लदी बोरी पर, मेरा अगला रैपर ढूँढो।",
+        "p2": "अब उस पार पप्पू की सीटियों वाली दुकान पर, मेरा अगला रैपर ढूँढो।",
+        "p3": "अब उस पार लाल कपड़े वाले कुल्फ़ी के मटकों के पास, मेरा अगला रैपर ढूँढो।",
+        "p4": "अब उस पार झूले के सोलह नंबर डिब्बे पर, मेरा अगला रैपर ढूँढो।",
+        "p5": "अब उस पार मौसी की चूड़ियों के बीच, मेरा अगला रैपर ढूँढो।",
+        "p6": "अब उस पार फ़ोटो वाले की जयमाला वाली तस्वीर पर, मेरा अगला रैपर ढूँढो।",
+        "final": "मेरी पूरी फ़ोटो जुड़ गई! अब पीपरमिंट की दुकान पे मुझे ढूँढो, फ़ोटो से पहचानो, और मुझ पर फ़ोन रखो।"
+      },
+      "same": {
+        "p1": "अब पप्पू की बैलगाड़ी पे लदी बोरी पर, मेरा अगला रैपर ढूँढो।",
+        "p2": "अब पप्पू की सीटियों वाली दुकान पर, मेरा अगला रैपर ढूँढो।",
+        "p3": "अब लाल कपड़े वाले कुल्फ़ी के मटकों के पास, मेरा अगला रैपर ढूँढो।",
+        "p4": "अब झूले के सोलह नंबर डिब्बे पर, मेरा अगला रैपर ढूँढो।",
+        "p5": "अब मौसी की चूड़ियों के बीच, मेरा अगला रैपर ढूँढो।",
+        "p6": "अब फ़ोटो वाले की जयमाला वाली तस्वीर पर, मेरा अगला रैपर ढूँढो।",
+        "final": "मेरी पूरी फ़ोटो जुड़ गई! अब पीपरमिंट की दुकान पे मुझे ढूँढो, फ़ोटो से पहचानो, और मुझ पर फ़ोन रखो।"
+      }
+    },
+    "en": {
+      "across": {
+        "p1": "Now, on the other page, find my next wrapper on the sack on Pappu's bullock cart.",
+        "p2": "Now, on the other page, find my next wrapper at Pappu's whistle stall.",
+        "p3": "Now, on the other page, find my next wrapper by the kulfi matkas wrapped in red cloth.",
+        "p4": "Now, on the other page, find my next wrapper on cabin sixteen of the giant wheel.",
+        "p5": "Now, on the other page, find my next wrapper among mausi's bangles.",
+        "p6": "Now, on the other page, find my next wrapper on the wedding photo at the photo studio.",
+        "final": "My photo is complete! Now find me at the peppermint stall. Match my face, and point your phone at me."
+      },
+      "same": {
+        "p1": "Now find my next wrapper on the sack on Pappu's bullock cart.",
+        "p2": "Now find my next wrapper at Pappu's whistle stall.",
+        "p3": "Now find my next wrapper by the kulfi matkas wrapped in red cloth.",
+        "p4": "Now find my next wrapper on cabin sixteen of the giant wheel.",
+        "p5": "Now find my next wrapper among mausi's bangles.",
+        "p6": "Now find my next wrapper on the wedding photo at the photo studio.",
+        "final": "My photo is complete! Now find me at the peppermint stall. Match my face, and point your phone at me."
+      }
+    },
+    "mr": {
+      "across": {
+        "p1": "TODO",
+        "p2": "TODO",
+        "p3": "TODO",
+        "p4": "TODO",
+        "p5": "TODO",
+        "p6": "TODO",
+        "final": "TODO"
+      },
+      "same": {
+        "p1": "TODO",
+        "p2": "TODO",
+        "p3": "TODO",
+        "p4": "TODO",
+        "p5": "TODO",
+        "p6": "TODO",
+        "final": "TODO"
+      }
+    },
+    "gu": {
+      "across": {
+        "p1": "TODO",
+        "p2": "TODO",
+        "p3": "TODO",
+        "p4": "TODO",
+        "p5": "TODO",
+        "p6": "TODO",
+        "final": "TODO"
+      },
+      "same": {
+        "p1": "TODO",
+        "p2": "TODO",
+        "p3": "TODO",
+        "p4": "TODO",
+        "p5": "TODO",
+        "p6": "TODO",
+        "final": "TODO"
+      }
+    }
+  },
+  "candidates": [
+    {
+      "id": "sanjay",
+      "page": "dadi",
+      "isSanjay": true,
+      "label": "Sanjay (left, peppermint stall)",
+      "features": {
+        "red_headcloth": true,
+        "eyebrow_scar": true,
+        "curled_moustache": true,
+        "murki": true,
+        "mole": true,
+        "gap_tooth": true
+      },
+      "lines": {
+        "hi": {
+          "voice": "दीदी? तुम सच में आ गईं! हर शाम साढ़े पाँच बजे, इसी दुकान पे तुम्हारी राह देखता था। लो, एक पीपरमिंट, बिल्कुल पहले जैसी।"
+        },
+        "en": {
+          "voice": "Didi? You really came! Every evening at half past five I waited here for you. Here, a peppermint, just like before."
+        },
+        "mr": {
+          "voice": "TODO"
+        },
+        "gu": {
+          "voice": "TODO"
+        }
+      }
+    },
+    {
+      "id": "A",
+      "page": "dadi",
+      "label": "A (right, peppermint stall)",
+      "features": {
+        "red_headcloth": true,
+        "eyebrow_scar": true,
+        "curled_moustache": true,
+        "murki": false,
+        "mole": false,
+        "gap_tooth": true
+      },
+      "lines": {
+        "hi": {
+          "voice": "नहीं बेटा, मैं तो हलवाई हूँ। पीपरमिंट लेने आया था, बस।"
+        },
+        "en": {
+          "voice": "No, child, I am the sweet-maker. I only came for peppermints."
+        },
+        "mr": {
+          "voice": "TODO"
+        },
+        "gu": {
+          "voice": "TODO"
+        }
+      }
+    },
+    {
+      "id": "B",
+      "page": "teen",
+      "label": "B (red turban, ice gola)",
+      "features": {
+        "red_headcloth": true,
+        "eyebrow_scar": false,
+        "curled_moustache": true,
+        "murki": true,
+        "mole": true,
+        "gap_tooth": false
+      },
+      "lines": {
+        "hi": {
+          "voice": "मैं? ना बेटा, मैं तो गोला खा रहा हूँ, गला ठंडा कर रहा हूँ। किसे ढूँढ रहे हो?"
+        },
+        "en": {
+          "voice": "Me? No, child, I am just cooling down with an ice gola. Who are you looking for?"
+        },
+        "mr": {
+          "voice": "TODO"
+        },
+        "gu": {
+          "voice": "TODO"
+        }
+      }
+    },
+    {
+      "id": "C",
+      "page": "dadi",
+      "label": "C (red turban, chaupar)",
+      "features": {
+        "red_headcloth": true,
+        "eyebrow_scar": true,
+        "curled_moustache": false,
+        "murki": true,
+        "mole": false,
+        "gap_tooth": false
+      },
+      "lines": {
+        "hi": {
+          "voice": "अरे, चौपड़ बीच में मत रुकवाओ! मेरी बारी है, बेटा।"
+        },
+        "en": {
+          "voice": "Don't stop the chaupar now! It's my turn, child."
+        },
+        "mr": {
+          "voice": "TODO"
+        },
+        "gu": {
+          "voice": "TODO"
+        }
+      }
+    },
+    {
+      "id": "D",
+      "page": "teen",
+      "label": "D (white cap, jhoola queue)",
+      "features": {
+        "red_headcloth": false,
+        "eyebrow_scar": true,
+        "curled_moustache": true,
+        "murki": false,
+        "mole": true,
+        "gap_tooth": true
+      },
+      "lines": {
+        "hi": {
+          "voice": "मैं तो पोते का इंतज़ार कर रहा हूँ, बेटा। लाइन बड़ी लंबी है आज।"
+        },
+        "en": {
+          "voice": "I am waiting for my grandson, child. The queue is very long today."
+        },
+        "mr": {
+          "voice": "TODO"
+        },
+        "gu": {
+          "voice": "TODO"
+        }
+      }
+    },
+    {
+      "id": "E",
+      "page": "teen",
+      "label": "E (red cap, left toy stall)",
+      "features": {
+        "red_headcloth": true,
+        "eyebrow_scar": false,
+        "curled_moustache": false,
+        "murki": false,
+        "mole": true,
+        "gap_tooth": true
+      },
+      "lines": {
+        "hi": {
+          "voice": "अरे, मैं तो सीटी बेचता हूँ! एक बजा के देखोगे?"
+        },
+        "en": {
+          "voice": "Me? I sell whistles! Want to try one?"
+        },
+        "mr": {
+          "voice": "TODO"
+        },
+        "gu": {
+          "voice": "TODO"
+        }
+      }
+    }
+  ],
+  "otherOldMen": {
+    "other_1": {
+      "page": "teen",
+      "label": "Old man with stick, bottom left",
+      "lines": {
+        "hi": {
+          "voice": "ना बेटा, मैं तो पोते-पोतियों के लिए गुब्बारे लेने आया हूँ।"
+        },
+        "en": {
+          "voice": "No, child, I came to buy balloons for my grandchildren."
+        },
+        "mr": {
+          "voice": "TODO"
+        },
+        "gu": {
+          "voice": "TODO"
+        }
+      }
+    },
+    "other_2": {
+      "page": "dadi",
+      "label": "Chaupar partner, white turban",
+      "lines": {
+        "hi": {
+          "voice": "हा हा, मैं? मैं तो हार रहा हूँ, बेटा, मुझे छोड़ो।"
+        },
+        "en": {
+          "voice": "Ha ha, me? I am losing this game, leave me be."
+        },
+        "mr": {
+          "voice": "TODO"
+        },
+        "gu": {
+          "voice": "TODO"
+        }
+      }
+    },
+    "other_3": {
+      "page": "dadi",
+      "label": "Bearded man in the pangat",
+      "lines": {
+        "hi": {
+          "voice": "पहले खा लेने दो, बेटा, फिर बात करेंगे।"
+        },
+        "en": {
+          "voice": "Let me finish eating first, child, then we will talk."
+        },
+        "mr": {
+          "voice": "TODO"
+        },
+        "gu": {
+          "voice": "TODO"
+        }
+      }
+    }
+  }
+}

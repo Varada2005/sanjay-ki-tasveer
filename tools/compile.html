@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Compile Targets</title>
+<style>
+  :root { --bg:#f6efe2; --ink:#2b2118; --line:#d9c9ae; --card:#fffaf0; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg:#1d1813; --ink:#f3e8d6; --line:#4a3d2f; --card:#29221b; } }
+  body { margin:0; padding:20px 16px; background:var(--bg); color:var(--ink); font:15px/1.5 system-ui, sans-serif; max-width:760px; }
+  button, input { font:inherit; color:inherit; background:var(--card); border:1px solid var(--line); border-radius:8px; padding:8px 12px; }
+  pre { background:var(--card); border:1px solid var(--line); border-radius:8px; padding:10px; white-space:pre-wrap; }
+</style>
+</head>
+<body>
+<h1>Compile MindAR targets</h1>
+<p>Normally you run <code>npm run targets</code>, which drives this page headlessly. You can also click below:
+each button compiles <code>assets/pages/&lt;page&gt;.png</code> and downloads <code>&lt;page&gt;.mind</code>; put it in <code>assets/targets/</code>.</p>
+<p><button data-page="teen">Compile teen.png</button> <button data-page="dadi">Compile dadi.png</button></p>
+<p>Or compile any image: <input type="file" id="file" accept="image/*"></p>
+<pre id="log">ready</pre>
+<script type="module">
+import { Compiler } from '/vendor/mindar/mindar-image.prod.js';
+const log = (s) => { document.getElementById('log').textContent += '\n' + s; };
+
+function loadImage(src) {
+  return new Promise((res, rej) => { const i = new Image(); i.onload = () => res(i); i.onerror = rej; i.src = src; });
+}
+function toBase64(buf) {
+  const bytes = new Uint8Array(buf); let s = '';
+  for (let i = 0; i < bytes.length; i += 0x8000) s += String.fromCharCode.apply(null, bytes.subarray(i, i + 0x8000));
+  return btoa(s);
+}
+async function compile(img, name) {
+  const t0 = performance.now();
+  const c = new Compiler();
+  let last = -10;
+  await c.compileImageTargets([img], (p) => { if (p - last >= 10) { last = p; log(`${name}: ${p.toFixed(0)}%`); } });
+  const buf = await c.exportData();
+  log(`${name}: done in ${((performance.now() - t0) / 1000).toFixed(1)} s, ${buf.byteLength} bytes`);
+  return buf;
+}
+function download(buf, name) {
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([buf])); a.download = name; a.click();
+}
+// Used by tools/compile-targets.js
+window.compileTarget = async (url, name) => toBase64(await compile(await loadImage(url), name));
+
+for (const b of document.querySelectorAll('button[data-page]')) b.onclick = async () => {
+  const p = b.dataset.page;
+  download(await compile(await loadImage(`/assets/pages/${p}.png?${Date.now()}`), p), `${p}.mind`);
+};
+document.getElementById('file').onchange = async (e) => {
+  const f = e.target.files[0]; if (!f) return;
+  const url = URL.createObjectURL(f);
+  download(await compile(await loadImage(url), f.name), f.name.replace(/\.\w+$/, '') + '.mind');
+};
+window.compilerReady = true;
+</script>
+</body>
+</html>

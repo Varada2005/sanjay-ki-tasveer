@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 400" width="300" height="400">
+<defs><radialGradient id="vg" cx="50%" cy="45%" r="70%"><stop offset="60%" stop-color="#efe0bf"/><stop offset="100%" stop-color="#cdb185"/></radialGradient>
+  <filter id="paper"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="8"/><feColorMatrix values="0 0 0 0 0.45  0 0 0 0 0.35  0 0 0 0 0.2  0 0 0 0.08 0"/><feComposite in2="SourceGraphic" operator="in"/></filter></defs>
+<rect width="300" height="400" fill="url(#vg)"/>
+<path d="M39.2,398.4 Q49.1,375.9 59.4,353.5 Q86.6,341.5 112.7,330.3 Q151.5,330.8 188.9,331.5 Q215.0,341.4 240.2,350.5 Q249.3,374.1 259.8,399.1 Q149.9,399.3 39.2,398.4Z" fill="#f1eadb" stroke="#3b2a1e" stroke-width="2.5"/>
+<path d="M123.4,301.0 Q150.6,300.1 178.9,300.8 Q181.1,322.6 183.4,343.6 Q165.4,351.8 148.5,359.2 Q131.9,351.2 116.6,344.1 Q119.4,322.2 123.4,301.0Z" fill="#b98258" stroke="#3b2a1e" stroke-width="2"/>
+<path d="M78.3,234.9 Q76.1,241.7 74.3,248.6 Q71.6,254.1 70.1,258.0 Q65.7,259.5 62.6,260.5 Q58.4,259.8 53.9,259.2 Q51.5,254.1 48.6,250.3 Q48.0,244.0 45.8,237.6 Q48.2,229.9 49.0,223.5 Q51.3,218.1 54.0,212.9 Q56.9,211.2 60.9,210.6 Q64.1,212.1 68.1,213.6 Q70.1,217.7 73.7,223.4 Q76.7,228.8 78.3,234.9Z" fill="#b98258" stroke="#3b2a1e" stroke-width="2.5"/>
+<path d="M254.4,237.6 Q251.5,242.8 250.1,249.5 Q247.6,254.5 245.7,259.7 Q241.2,259.9 237.6,261.4 Q234.2,259.8 230.4,259.8 Q228.5,255.2 226.2,250.5 Q225.4,243.5 223.7,235.6 Q224.0,230.1 225.2,224.4 Q227.8,219.0 231.5,215.0 Q233.7,212.9 237.3,210.1 Q241.4,212.5 245.7,214.0 Q249.3,218.6 252.5,223.0 Q254.2,231.0 254.4,237.6Z" fill="#b98258" stroke="#3b2a1e" stroke-width="2.5"/>
+<path d="M235.8,231.6 Q233.9,242.6 233.0,255.2 Q230.4,265.5 227.3,277.2 Q221.2,287.9 216.4,297.1 Q211.0,307.3 204.8,315.7 Q196.4,322.6 187.1,327.9 Q177.7,332.4 167.9,335.9 Q159.0,336.8 150.0,337.9 Q140.5,337.3 129.8,335.0 Q122.1,330.3 114.0,326.0 Q106.6,319.9 97.8,314.5 Q90.4,306.7 83.0,298.2 Q76.9,288.7 71.4,277.5 Q68.8,266.7 65.1,254.6 Q63.8,243.2 63.3,230.5 Q63.6,219.5 64.6,209.6 Q69.6,198.2 73.3,185.4 Q77.6,175.9 83.2,166.1 Q90.2,158.9 98.0,150.2 Q105.5,142.1 114.4,135.7 Q121.0,132.4 129.2,127.7 Q140.7,126.9 151.4,125.7 Q160.5,127.0 170.7,129.7 Q178.9,133.4 188.5,135.5 Q196.1,143.3 204.1,149.2 Q209.4,158.4 216.3,167.3 Q223.1,177.0 228.5,186.8 Q231.3,198.3 233.9,209.7 Q234.1,220.7 235.8,231.6Z" fill="#b98258" stroke="#3b2a1e" stroke-width="3"/>
+<path d="M112,162 q38,-8 76,0 M118,172 q32,-6 64,0" fill="none" stroke="#3b2a1e" stroke-width="1.4" opacity=".55"/>
+<path d="M58.6,170.2 Q59.6,140.9 59.9,112.0 Q76.1,87.8 94.3,62.1 Q121.6,56.0 149.6,47.8 Q177.8,56.1 206.3,62.3 Q224.2,83.7 242.0,105.9 Q242.1,137.6 242.1,168.7 Q225.3,157.5 210.3,148.2 Q180.2,145.8 151.6,143.4 Q122.2,148.5 94.1,151.7 Q76.8,161.8 58.6,170.2Z" fill="#b43a2e" stroke="#3b2a1e" stroke-width="3"/>
+<path d="M70,130 q80,-40 168,-6 M64,152 q90,-36 176,-10 M92,84 q60,-20 120,4" fill="none" stroke="#7d2219" stroke-width="3"/>
+<path d="M92,186 q22,-14 46,-2" fill="none" stroke="#e8e4da" stroke-width="7" stroke-linecap="round"/><path d="M92,186 q22,-14 46,-2" fill="none" stroke="#3b2a1e" stroke-width="1.5"/>
+<path d="M162,184 q24,-12 46,2" fill="none" stroke="#e8e4da" stroke-width="7" stroke-linecap="round"/><path d="M162,184 q24,-12 46,2" fill="none" stroke="#3b2a1e" stroke-width="1.5"/>
+<path d="M108,168 l12,26 M116,166 l11,24" stroke="#7a3b2a" stroke-width="3" stroke-linecap="round"/>
+<path d="M100,208 q15,-12 30,0" fill="none" stroke="#3b2a1e" stroke-width="3.5" stroke-linecap="round"/><path d="M170,208 q15,-12 30,0" fill="none" stroke="#3b2a1e" stroke-width="3.5" stroke-linecap="round"/>
+<path d="M96,220 q8,6 18,4 M186,224 q10,2 18,-4" fill="none" stroke="#3b2a1e" stroke-width="1.3" opacity=".6"/>
+<path d="M150,210 q-6,24 -14,34 q14,8 28,0" fill="none" stroke="#3b2a1e" stroke-width="2.5" stroke-linecap="round"/>
+<path d="M150,262 q-24,-8 -40,4 q-12,10 -10,-6 q-6,18 10,20 q22,2 40,-8 q18,10 40,8 q16,-2 10,-20 q2,16 -10,6 q-16,-12 -40,-4z" fill="#ece8df" stroke="#3b2a1e" stroke-width="2.2"/>
+<path d="M120,306 q30,26 60,0 q-30,8 -60,0z" fill="#5a2018" stroke="#3b2a1e" stroke-width="2.4"/>
+<path d="M128,308 h18 v7 h-18z M154,308 h18 v7 h-18z" fill="#fbf6ea"/>
+<rect width="300" height="400" filter="url(#paper)"/>
+</svg>

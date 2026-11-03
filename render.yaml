@@ -1,0 +1,12 @@
+# Render.com blueprint (mode A). New + > Blueprint > pick this repo.
+services:
+  - type: web
+    name: sanjay-ki-tasveer
+    runtime: node
+    plan: free
+    buildCommand: npm install --omit=dev
+    startCommand: npm start
+    healthCheckPath: /healthz
+    envVars:
+      - key: NODE_VERSION
+        value: "20"

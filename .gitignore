@@ -1,0 +1,7 @@
+node_modules/
+data/rooms/
+data/rooms-compile-tmp/
+certs/
+.claude/
+tools/bin/
+screenshots/

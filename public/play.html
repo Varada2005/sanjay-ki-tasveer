@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<meta name="theme-color" content="#1b1510">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/icons/icon-192.png">
+<title>Kahani Akhbaar</title>
+<link rel="stylesheet" href="/css/play.css">
+<link rel="stylesheet" href="/css/app.css">
+<script type="importmap">
+{ "imports": { "three": "/vendor/three/three.module.js", "three/addons/": "/vendor/three/addons/" } }
+</script>
+</head>
+<body>
+<div id="app">
+
+  <!-- ===== App shell (portrait). Placeholder layout; the UI team's screens will replace the styling. ===== -->
+
+  <!-- Onboarding 1: language -->
+  <section id="s-lang" class="screen app">
+    <div class="brand"><span class="brand-mark" data-icon="peppermint"></span><h1 class="brand-name" id="brand-name"></h1><p class="muted" id="brand-tag"></p></div>
+    <h2 data-t="chooseLang"></h2>
+    <div class="langs" id="langs"></div>
+  </section>
+
+  <!-- Onboarding 2: pair the two phones once (table code) -->
+  <section id="s-table" class="screen app">
+    <h2 data-t="tableTitle"></h2>
+    <p class="muted" data-t="tableBody"></p>
+    <div id="table-choose" class="stack">
+      <button class="btn primary" id="table-new" data-t="tableStart"></button>
+      <button class="btn" id="table-join-open" data-t="tableJoin"></button>
+    </div>
+    <div id="table-show" class="stack center" hidden>
+      <div class="muted" data-t="tableCodeIs"></div>
+      <div class="table-code" id="table-code"></div>
+      <div class="qr" id="table-qr"></div>
+      <p class="muted small" data-t="tableScan"></p>
+    </div>
+    <div id="table-join" class="stack center" hidden>
+      <div class="muted" data-t="tableEnter"></div>
+      <input id="table-input" class="room-input" maxlength="4" autocapitalize="characters" autocomplete="off" spellcheck="false" aria-label="table code">
+      <button class="btn primary" id="table-join-go" data-t="join"></button>
+    </div>
+    <div class="row-end"><button class="btn ghost" id="table-skip" data-t="skip"></button><button class="btn primary" id="table-continue" data-t="continue" hidden></button></div>
+  </section>
+
+  <!-- Home: this month's book + previous books -->
+  <section id="s-home" class="screen app top">
+    <header class="bar"><h1 class="brand-name small" id="home-brand"></h1><button class="icon-btn" id="home-settings" aria-label="settings"><span data-icon="gear"></span></button></header>
+    <div class="section-label" data-t="thisMonth"></div>
+    <div id="home-current"></div>
+    <div class="section-label" data-t="previous"></div>
+    <div id="home-previous" class="shelf"></div>
+    <div class="table-chip" id="home-table"></div>
+  </section>
+
+  <!-- Book: its 5 spreads -->
+  <section id="s-book" class="screen app top">
+    <header class="bar"><button class="icon-btn" data-back="home" aria-label="back"><span data-icon="chev"></span></button><h1 id="book-title"></h1></header>
+    <div class="muted" id="book-month"></div>
+    <div id="book-spreads" class="spread-list"></div>
+  </section>
+
+  <!-- Spread: choose your side (blue / yellow dot) -->
+  <section id="s-side" class="screen app top">
+    <header class="bar"><button class="icon-btn" data-back="book" aria-label="back"><span data-icon="chev"></span></button><h1 id="side-title"></h1></header>
+    <h2 data-t="chooseSide"></h2>
+    <p class="muted" data-t="chooseSideBody"></p>
+    <div class="sides" id="sides"></div>
+    <div class="partner-line"><i class="dot" id="side-partner-dot"></i><span id="side-partner"></span></div>
+    <button id="watch-btn" class="btn ghost" data-t="watch" hidden></button>
+  </section>
+
+  <!-- Place the phone landscape, then Start (unlocks camera + audio, goes full screen) -->
+  <section id="s-place" class="screen app">
+    <div class="place-art" data-icon="stand"></div>
+    <h2 data-t="placeTitle"></h2>
+    <p class="muted" data-t="placeBody"></p>
+    <div class="side-badge" id="place-side"></div>
+    <button id="start-btn" class="start" aria-label="start"><span data-icon="peppermint"></span></button>
+    <div class="start-label" data-t="start"></div>
+  </section>
+
+  <!-- ===== Game (landscape) ===== -->
+  <section id="s-play" class="screen">
+    <div id="ar-container"></div>
+    <canvas id="tap-canvas" hidden></canvas>
+    <canvas id="overlay"></canvas>
+    <div id="dots"></div>
+    <div id="hint" class="hint" data-icon="hint"></div>
+    <div id="crosshair"><svg viewBox="0 0 100 100"><circle class="bg" cx="50" cy="50" r="40"/><circle id="ring" class="ring" cx="50" cy="50" r="40" pathLength="100"/><path d="M50 36v28M36 50h28" class="cross"/></svg></div>
+    <div id="debug-text" hidden></div>
+  </section>
+
+  <!-- Spectator -->
+  <section id="s-spectator" class="screen">
+    <canvas id="spectator-photo"></canvas>
+  </section>
+
+  <!-- Game sidebar: torn photo with 6 slots, partner dot, menu -->
+  <div id="topbar" hidden>
+    <button class="icon-btn side-menu" id="game-menu" aria-label="menu"><span data-icon="gear"></span></button>
+    <div id="strip"></div>
+    <i id="partner-dot" class="dot"></i>
+  </div>
+
+  <div id="rotate" class="overlay" hidden><div class="rotate-art" data-icon="rotate"></div><div class="rotate-text" data-t="rotate"></div></div>
+
+  <div id="subtitle" hidden></div>
+  <div id="face-bubble" hidden><img alt=""></div>
+  <!-- Puzzle sheet: opens when a wrapper is scanned -->
+  <div id="lock-backdrop" hidden></div>
+  <div id="lock" aria-hidden="true">
+    <div class="grab"></div>
+    <div class="lock-left">
+      <div class="riddle-card">
+        <canvas id="lock-pic"></canvas>
+        <div id="riddle" class="riddle"></div>
+        <button id="replay" class="replay" aria-label="replay"><span data-icon="sound"></span></button>
+      </div>
+      <!-- After 3 wrong answers: a picture of where to look on the partner's page -->
+      <div id="clue" class="clue" hidden><span class="who" id="clue-who"></span><canvas id="clue-pic"></canvas></div>
+      <div id="done" class="done" hidden>
+        <div id="done-answer" class="done-answer"></div>
+        <div id="done-text" class="done-text"></div>
+        <div class="done-next"><span class="arrow" data-icon="arrow"></span><span class="who" id="done-who"></span></div>
+        <button id="done-close" class="done-close" aria-label="close"><span data-icon="close"></span></button>
+      </div>
+    </div>
+    <div id="entry" class="lock-right">
+      <div class="boxes" id="boxes"></div>
+      <div class="keypad">
+        <button data-k="1">1</button><button data-k="2">2</button><button data-k="3">3</button>
+        <button data-k="4">4</button><button data-k="5">5</button><button data-k="6">6</button>
+        <button data-k="7">7</button><button data-k="8">8</button><button data-k="9">9</button>
+        <button data-k="back" class="icon" aria-label="clear"><span data-icon="back"></span></button>
+        <button data-k="0">0</button>
+        <button data-k="ok" class="icon ok" aria-label="ok"><span data-icon="peppermint"></span></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Overlays -->
+  <div id="photo-view" class="overlay" hidden><canvas id="photo-canvas"></canvas></div>
+  <div id="reveal" class="overlay clear" hidden></div>
+  <div id="celebrate" class="overlay" hidden><canvas id="celebrate-photo"></canvas><div id="confetti"></div></div>
+  <div id="rest" class="overlay" hidden><div class="diya" data-icon="diya"></div></div>
+
+  <!-- Settings: from the home gear, the game gear, or a 3 s long-press on the photo strip -->
+  <div id="menu" class="overlay" hidden>
+    <div class="settings">
+      <header class="bar"><h2 data-t="settings"></h2><button class="icon-btn" data-m="close" aria-label="close"><span data-icon="close"></span></button></header>
+      <div class="set-label" data-t="language"></div>
+      <div class="chips" id="set-langs"></div>
+      <div class="set-label" data-t="table"></div>
+      <div class="set-row"><span class="table-code small" id="set-table"></span><button class="btn" data-m="table" data-t="changeTable"></button></div>
+      <div class="set-label game-only" data-t="camera"></div>
+      <div class="set-row game-only"><button class="btn" data-m="tap" id="set-tap"></button><button class="btn" data-m="camera" data-t="switchCamera"></button></div>
+      <div class="set-row"><button class="btn" data-m="subs" id="set-subs"></button><button class="btn" data-m="audio"><span data-icon="sound" class="inline-ic"></span></button></div>
+      <div class="set-row game-only"><button class="btn" data-m="debug" id="set-debug"></button></div>
+      <div class="set-row game-only"><button class="btn danger" data-m="reset" data-t="resetGame"></button><button class="btn" data-m="exit" data-t="exitGame"></button></div>
+      <div class="menu-info" id="menu-info"></div>
+    </div>
+  </div>
+</div>
+<script src="/socket.io/socket.io.js"></script>
+<script type="module" src="/js/play.js"></script>
+</body>
+</html>

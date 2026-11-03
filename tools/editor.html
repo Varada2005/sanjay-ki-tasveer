@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Region Editor</title>
+<style>
+  :root { --bg:#f6efe2; --ink:#2b2118; --muted:#7a6a58; --line:#d9c9ae; --accent:#b4432a; --panel:#fffaf0; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg:#1d1813; --ink:#f3e8d6; --muted:#b3a38c; --line:#4a3d2f; --accent:#ff8a65; --panel:#29221b; } }
+  * { box-sizing: border-box; }
+  body { margin:0; font:14px/1.4 system-ui, sans-serif; background:var(--bg); color:var(--ink); }
+  header { display:flex; flex-wrap:wrap; gap:8px; align-items:center; padding:8px 12px; border-bottom:1px solid var(--line); position:sticky; top:0; background:var(--bg); z-index:5; }
+  header h1 { font-size:16px; margin:0 12px 0 0; }
+  button, select, input, textarea { font:inherit; color:inherit; background:var(--panel); border:1px solid var(--line); border-radius:6px; padding:5px 9px; }
+  button { cursor:pointer; } button.on { background:var(--accent); color:#fff; border-color:var(--accent); }
+  main { display:grid; grid-template-columns: 1fr 320px; gap:12px; padding:12px; }
+  @media (max-width: 900px) { main { grid-template-columns: 1fr; } }
+  #stage { position:relative; user-select:none; }
+  #stage img { width:100%; display:block; border-radius:4px; }
+  #stage svg { position:absolute; inset:0; width:100%; height:100%; }
+  aside { background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:10px; align-self:start; position:sticky; top:60px; max-height:calc(100vh - 80px); overflow:auto; }
+  label { display:block; margin:6px 0 2px; color:var(--muted); font-size:12px; }
+  aside input, aside select, aside textarea { width:100%; }
+  ul { list-style:none; padding:0; margin:8px 0 0; } li { padding:3px 6px; border-radius:4px; cursor:pointer; display:flex; gap:6px; align-items:center; }
+  li.sel { background:var(--line); } .sw { width:10px; height:10px; border-radius:2px; flex:none; }
+  .warn { color:var(--accent); font-size:12px; white-space:pre-wrap; }
+  .hint { color:var(--muted); font-size:12px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Region editor</h1>
+  <select id="page"><option value="teen">Teen page</option><option value="dadi">Dadi page</option></select>
+  <button id="draw">+ New polygon</button>
+  <button id="undo">Undo</button>
+  <button id="del">Delete selected</button>
+  <button id="load">Load from server</button>
+  <button id="import">Import JSON…</button><input type="file" id="file" accept=".json" hidden>
+  <button id="export">Export regions.json</button>
+  <label style="margin:0"><input type="checkbox" id="labels" checked style="width:auto"> labels</label>
+  <span class="hint">Click to add points · double-click to close · drag points · Alt+click a point deletes it</span>
+</header>
+<main>
+  <div id="stage"><img id="img" alt="page"><svg id="svg" viewBox="0 0 1 1" preserveAspectRatio="none"></svg></div>
+  <aside>
+    <div id="form" hidden>
+      <label>id</label><input id="f-id">
+      <label>type</label><select id="f-type"><option>hook</option><option>site</option><option>candidate</option><option>clue</option><option>speaker</option><option>ambient</option></select>
+      <label>puzzleId</label><select id="f-thread"></select>
+      <label>candidateId</label><select id="f-cand"></select>
+      <label>ambient sound</label><select id="f-amb"></select>
+      <label>note</label><textarea id="f-note" rows="3"></textarea>
+    </div>
+    <div class="warn" id="warn"></div>
+    <ul id="list"></ul>
+  </aside>
+</main>
+<script>
+(() => {
+  const COLORS = { hook:'#e53935', site:'#2e7d32', candidate:'#1565c0', clue:'#00897b', speaker:'#8e24aa', ambient:'#6d4c41' };
+  const KEY = 'sanjay-editor-v1';
+  const $ = (id) => document.getElementById(id);
+  const store = { get(k){ try { return localStorage.getItem(k); } catch(e){ return null; } }, set(k,v){ try { localStorage.setItem(k,v); } catch(e){} } };
+  let doc = null, page = 'teen', sel = null, drawing = null, history = [], meta = { puzzles:['p1','p2','p3','p4','p5','p6'], candidates:['sanjay','A','B','C','D','E'], ambients:['gola','bells','wheel'] };
+  let aspect = 1055/1491;
+
+  const snapshot = () => { history.push(JSON.stringify(doc)); if (history.length > 200) history.shift(); };
+  const save = () => store.set(KEY, JSON.stringify(doc));
+  const regions = () => doc.regions.filter(r => r.page === page);
+
+  function fillSelect(el, opts) { el.innerHTML = '<option value="">—</option>' + opts.map(o => `<option>${o}</option>`).join(''); }
+
+  async function boot() {
+    try { meta = await (await fetch('/api/editor-meta')).json(); } catch (e) {}
+    fillSelect($('f-thread'), meta.puzzles); fillSelect($('f-cand'), meta.candidates); fillSelect($('f-amb'), meta.ambients);
+    const saved = store.get(KEY);
+    if (saved) { try { doc = JSON.parse(saved); } catch (e) {} }
+    if (!doc) await loadServer();
+    setPage(page);
+  }
+  async function loadServer() {
+    try { doc = await (await fetch('/data/regions.json', { cache:'no-store' })).json(); }
+    catch (e) { doc = { version:1, regions:[] }; alert('Could not load /data/regions.json (open this editor through the server: npm start, then /tools/editor.html).'); }
+    sel = null; save(); render();
+  }
+  function setPage(p) {
+    page = p; $('page').value = p; sel = null; drawing = null;
+    $('img').src = `/assets/pages/${p}.png`;
+    $('img').onload = () => { aspect = $('img').naturalHeight / $('img').naturalWidth; render(); };
+    render();
+  }
+
+  // Normalised page coords (0..1) <-> svg coords: x unchanged, y scaled by aspect so circles stay round.
+  function toPage(ev) {
+    const r = $('svg').getBoundingClientRect();
+    return [Math.min(1, Math.max(0, (ev.clientX - r.left) / r.width)), Math.min(1, Math.max(0, (ev.clientY - r.top) / r.height))];
+  }
+
+  function render() {
+    if (!doc) return;
+    const svg = $('svg');
+    const w = svg.clientWidth || 1, h = svg.clientHeight || 1;
+    svg.setAttribute('viewBox', `0 0 ${w} ${h}`);
+    const P = ([x, y]) => `${(x*w).toFixed(1)},${(y*h).toFixed(1)}`;
+    let s = '';
+    for (const r of regions()) {
+      const c = COLORS[r.type] || '#000', on = sel === r.id;
+      s += `<polygon data-id="${r.id}" points="${r.polygon.map(P).join(' ')}" fill="${c}" fill-opacity="${on ? .35 : .18}" stroke="${c}" stroke-width="${on ? 3 : 2}" style="cursor:pointer"/>`;
+      if ($('labels').checked) {
+        const cx = r.polygon.reduce((a,p)=>a+p[0],0)/r.polygon.length, cy = r.polygon.reduce((a,p)=>a+p[1],0)/r.polygon.length;
+        s += `<text x="${cx*w}" y="${cy*h}" text-anchor="middle" font-size="12" font-weight="700" fill="#fff" stroke="#000" stroke-width="3" paint-order="stroke" pointer-events="none">${r.id}</text>`;
+      }
+      if (on) r.polygon.forEach((p, i) => { s += `<circle data-pt="${i}" cx="${p[0]*w}" cy="${p[1]*h}" r="6" fill="#fff" stroke="${c}" stroke-width="2" style="cursor:move"/>`; });
+    }
+    if (drawing) {
+      s += `<polyline points="${drawing.map(P).join(' ')}" fill="none" stroke="#000" stroke-dasharray="4 3" stroke-width="2"/>`;
+      drawing.forEach(p => s += `<circle cx="${p[0]*w}" cy="${p[1]*h}" r="4" fill="#000"/>`);
+    }
+    svg.innerHTML = s;
+    $('list').innerHTML = regions().map(r => `<li data-id="${r.id}" class="${sel===r.id?'sel':''}"><span class="sw" style="background:${COLORS[r.type]}"></span>${r.id}<span class="hint">${r.type}${r.puzzleId?' · '+r.puzzleId:''}${r.candidateId?' · '+r.candidateId:''}</span></li>`).join('');
+    const r = doc.regions.find(r => r.id === sel);
+    $('form').hidden = !r;
+    if (r) { $('f-id').value = r.id; $('f-type').value = r.type; $('f-thread').value = r.puzzleId || ''; $('f-cand').value = r.candidateId || ''; $('f-amb').value = r.ambient || ''; $('f-note').value = r.note || ''; }
+    $('warn').textContent = overlaps();
+  }
+
+  // ---- overlap check (same maths as tests/data.test.js) ----
+  function segX(a,b,c,d){ const o=(p,q,r)=>Math.sign((q[0]-p[0])*(r[1]-p[1])-(q[1]-p[1])*(r[0]-p[0])); return o(a,b,c)*o(a,b,d)<0 && o(c,d,a)*o(c,d,b)<0; }
+  function inside(pt, poly){ let c=false; for(let i=0,j=poly.length-1;i<poly.length;j=i++){ const [xi,yi]=poly[i],[xj,yj]=poly[j]; if(((yi>pt[1])!==(yj>pt[1])) && pt[0] < (xj-xi)*(pt[1]-yi)/(yj-yi)+xi) c=!c; } return c; }
+  function overlap(A,B){ for(let i=0;i<A.length;i++) for(let j=0;j<B.length;j++) if(segX(A[i],A[(i+1)%A.length],B[j],B[(j+1)%B.length])) return true; return inside(A[0],B)||inside(B[0],A); }
+  function overlaps(){ const rs = regions().filter(r=>r.type!=='ambient' && r.type!=='clue'); const out=[]; for(let i=0;i<rs.length;i++) for(let j=i+1;j<rs.length;j++) if(overlap(rs[i].polygon, rs[j].polygon)) out.push(`overlap: ${rs[i].id} × ${rs[j].id}`); return out.join('\n'); }
+
+  // ---- interaction ----
+  let drag = null;
+  $('svg').addEventListener('pointerdown', (ev) => {
+    const pt = ev.target.getAttribute('data-pt');
+    if (pt != null && sel) {
+      const r = doc.regions.find(r => r.id === sel);
+      if (ev.altKey && r.polygon.length > 3) { snapshot(); r.polygon.splice(+pt, 1); save(); render(); return; }
+      snapshot(); drag = { r, i: +pt }; $('svg').setPointerCapture(ev.pointerId); return;
+    }
+    if (drawing) { drawing.push(toPage(ev)); render(); return; }
+    const id = ev.target.getAttribute('data-id');
+    sel = id || null; render();
+  });
+  $('svg').addEventListener('pointermove', (ev) => { if (!drag) return; const p = toPage(ev); drag.r.polygon[drag.i] = [+p[0].toFixed(4), +p[1].toFixed(4)]; render(); });
+  $('svg').addEventListener('pointerup', () => { if (drag) { drag = null; save(); } });
+  $('svg').addEventListener('dblclick', () => {
+    if (!drawing) return;
+    // a dblclick also fires two pointerdowns: drop the duplicate last point
+    const pts = drawing.filter((p, i, a) => i === 0 || Math.hypot(p[0]-a[i-1][0], p[1]-a[i-1][1]) > 0.002);
+    drawing = null;
+    if (pts.length < 3) { render(); return; }
+    snapshot();
+    let n = 1; while (doc.regions.some(r => r.id === `new_${page}_${n}`)) n++;
+    const r = { id:`new_${page}_${n}`, page, type:'hook', note:'', polygon: pts.map(p => [+p[0].toFixed(4), +p[1].toFixed(4)]) };
+    doc.regions.push(r); sel = r.id; $('draw').classList.remove('on'); save(); render();
+  });
+  $('draw').onclick = () => { drawing = drawing ? null : []; $('draw').classList.toggle('on', !!drawing); render(); };
+  $('undo').onclick = () => { const h = history.pop(); if (h) { doc = JSON.parse(h); save(); render(); } };
+  $('del').onclick = () => { if (!sel) return; snapshot(); doc.regions = doc.regions.filter(r => r.id !== sel); sel = null; save(); render(); };
+  $('load').onclick = () => { if (confirm('Replace your edits with the server copy of regions.json?')) { snapshot(); loadServer(); } };
+  $('page').onchange = (e) => setPage(e.target.value);
+  $('labels').onchange = render;
+  $('list').onclick = (e) => { const li = e.target.closest('li'); if (li) { sel = li.dataset.id; render(); } };
+  $('export').onclick = () => {
+    const blob = new Blob([JSON.stringify(doc, null, 1)], { type:'application/json' });
+    const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'regions.json'; a.click();
+  };
+  $('import').onclick = () => $('file').click();
+  $('file').onchange = async (e) => { const f = e.target.files[0]; if (!f) return; try { snapshot(); doc = JSON.parse(await f.text()); save(); render(); } catch (err) { alert('Not valid JSON'); } };
+  const bind = (id, key) => $(id).addEventListener('change', () => {
+    const r = doc.regions.find(r => r.id === sel); if (!r) return; snapshot();
+    const v = $(id).value.trim();
+    if (key === 'id') { if (doc.regions.some(o => o.id === v && o !== r)) { alert('id already used'); render(); return; } r.id = v; sel = v; }
+    else if (v) r[key] = v; else delete r[key];
+    save(); render();
+  });
+  bind('f-id','id'); bind('f-type','type'); bind('f-thread','puzzleId'); bind('f-cand','candidateId'); bind('f-amb','ambient'); bind('f-note','note');
+  document.addEventListener('keydown', (e) => {
+    if ((e.ctrlKey || e.metaKey) && e.key === 'z') { e.preventDefault(); $('undo').click(); }
+    if (e.key === 'Escape') { drawing = null; $('draw').classList.remove('on'); render(); }
+  });
+  window.addEventListener('resize', render);
+  boot();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 400" width="300" height="400">
+<defs><radialGradient id="vg" cx="50%" cy="45%" r="70%"><stop offset="60%" stop-color="#efe0bf"/><stop offset="100%" stop-color="#cdb185"/></radialGradient>
+  <filter id="paper"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="7"/><feColorMatrix values="0 0 0 0 0.45  0 0 0 0 0.35  0 0 0 0 0.2  0 0 0 0.08 0"/><feComposite in2="SourceGraphic" operator="in"/></filter></defs>
+<rect width="300" height="400" fill="url(#vg)"/>
+<path d="M39.2,401.3 Q49.7,377.4 60.4,353.4 Q85.6,342.7 110.6,331.1 Q149.5,329.7 187.6,328.6 Q213.0,341.6 238.6,353.5 Q249.8,376.8 261.5,400.1 Q149.7,401.1 39.2,401.3Z" fill="#f1eadb" stroke="#3b2a1e" stroke-width="2.5"/>
+<path d="M123.1,299.5 Q150.5,299.9 177.0,301.5 Q179.1,323.9 180.8,344.9 Q165.0,351.9 149.9,358.7 Q133.1,351.8 116.8,345.4 Q119.9,322.8 123.1,299.5Z" fill="#c98d5f" stroke="#3b2a1e" stroke-width="2"/>
+<path d="M76.4,234.9 Q76.5,242.7 76.2,249.4 Q72.7,254.7 69.1,260.1 Q66.0,261.3 62.0,261.0 Q57.6,261.0 53.7,259.9 Q51.0,254.1 49.3,249.0 Q48.3,242.7 46.0,235.8 Q46.5,227.9 48.0,221.4 Q51.2,218.4 55.1,214.3 Q58.4,211.8 60.9,210.1 Q65.6,212.8 70.3,214.7 Q72.3,218.4 74.6,222.7 Q75.2,228.3 76.4,234.9Z" fill="#c98d5f" stroke="#3b2a1e" stroke-width="2.5"/>
+<path d="M254.2,235.1 Q252.8,243.1 251.6,249.6 Q249.1,253.2 245.3,257.8 Q241.3,260.2 238.1,261.5 Q234.1,260.6 229.2,258.2 Q227.8,253.2 224.9,249.8 Q225.1,242.9 224.2,236.9 Q224.9,229.8 224.2,223.6 Q228.1,218.4 230.8,212.1 Q235.0,211.7 238.8,211.0 Q242.0,212.3 245.7,214.6 Q246.9,218.4 249.6,223.8 Q251.3,229.8 254.2,235.1Z" fill="#c98d5f" stroke="#3b2a1e" stroke-width="2.5"/>
+<circle cx="58" cy="268" r="8" fill="none" stroke="#d9a400" stroke-width="4"/><circle cx="58" cy="268" r="8" fill="none" stroke="#3b2a1e" stroke-width="1"/>
+<path d="M234.5,231.5 Q233.5,244.1 233.8,257.4 Q229.2,267.8 226.4,278.2 Q221.2,288.3 217.3,297.8 Q211.3,305.4 203.8,313.3 Q195.1,320.6 188.0,326.5 Q178.4,329.5 168.9,334.2 Q159.9,337.0 150.9,338.9 Q140.4,336.2 130.6,334.0 Q122.5,330.6 114.2,326.0 Q106.3,320.0 96.7,313.6 Q89.6,304.7 84.0,297.6 Q78.0,288.5 73.0,277.9 Q69.3,267.0 65.3,255.0 Q65.3,243.6 64.7,231.3 Q63.9,220.7 64.4,209.4 Q68.1,197.1 72.7,186.4 Q79.0,176.3 83.7,166.0 Q89.4,157.7 95.6,148.1 Q105.6,142.9 114.3,137.5 Q120.9,132.6 129.2,128.0 Q140.2,127.0 150.1,124.4 Q160.2,126.9 169.2,130.1 Q179.0,133.2 187.1,138.0 Q195.3,144.0 201.8,150.9 Q209.1,158.9 216.3,165.7 Q222.5,175.6 229.1,185.1 Q231.2,198.2 232.5,210.0 Q233.5,220.3 234.5,231.5Z" fill="#c98d5f" stroke="#3b2a1e" stroke-width="3"/>
+<path d="M112,162 q38,-8 76,0 M118,172 q32,-6 64,0" fill="none" stroke="#3b2a1e" stroke-width="1.4" opacity=".55"/>
+<path d="M56.9,169.5 Q58.6,140.6 61.5,110.9 Q78.6,88.0 97.5,63.6 Q124.0,55.7 148.3,47.0 Q176.0,55.1 205.6,62.7 Q224.3,83.9 241.3,106.6 Q244.1,138.6 245.7,171.2 Q227.4,159.6 209.8,149.6 Q180.2,144.6 149.3,140.2 Q119.2,144.8 91.2,149.8 Q73.8,159.6 56.9,169.5Z" fill="#b43a2e" stroke="#3b2a1e" stroke-width="3"/>
+<path d="M70,130 q80,-40 168,-6 M64,152 q90,-36 176,-10 M92,84 q60,-20 120,4" fill="none" stroke="#7d2219" stroke-width="3"/>
+<path d="M92,186 q22,-14 46,-2" fill="none" stroke="#e8e4da" stroke-width="7" stroke-linecap="round"/><path d="M92,186 q22,-14 46,-2" fill="none" stroke="#3b2a1e" stroke-width="1.5"/>
+<path d="M162,184 q24,-12 46,2" fill="none" stroke="#e8e4da" stroke-width="7" stroke-linecap="round"/><path d="M162,184 q24,-12 46,2" fill="none" stroke="#3b2a1e" stroke-width="1.5"/>
+<path d="M108,168 l12,26 M116,166 l11,24" stroke="#7a3b2a" stroke-width="3" stroke-linecap="round"/>
+<path d="M100,208 q15,-12 30,0" fill="none" stroke="#3b2a1e" stroke-width="3.5" stroke-linecap="round"/><path d="M170,208 q15,-12 30,0" fill="none" stroke="#3b2a1e" stroke-width="3.5" stroke-linecap="round"/>
+<path d="M96,220 q8,6 18,4 M186,224 q10,2 18,-4" fill="none" stroke="#3b2a1e" stroke-width="1.3" opacity=".6"/>
+<path d="M150,210 q-6,24 -14,34 q14,8 28,0" fill="none" stroke="#3b2a1e" stroke-width="2.5" stroke-linecap="round"/>
+<circle cx="222" cy="252" r="5.5" fill="#2a1a10"/>
+<path d="M150,262 q-24,-8 -40,4 q-12,10 -10,-6 q-6,18 10,20 q22,2 40,-8 q18,10 40,8 q16,-2 10,-20 q2,16 -10,6 q-16,-12 -40,-4z" fill="#ece8df" stroke="#3b2a1e" stroke-width="2.2"/>
+<path d="M120,306 q30,26 60,0 q-30,8 -60,0z" fill="#5a2018" stroke="#3b2a1e" stroke-width="2.4"/>
+<path d="M128,308 h18 v7 h-18z M154,308 h18 v7 h-18z" fill="#fbf6ea"/>
+<rect width="300" height="400" filter="url(#paper)"/>
+</svg>
