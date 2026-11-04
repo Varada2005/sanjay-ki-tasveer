@@ -57,17 +57,38 @@
   <!-- Home (Figma 1130:278): resume this month's book, previously played books, bottom nav -->
   <section id="s-home" class="screen app top fig">
     <header class="fig-top"><h1 class="fig-app" id="home-brand"></h1><button class="fig-icon" id="home-settings" aria-label="settings"><span data-icon="gear"></span></button></header>
-    <h2 class="fig-resume-h"><span data-icon="playSolid" class="fig-tri"></span><span data-t="resumeBook"></span></h2>
+    <h2 class="fig-resume-h"><span data-icon="bookOpen" class="fig-tri book"></span><span data-t="bookOfMonth"></span></h2>
     <div id="home-current"></div>
     <h2 class="fig-h2" data-t="previouslyPlayed"></h2>
     <div id="home-previous" class="fig-grid"></div>
     <div class="fig-table" id="home-table"></div>
     <nav class="fig-nav">
-      <button class="on"><span data-icon="home"></span><span data-t="home"></span></button>
+      <button class="on" data-nav="home"><span data-icon="home"></span><span data-t="home"></span></button>
       <button id="nav-search"><span data-icon="search"></span><span data-t="search"></span></button>
-      <button id="nav-profile"><span data-icon="user"></span><span data-t="profile"></span></button>
+      <button id="nav-profile" data-nav="profile"><span data-icon="user"></span><span data-t="profile"></span></button>
     </nav>
     <div id="toast" class="fig-toast" hidden></div>
+  </section>
+
+  <!-- Profile -->
+  <section id="s-profile" class="screen app top fig">
+    <header class="fig-top"><h1 class="fig-app" data-t="profile"></h1></header>
+    <div class="prof-head"><div class="prof-avatar" id="prof-avatar"></div><div><div class="prof-name" id="prof-name"></div><div class="fig-meta" id="prof-table"></div></div></div>
+    <div class="prof-stats" id="prof-stats"></div>
+    <h2 class="fig-h2 small" data-t="language"></h2>
+    <div class="chips" id="prof-langs"></div>
+    <h2 class="fig-h2 small" data-t="table"></h2>
+    <div class="prof-row"><span class="muted" data-t="tableBody"></span></div>
+    <button class="fig-btn ghost" id="prof-table-btn" data-t="changeTable"></button>
+    <h2 class="fig-h2 small" data-t="settings"></h2>
+    <button class="prof-toggle" id="prof-subs"></button>
+    <button class="prof-toggle" id="prof-tap"></button>
+    <div class="fig-table" data-t="about"></div>
+    <nav class="fig-nav">
+      <button data-nav="home"><span data-icon="home"></span><span data-t="home"></span></button>
+      <button data-nav="search"><span data-icon="search"></span><span data-t="search"></span></button>
+      <button class="on" data-nav="profile"><span data-icon="user"></span><span data-t="profile"></span></button>
+    </nav>
   </section>
 
   <!-- Pick a side (Figma 1133:545): orange and blue circles; tapping one starts the game -->

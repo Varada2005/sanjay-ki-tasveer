@@ -49,6 +49,7 @@ export function restart() {
 
 export function stopAll() {
   stopToken++;
+  window.__audioStops = (window.__audioStops || 0) + 1; // lets tests see that speech was stopped
   queue = Promise.resolve();
   try { speechSynthesis.cancel(); } catch (e) {}
   if (currentEl) { try { currentEl.pause(); } catch (e) {} currentEl = null; }

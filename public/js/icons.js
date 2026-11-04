@@ -68,4 +68,6 @@ I.home = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10.4 12 3.5l8 
 I.search = `<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16.5 16.5 21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>`;
 I.user = `<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4.2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M4.5 21c.6-4 3.6-6.2 7.5-6.2s6.9 2.2 7.5 6.2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>`;
 
+I.bookOpen = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 5.2C4.6 4 7.6 4 11 5.4V20c-3.3-1.4-6.4-1.4-9-.2zM22 5.2C19.4 4 16.4 4 13 5.4V20c3.3-1.4 6.4-1.4 9-.2z" fill="currentColor"/></svg>`;
+
 export default I;

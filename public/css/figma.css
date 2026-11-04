@@ -179,3 +179,72 @@ body.in-game #s-play #crosshair { top: 50%; }
 body.in-game #topbar { z-index: 25; }
 @media (orientation: landscape) { body.in-game.puzzle-solved #lock { padding-bottom: calc(86px + var(--safe-bot)); } }
 @media (orientation: landscape) { body.in-game #lock.solved .riddle-card { display: none; } body.in-game #lock.solved .lock-left { overflow: visible; } }
+
+/* ===== Bar always visible (back + title, side + page, Page Preview, settings) ===== */
+.fbar { cursor: default; padding-left: 8px; }
+.fbar .fb-back, .fbar .fb-title { display: inline-flex; }
+.fb-extra { display: flex; }
+.fb-title { max-width: 28vw; }
+
+/* ===== Prompt over the camera: fades out after 3 s ===== */
+.scan-tip { transition: opacity .6s, transform .6s; }
+.scan-tip.faded { opacity: 0; transform: translate(-50%, 8px); pointer-events: none; }
+
+/* ===== Book of the month header ===== */
+.fig-resume-h { font-size: 15px; font-weight: 500; gap: 8px; margin: 26px 0 14px !important; }
+.fig-tri.book { width: 20px; height: 20px; }
+
+/* ===== Profile ===== */
+.prof-head { display: flex; align-items: center; gap: 16px; margin: 26px 0 18px; }
+.prof-avatar { width: 64px; height: 64px; border-radius: 50%; background: #000; color: #fff; display: grid; place-items: center; font-size: 26px; font-weight: 700; flex: none; }
+.prof-name { font-size: 20px; font-weight: 600; }
+.prof-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.prof-stat { background: var(--fig-card); border-radius: 18px; padding: 14px 10px; display: flex; flex-direction: column; gap: 4px; text-align: center; }
+.prof-stat b { font-size: 18px; }
+.prof-stat span { font-size: 12px; color: var(--fig-muted); }
+.fig-h2.small { font-size: 16px; margin: 26px 0 10px !important; }
+.prof-row { font-size: 13px; margin-bottom: 10px; }
+.fig-btn.ghost { background: #fff; color: #000; border: 1.5px solid #000; margin-top: 0; }
+.prof-toggle { width: 100%; min-height: 52px; text-align: left; padding: 0 16px; border-radius: 16px; background: var(--fig-card); color: #000; font-size: 15px; font-weight: 600; margin-bottom: 10px; }
+#s-profile .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+
+/* ===== Riddle screen sized from the screen height: no scrolling on any phone ===== */
+@media (orientation: landscape) {
+  body.in-game #lock { top: 0; bottom: 0; height: auto; padding: calc(66px + var(--safe-top)) calc(14px + env(safe-area-inset-right, 0px)) calc(12px + var(--safe-bot)) calc(30px + env(safe-area-inset-left, 0px));
+    grid-template-columns: minmax(0, .9fr) minmax(0, 1fr); grid-template-rows: minmax(0, 1fr); column-gap: 3vw; overflow: hidden; }
+  body.in-game #lock .lock-left { grid-row: 1; min-height: 0; max-height: none; overflow-y: auto; align-self: stretch; display: flex; flex-direction: column; justify-content: center; }
+  body.in-game #lock .lock-right { grid-row: 1; margin-top: 0; height: auto; min-height: 0; padding: 2dvh 1.6vw; gap: 1.6dvh; display: flex; flex-direction: column; justify-content: stretch; }
+  body.in-game #lock .riddle { font-size: clamp(13px, 4.1dvh, 19px); line-height: 1.42; }
+  body.in-game #lock #lock-pic { height: clamp(32px, 11dvh, 54px); }
+  body.in-game #lock .replay { width: clamp(34px, 10dvh, 44px); height: clamp(34px, 10dvh, 44px); padding: 8px; }
+  body.in-game #lock .clue canvas { height: clamp(44px, 17dvh, 76px); }
+  body.in-game #lock .boxes { flex: none; margin: 0; gap: 1.2vw; }
+  body.in-game #lock .boxes .box { height: clamp(38px, 12dvh, 62px); width: clamp(36px, 11dvh, 56px); font-size: clamp(24px, 8dvh, 40px); line-height: clamp(38px, 12dvh, 62px); }
+  body.in-game #lock .keypad { flex: 1 1 auto; min-height: 0; display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(4, minmax(0, 1fr)); gap: 1.3dvh 1vw; max-width: none; }
+  body.in-game #lock .keypad button { height: auto; min-height: 0; font-size: clamp(20px, 7dvh, 48pt); }
+  body.in-game #lock .keypad .icon span { width: clamp(24px, 7dvh, 40px); height: clamp(24px, 7dvh, 40px); }
+  body.in-game #lock .keypad .ok span { width: clamp(36px, 10dvh, 60px); height: clamp(22px, 6dvh, 38px); }
+  body.in-game.puzzle-solved #lock { padding-bottom: calc(86px + var(--safe-bot)); }
+}
+@media (orientation: landscape) { body.in-game #lock { align-items: stretch; } body.in-game #lock .lock-right, body.in-game #lock .lock-left { align-self: stretch; } }
+
+/* ===== Fixes from the walkthrough ===== */
+/* the hidden riddle panel's shadow peeked out at the bottom of every portrait screen */
+#lock:not(.open) { box-shadow: none; }
+/* spectator: no side, no page preview */
+body.spectating #pp-btn, body.spectating .gh-side { display: none; }
+@media (orientation: landscape) {
+  #s-spectator canvas { height: min(58vh, 300px); width: auto; margin-top: -20px; }
+  /* settings: a centred card that fits a landscape phone */
+  #menu { align-items: center; }
+  #menu .settings { width: min(92vw, 620px); max-height: 92vh; border-radius: 22px; padding: 12px 18px 16px; gap: 6px; }
+  #menu .settings .btn { min-height: 44px; font-size: 15px; }
+  #menu .chip { min-height: 40px; font-size: 15px; }
+  #menu .bar h2 { font-size: 18px; }
+  #menu .icon-btn { width: 40px; height: 40px; min-width: 40px; padding: 9px; }
+  /* subtitles sit above the piece slots */
+  #subtitle { bottom: calc(86px + var(--safe-bot)); left: 16px; right: 16px; }
+  #face-bubble { bottom: calc(90px + var(--safe-bot)); }
+}
+/* profile: outlined button */
+.fig-btn.ghost { height: 48px; line-height: 1; padding: 0 18px; }
