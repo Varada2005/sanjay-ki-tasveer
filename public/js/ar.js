@@ -3,6 +3,16 @@
 import * as THREE from 'three';
 import { MindARThree } from '/vendor/mindar/mindar-image-three.prod.js';
 
+// MindAR listens to window resize from the moment it is created, but its resize needs the
+// camera controller, which only exists once start() has finished. Turning the phone to
+// landscape while the camera is starting (or after we stopped it) threw an error. Guard it here,
+// before any instance is created, so the listener MindAR binds is the guarded version.
+const mindarResize = MindARThree.prototype.resize;
+MindARThree.prototype.resize = function guardedResize() {
+  if (!this.controller || !this.video || !this.video.isConnected) return;
+  return mindarResize.call(this);
+};
+
 /*
   COORDINATE SYSTEMS
   ------------------

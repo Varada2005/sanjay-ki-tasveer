@@ -131,3 +131,51 @@ body.in-game #lock-backdrop { display: none !important; }
   body.in-game #lock .done-next .who { width: 44px; height: 44px; }
   body.in-game #lock .done-close { width: 48px; height: 48px; padding: 13px; }
 }
+
+/* ===== Floating game bar (layout reference: white pill top-left, "Page Preview" pill, pieces bottom centre) ===== */
+body.in-game #topbar { left: calc(12px + env(safe-area-inset-left, 0px)); top: calc(12px + var(--safe-top)); right: auto; bottom: auto; width: auto; height: auto;
+  padding: 0; background: none; box-shadow: none; display: flex; flex-direction: row; align-items: center; gap: 10px; }
+.fbar { display: flex; align-items: center; gap: 10px; height: 44px; padding: 0 16px 0 14px; border-radius: 999px; background: #fff; color: #000;
+  box-shadow: 0 4px 16px rgba(0,0,0,.18); cursor: pointer; transition: padding .2s; }
+.fbar .fb-back, .fbar .fb-title { display: none; }
+.fb-back { width: 30px; height: 30px; padding: 4px; color: #000; }
+.fb-title { font-size: 17px; font-weight: 500; white-space: nowrap; max-width: 34vw; overflow: hidden; text-overflow: ellipsis; margin-right: 18px; }
+.fbar .gh-side { gap: 8px; color: #333; font-size: 13px; font-weight: 500; }
+.fbar .gh-dot { width: 20px; height: 20px; }
+.fb-extra { display: none; align-items: center; gap: 10px; }
+.fb-pill { height: 44px; padding: 0 20px; border-radius: 999px; color: #fff; font-size: 16px; font-weight: 500; box-shadow: 0 4px 16px rgba(0,0,0,.18); }
+.fb-round { width: 44px; height: 44px; border-radius: 50%; background: #fff; color: #000; padding: 11px; box-shadow: 0 4px 16px rgba(0,0,0,.18); }
+#topbar .fb-extra #partner-dot { width: 12px; height: 12px; box-shadow: 0 0 0 3px #fff; }
+#topbar.open .fbar { padding-left: 8px; }
+#topbar.open .fbar .fb-back, #topbar.open .fbar .fb-title { display: inline-flex; }
+#topbar.open .fb-extra { display: flex; animation: rise .2s; }
+
+/* pieces: white rounded slots, bottom centre */
+body.in-game #strip { position: fixed; left: 50%; bottom: calc(14px + var(--safe-bot)); transform: translateX(-50%); z-index: 11;
+  display: flex; gap: 10px; height: 60px; width: auto; grid-template-columns: none; grid-template-rows: none; }
+body.in-game .slot { width: 58px; height: 60px; border-radius: 14px; background: rgba(255,255,255,.92); border: none; box-shadow: 0 4px 14px rgba(0,0,0,.18); }
+body.in-game .slot.filled { background: #fff; border: none; }
+/* while typing an answer the keypad needs the bottom; the pieces come back once it is solved */
+body.puzzle-open:not(.puzzle-solved) #strip { display: none; }
+
+/* camera / tap view: edge to edge; the prompt sits above the pieces */
+body.in-game #s-play #crosshair { top: 50%; }
+.scan-tip { bottom: calc(88px + var(--safe-bot)); }
+
+/* Page Preview: your page, large, tap to close */
+.page-preview { position: fixed; inset: 0; z-index: 30; left: 0; bottom: 0; width: auto; border: none; border-radius: 0; box-shadow: none;
+  background: rgba(0,0,0,.6); display: flex; align-items: center; justify-content: center; }
+.page-preview[hidden] { display: none; }
+.page-preview .pp-card { position: relative; height: 82vh; aspect-ratio: 1491 / 1055; max-width: 92vw; border-radius: 14px; overflow: hidden; border: 4px solid #fff; background: #fff; }
+.page-preview .pp-card img { width: 100%; height: 100%; object-fit: cover; aspect-ratio: auto; }
+.page-preview .pp-dot { width: 22px; height: 22px; right: 12px; top: 12px; }
+
+/* riddle screen: full height now that the bar floats */
+@media (orientation: landscape) {
+  body.in-game #lock { top: 0; padding-top: calc(68px + var(--safe-top)); }
+  body.in-game #lock .lock-right { margin-top: -56px; height: calc(100% + 56px); }
+  body.in-game #lock .keypad button { height: calc((100vh - 44px - 32px - 76px) / 4); }
+}
+body.in-game #topbar { z-index: 25; }
+@media (orientation: landscape) { body.in-game.puzzle-solved #lock { padding-bottom: calc(86px + var(--safe-bot)); } }
+@media (orientation: landscape) { body.in-game #lock.solved .riddle-card { display: none; } body.in-game #lock.solved .lock-left { overflow: visible; } }

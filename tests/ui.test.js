@@ -107,7 +107,17 @@ const wait = (ms) => new Promise((r) => setTimeout(r, ms));
       const dots = await p.evaluate(() => document.querySelectorAll('#dots .clue-dot.open:not([hidden])').length);
       check(dots === 3, `${r}: 3 glowing dots over its 3 wrappers (${dots})`);
     }
-    check(await phones.teen.isVisible('#page-preview') && (await phones.teen.textContent('#scan-tip')).length > 3, 'scan screen: page preview in the corner + what to do');
+    check((await phones.teen.textContent('#scan-tip')).length > 3 && await phones.teen.isVisible('#fbar') && await phones.teen.isHidden('#pp-btn'), 'scan screen: floating bar (side + page) and what to do');
+    await phones.teen.click('#fbar');
+    await phones.teen.waitForSelector('#pp-btn', { state: 'visible' });
+    check(await phones.teen.isVisible('#game-title') && await phones.teen.isVisible('#game-menu'), 'tapping the bar expands it: back, title, Page Preview, settings');
+    await wait(400);
+    await shot(phones.teen, 'game-0-bar-expanded');
+    await phones.teen.click('#pp-btn');
+    await phones.teen.waitForSelector('#page-preview:not([hidden])');
+    await shot(phones.teen, 'game-0-page-preview');
+    await phones.teen.click('#page-preview');
+    check(await phones.teen.isHidden('#page-preview') && await phones.teen.isHidden('#pp-btn'), 'Page Preview opens your page; tap closes it and the bar folds up');
     await shot(phones.teen, 'game-1-teen-landscape-dots');
     await shot(phones.dadi, 'game-2-dadi-landscape-dots');
     await phones.teen.setViewportSize(PORT);

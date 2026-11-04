@@ -87,7 +87,7 @@
     <div id="hint" class="hint" data-icon="hint"></div>
     <div id="crosshair"><svg viewBox="0 0 100 100"><circle class="bg" cx="50" cy="50" r="40"/><circle id="ring" class="ring" cx="50" cy="50" r="40" pathLength="100"/><path d="M50 36v28M36 50h28" class="cross"/></svg></div>
     <!-- Your page, small, in the corner, and what to do now -->
-    <div id="page-preview" class="page-preview"><img id="page-preview-img" alt=""><i class="pp-dot" id="page-preview-dot"></i></div>
+    <div id="page-preview" class="page-preview" hidden><div class="pp-card"><img id="page-preview-img" alt=""><i class="pp-dot" id="page-preview-dot"></i></div></div>
     <div id="scan-tip" class="scan-tip"></div>
     <div id="debug-text" hidden></div>
   </section>
@@ -97,14 +97,20 @@
     <canvas id="spectator-photo"></canvas>
   </section>
 
-  <!-- Game header (Figma 1152:17): back, book title, torn-photo strip, your side dot + page number, settings -->
+  <!-- Floating game bar: collapsed = side colour + page number; tap to expand into options -->
   <div id="topbar" hidden>
-    <button class="fig-back" id="game-back" aria-label="back"><span data-icon="chev"></span></button>
-    <div class="gh-title" id="game-title"></div>
+    <div class="fbar" id="fbar" role="button" aria-label="menu">
+      <button class="fb-back" id="game-back" aria-label="back"><span data-icon="chev"></span></button>
+      <span class="fb-title" id="game-title"></span>
+      <span class="gh-side"><i class="gh-dot" id="game-dot"></i><span id="game-page"></span></span>
+    </div>
+    <div class="fb-extra">
+      <button class="fb-pill" id="pp-btn" data-t="pagePreview"></button>
+      <button class="fb-round" id="game-menu" aria-label="settings"><span data-icon="gear"></span></button>
+      <i id="partner-dot" class="dot"></i>
+    </div>
+    <!-- torn-photo pieces, bottom centre -->
     <div id="strip"></div>
-    <i id="partner-dot" class="dot"></i>
-    <span class="gh-side"><i class="gh-dot" id="game-dot"></i><span id="game-page"></span></span>
-    <button class="fig-icon small" id="game-menu" aria-label="menu"><span data-icon="gear"></span></button>
   </div>
 
   <div id="rotate" class="overlay" hidden><div class="rotate-art" data-icon="rotate"></div><div class="rotate-text" data-t="rotate"></div></div>

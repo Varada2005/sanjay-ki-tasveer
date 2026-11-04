@@ -262,9 +262,20 @@ function chooseSide(c, fromTap) {
 }
 for (const b of $$('[data-back]')) b.onclick = () => goHome();
 $('#home-settings').onclick = () => openMenu();
-$('#game-menu').onclick = () => openMenu();
+$('#game-menu').onclick = () => { setBar(false); openMenu(); };
 // Header back: closes an open riddle first, otherwise leaves the game.
-$('#game-back').onclick = () => { if ($('#lock').classList.contains('open')) closeLock(); else if (role === 'spectator') { started = false; goHome(); } else exitGame(); };
+// Floating bar: tap to expand / collapse; it folds itself up again after a few seconds.
+function setBar(open) {
+  $('#topbar').classList.toggle('open', open);
+  clearTimeout(setBar.t);
+  if (open) setBar.t = setTimeout(() => setBar(false), 6000);
+}
+$('#fbar').onclick = (e) => { if (e.target.closest('#game-back')) return; setBar(!$('#topbar').classList.contains('open')); };
+$('#pp-btn').onclick = () => { setBar(false); $('#page-preview').hidden = false; };
+$('#page-preview').onclick = () => { $('#page-preview').hidden = true; };
+$('#game-back').onclick = (e) => {
+  if (!$('#topbar').classList.contains('open')) return; // collapsed: the tap just opens the bar
+  e.stopPropagation(); setBar(false); if ($('#lock').classList.contains('open')) closeLock(); else if (role === 'spectator') { started = false; goHome(); } else exitGame(); };
 
 function renderDots() {
   if (!state || !spread) return;
@@ -294,6 +305,8 @@ function fillGameHeader() {
   $('#game-page').textContent = `${t('page')} ${sd.pageNo}`;
   $('#page-preview-img').src = sd.page;
   $('#page-preview-dot').style.background = meta.color;
+  $('#pp-btn').style.background = meta.color;
+  setBar(false);
 }
 async function startGame() {
   audio.unlock();
@@ -419,7 +432,7 @@ function startTap(page) {
   cv.hidden = false;
   $('#hint').classList.remove('show');
   $('#crosshair').classList.add('tap', 'hidden');
-  tapView = new TapView({ canvas: cv, imageUrl: `/assets/pages/${page}.png`, onPoint: (p) => { tapPoint = p; }, drawOverlay: drawTapOverlay, insetTop: $('#topbar').offsetHeight || 56 });
+  tapView = new TapView({ canvas: cv, imageUrl: `/assets/pages/${page}.png`, onPoint: (p) => { tapPoint = p; }, drawOverlay: drawTapOverlay });
   window.__tapView = tapView;
   const view = tapView;
   const loop = () => {
@@ -623,6 +636,7 @@ function openPuzzle(r) {
   $('#entry').hidden = false;
   $('#done').hidden = true;
   $('#lock').classList.remove('solved');
+  document.body.classList.remove('puzzle-solved');
   buildBoxes();
   audio.playLines(r.lines, { interrupt: true, delay: 600 });
 }
@@ -652,6 +666,7 @@ function showDone(r) {
   $('#clue').hidden = true;
   $('#done').hidden = false;
   $('#lock').classList.add('solved');
+  document.body.classList.add('puzzle-solved');
   $('#done-answer').textContent = r.result === 'solved' ? typed : '';
   $('#done-text').textContent = r.lines.map(lineText).join('\n\n');
   // Who goes next: the page icon of the next wrapper, or a peppermint for the final search.
@@ -661,7 +676,7 @@ function showDone(r) {
 }
 
 function closeLock() {
-  document.body.classList.remove('puzzle-open');
+  document.body.classList.remove('puzzle-open', 'puzzle-solved');
   $('#lock').classList.remove('open', 'busy');
   $('#lock').style.transform = '';
   $('#lock').setAttribute('aria-hidden', 'true');

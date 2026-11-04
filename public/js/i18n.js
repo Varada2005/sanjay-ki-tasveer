@@ -9,6 +9,7 @@ export const LANGS = [
 
 const T = {
   en: {
+    pagePreview: 'Page Preview',
     resumeBook: 'Resume Book', resumeBtn: 'Resume book', startBtn: 'Start book', previouslyPlayed: 'Previously played books', home: 'Home', search: 'Search', profile: 'Profile', nPuzzles: '{n} puzzles', nSolved: '{a} of {b} puzzles solved', scanPage: 'Scan the page', pointAtClue: 'Point at a glowing peppermint', tapClue: 'Press and hold a glowing peppermint', page: 'Page', notAvailable: 'Not available in this prototype', comingSoonShort: 'Coming soon',
     welcome: 'Welcome', chooseLang: 'Choose your language', continue: 'Continue', skip: 'Later', back: 'Back',
     tableTitle: 'Pair the two phones', tableBody: 'Do this once. Both phones at the same stand share one table code.',
@@ -26,6 +27,7 @@ const T = {
     confirmReset: 'Tap again to restart', on: 'On', off: 'Off', solvedOf: 'pieces', about: 'Prototype'
   },
   hi: {
+    pagePreview: 'पन्ना देखें',
     resumeBook: 'किताब जारी रखें', resumeBtn: 'किताब जारी रखें', startBtn: 'किताब शुरू करें', previouslyPlayed: 'पहले खेली गई किताबें', home: 'होम', search: 'खोजें', profile: 'प्रोफ़ाइल', nPuzzles: '{n} पहेलियाँ', nSolved: '{b} में से {a} पहेलियाँ हल', scanPage: 'पन्ना स्कैन कीजिए', pointAtClue: 'चमकती पीपरमिंट पर फ़ोन रखिए', tapClue: 'चमकती पीपरमिंट को दबाकर रखिए', page: 'पन्ना', notAvailable: 'इस प्रोटोटाइप में उपलब्ध नहीं', comingSoonShort: 'जल्द',
     welcome: 'नमस्ते', chooseLang: 'अपनी भाषा चुनिए', continue: 'आगे', skip: 'बाद में', back: 'वापस',
     tableTitle: 'दोनों फ़ोन जोड़िए', tableBody: 'यह एक ही बार करना है। एक स्टैंड के दोनों फ़ोन एक ही टेबल कोड रखते हैं।',
@@ -43,6 +45,7 @@ const T = {
     confirmReset: 'पक्का करने के लिए फिर दबाएँ', on: 'चालू', off: 'बंद', solvedOf: 'टुकड़े', about: 'प्रोटोटाइप'
   },
   mr: {
+    pagePreview: 'पान पाहा',
     resumeBook: 'पुस्तक पुढे सुरू ठेवा', resumeBtn: 'पुढे सुरू ठेवा', startBtn: 'पुस्तक सुरू करा', previouslyPlayed: 'आधी खेळलेली पुस्तके', home: 'होम', search: 'शोधा', profile: 'प्रोफाइल', nPuzzles: '{n} कोडी', nSolved: '{b} पैकी {a} कोडी सुटली', scanPage: 'पान स्कॅन करा', pointAtClue: 'चमकणाऱ्या पेपरमिंटकडे फोन धरा', tapClue: 'चमकणारी पेपरमिंट दाबून ठेवा', page: 'पान', notAvailable: 'या प्रोटोटाइपमध्ये उपलब्ध नाही', comingSoonShort: 'लवकरच',
     welcome: 'नमस्कार', chooseLang: 'तुमची भाषा निवडा', continue: 'पुढे', skip: 'नंतर', back: 'मागे',
     tableTitle: 'दोन्ही फोन जोडा', tableBody: 'हे एकदाच करायचे आहे. एका स्टँडवरचे दोन्ही फोन एकच टेबल कोड वापरतात.',
@@ -60,6 +63,7 @@ const T = {
     confirmReset: 'खात्रीसाठी पुन्हा दाबा', on: 'चालू', off: 'बंद', solvedOf: 'तुकडे', about: 'प्रोटोटाइप'
   },
   gu: {
+    pagePreview: 'પાનું જુઓ',
     resumeBook: 'ચોપડી ચાલુ રાખો', resumeBtn: 'ચાલુ રાખો', startBtn: 'ચોપડી શરૂ કરો', previouslyPlayed: 'પહેલાં રમેલી ચોપડીઓ', home: 'હોમ', search: 'શોધો', profile: 'પ્રોફાઇલ', nPuzzles: '{n} ઉખાણાં', nSolved: '{b} માંથી {a} ઉખાણાં ઉકેલ્યાં', scanPage: 'પાનું સ્કેન કરો', pointAtClue: 'ચમકતી પીપરમિન્ટ તરફ ફોન રાખો', tapClue: 'ચમકતી પીપરમિન્ટ દબાવી રાખો', page: 'પાનું', notAvailable: 'આ પ્રોટોટાઇપમાં ઉપલબ્ધ નથી', comingSoonShort: 'જલ્દી',
     welcome: 'નમસ્તે', chooseLang: 'તમારી ભાષા પસંદ કરો', continue: 'આગળ', skip: 'પછી', back: 'પાછા',
     tableTitle: 'બંને ફોન જોડો', tableBody: 'આ એક જ વાર કરવાનું છે. એક સ્ટેન્ડના બંને ફોન એક જ ટેબલ કોડ વાપરે છે.',
