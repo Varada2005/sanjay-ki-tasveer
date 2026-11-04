@@ -239,7 +239,7 @@ Questions: [PUZZLES.md](PUZZLES.md) for the logic, region outlines in the presen
 | `npm run lines` | recording script + missing recordings (`audio/LINES.csv`) |
 | `npm test` | data, 100k-run simulation, two-client integration, Playwright UI + screenshots |
 
-Answers and the step-by-step flow for presenters: [ANSWERS.md](ANSWERS.md).
+Pointer accuracy and what to export for it: [AR-ACCURACY.md](AR-ACCURACY.md). Answers and the step-by-step flow for presenters: [ANSWERS.md](ANSWERS.md).
 
 Pages: `/host` (laptop), `/play?room=XXXX` (phones), `/tools/editor.html` (regions), `/tools/compile.html` (manual target compile).
 

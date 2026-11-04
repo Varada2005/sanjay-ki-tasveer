@@ -65,6 +65,18 @@ for (const p of ['teen', 'dadi']) {
   for (const h of hooks) for (const m of amb) check(!polysOverlap(h.polygon, m.polygon), `${p}: sound-only area ${m.id} does not cover wrapper ${h.id}`);
 }
 
+section('Wrapper hit zones are tight and clear of everything else');
+for (const r of regionsFile.regions.filter((x) => x.type === 'hook')) {
+  const xs = r.polygon.map((p) => p[0]), ys = r.polygon.map((p) => p[1]);
+  const wPx = (Math.max(...xs) - Math.min(...xs)) * 1491, hPx = (Math.max(...ys) - Math.min(...ys)) * 1055;
+  check(Math.max(wPx, hPx) <= 130 && Math.min(wPx, hPx) >= 50, `${r.id}: hit zone is wrapper-sized (${Math.round(wPx)} x ${Math.round(hPx)} px on a 1491 px page)`);
+  check(Array.isArray(r.anchor) && inside(r.anchor, r.polygon), `${r.id}: anchor (the glowing dot) is inside its zone`);
+  for (const o of regionsFile.regions.filter((x) => x.page === r.page && x.id !== r.id && (x.type === 'candidate' || x.type === 'hook'))) {
+    const gap = Math.min(...r.polygon.map((pt) => edgeDistance(pt, o.polygon)));
+    check(!polysOverlap(r.polygon, o.polygon) && gap * 1491 >= 25, `${r.id} keeps at least 25 px from ${o.id} (gap ${Math.round(gap * 1491)} px)`);
+  }
+}
+
 section('Candidates');
 check(game.candidates.length === 6 && game.candidates.filter((c) => c.isSanjay).length === 1, 'Sanjay + A..E, one Sanjay');
 for (const c of game.candidates) {

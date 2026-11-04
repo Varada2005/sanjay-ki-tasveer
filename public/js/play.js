@@ -14,7 +14,8 @@ const store = {
   get(k) { try { return localStorage.getItem('sanjay.' + k); } catch (e) { return null; } },
   set(k, v) { try { if (v == null) localStorage.removeItem('sanjay.' + k); else localStorage.setItem('sanjay.' + k, v); } catch (e) {} }
 };
-const MIN_REGION_PX2 = 900;   // a region smaller than ~30x30 css px on screen is ignored
+const MIN_REGION_PX2 = 350;   // a region smaller than ~19x19 css px on screen is ignored (wrapper zones are small)
+const GRACE_MS = 220;         // the aim may slip off a target for this long without restarting the hold
 const vibrate = (p) => { try { navigator.vibrate && navigator.vibrate(p); } catch (e) {} };
 
 // ---------------- state ----------------
@@ -351,6 +352,7 @@ function fillGameHeader() {
   $('#page-preview-img').src = sd.page;
   $('#page-preview-dot').style.background = meta.color;
   $('#pp-btn').style.background = meta.color;
+  $('#pp-btn').style.color = side === 'yellow' ? '#1c0e16' : '#fff';
 }
 async function startGame() {
   audio.unlock();
@@ -559,9 +561,12 @@ function feed(hit, source) {
   let region = hit ? regionAt(D.regions, role, hit.u, hit.v) : null;
   if (region && screenArea(region) < MIN_REGION_PX2) region = null;
   const now = performance.now();
+  // Jitter forgiveness: a hand shake or one lost frame must not restart the hold.
+  if (region) cur.lastIn = now;
+  else if (cur.id && now - (cur.lastIn || 0) < GRACE_MS) region = regionsById[cur.id];
   if (!region) { cur = { id: null, since: 0, fired: false }; setRing(0); return; }
   if (region.id !== cur.id) {
-    cur = { id: region.id, since: now, fired: false };
+    cur = { id: region.id, since: now, fired: false, lastIn: now };
     if (region.type === 'hook' || region.type === 'candidate') vibrate(15); // a light tick: you are on a clue
   }
   if (cur.fired) { setRing(0); return; }
@@ -683,7 +688,7 @@ let lockDigits = [];
 function openPuzzle(r) {
   Object.assign(sheet, { puzzleId: r.puzzleId, regionId: r.regionId, len: r.codeLength, lines: r.lines });
   lockDigits = [];
-  drawCrop($('#lock-pic'), r.regionId, 64);
+  drawCrop($('#lock-pic'), r.regionId, 64, 1.7);
   $('#riddle').textContent = lineText(`${r.puzzleId}.riddle`);
   showClue(r.visualClue);
   $('#lock').classList.remove('busy');

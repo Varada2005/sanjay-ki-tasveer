@@ -21,6 +21,10 @@
 - **Hosting recommendation**: mode A (Render free web service) for the professors' demo, because phones only need
   mobile data or any Wi-Fi and a trusted HTTPS certificate; mode C as the no-internet backup.
 
+## Look and pointer
+- **Theme** (`public/css/theme.css`): dark maroon-ink base, cream serif headings (Playfair Display, Noto Serif for Devanagari and Gujarati), marigold accents, arch-shaped covers, one thin zigzag band, one sunburst behind the side circles. Cream pills over the camera. Numbers stay in the plain sans.
+- **Wrapper hit zones are circles on the wrapper itself** (about 90 px on a 1491 px page) with priority over everything; 220 ms grace for jitter; the glowing dot sits on the wrapper. Details in AR-ACCURACY.md.
+
 ## App shell (Kahani Akhbaar)
 - Placeholder name and look; screens are plain so the UI team's designs can replace them. Book list lives in
   `public/books.json` (current book + 2 placeholder past books; only spread 5 of the current book is playable).
