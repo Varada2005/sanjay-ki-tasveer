@@ -62,4 +62,10 @@ I.stand = `<svg viewBox="0 0 240 170" aria-hidden="true">
 I.rotate = `<svg viewBox="0 0 120 120" aria-hidden="true"><g class="rot-phone"><rect x="40" y="18" width="40" height="72" rx="7" fill="#222" stroke="#fff" stroke-width="4"/><rect x="46" y="26" width="28" height="54" rx="2" fill="#7fb7e0"/></g>
 <path d="M96 60a36 36 0 0 1-36 36" fill="none" stroke="#f2b33d" stroke-width="5" stroke-linecap="round"/><path d="M58 88l4 9 9-4" fill="none" stroke="#f2b33d" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
 
+I.playSolid = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4.5v15a1 1 0 0 0 1.5.86l12.4-7.5a1 1 0 0 0 0-1.72L7.5 3.64A1 1 0 0 0 6 4.5z" fill="currentColor"/></svg>`;
+I.playLine = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5.2v13.6a.8.8 0 0 0 1.2.7l11-6.8a.8.8 0 0 0 0-1.4l-11-6.8A.8.8 0 0 0 7 5.2z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>`;
+I.home = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10.4 12 3.5l8 6.9V19a2 2 0 0 1-2 2h-3.5v-5.5h-5V21H6a2 2 0 0 1-2-2z" fill="currentColor"/></svg>`;
+I.search = `<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16.5 16.5 21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>`;
+I.user = `<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4.2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M4.5 21c.6-4 3.6-6.2 7.5-6.2s6.9 2.2 7.5 6.2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>`;
+
 export default I;

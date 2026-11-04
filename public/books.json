@@ -1,44 +1,198 @@
 {
-  "app": { "name": "Kahani Akhbaar", "tagline": { "en": "Stories that come with your newspaper", "hi": "अख़बार के साथ आने वाली कहानियाँ", "mr": "वृत्तपत्रासोबत येणाऱ्या गोष्टी", "gu": "છાપા સાથે આવતી વાર્તાઓ" } },
+  "app": {
+    "name": "Kahani Akhbaar",
+    "tagline": {
+      "en": "Stories that come with your newspaper",
+      "hi": "अख़बार के साथ आने वाली कहानियाँ",
+      "mr": "वृत्तपत्रासोबत येणाऱ्या गोष्टी",
+      "gu": "છાપા સાથે આવતી વાર્તાઓ"
+    }
+  },
   "sides": {
-    "blue": { "color": "#2f6fd6", "name": { "en": "Blue side", "hi": "नीली तरफ़", "mr": "निळी बाजू", "gu": "વાદળી બાજુ" } },
-    "yellow": { "color": "#f2b316", "name": { "en": "Yellow side", "hi": "पीली तरफ़", "mr": "पिवळी बाजू", "gu": "પીળી બાજુ" } }
+    "blue": {
+      "color": "#005FC9",
+      "name": {
+        "en": "Blue side",
+        "hi": "नीली तरफ़",
+        "mr": "निळी बाजू",
+        "gu": "વાદળી બાજુ"
+      }
+    },
+    "yellow": {
+      "color": "#FF9C00",
+      "name": {
+        "en": "Orange side",
+        "hi": "नारंगी तरफ़",
+        "mr": "केशरी बाजू",
+        "gu": "નારંગી બાજુ"
+      }
+    }
   },
   "books": [
     {
       "id": "2026-11",
-      "month": { "en": "November 2026", "hi": "नवंबर 2026", "mr": "नोव्हेंबर 2026", "gu": "નવેમ્બર 2026" },
-      "title": { "en": "The Mela", "hi": "मेला", "mr": "जत्रा", "gu": "મેળો" },
+      "month": {
+        "en": "November 2026",
+        "hi": "नवंबर 2026",
+        "mr": "नोव्हेंबर 2026",
+        "gu": "નવેમ્બર 2026"
+      },
+      "title": {
+        "en": "The Mela",
+        "hi": "मेला",
+        "mr": "जत्रा",
+        "gu": "મેળો"
+      },
       "cover": "/assets/pages/dadi.png",
       "current": true,
       "spreads": [
-        { "n": 1, "title": { "en": "Arriving at the mela", "hi": "मेले में पहुँचे", "mr": "जत्रेत पोहोचलो", "gu": "મેળામાં પહોંચ્યા" }, "playable": false },
-        { "n": 2, "title": { "en": "The lost jhoola ticket", "hi": "खोया झूले का टिकट", "mr": "हरवलेले तिकीट", "gu": "ખોવાયેલી ટિકિટ" }, "playable": false },
-        { "n": 3, "title": { "en": "Dadi's old friends", "hi": "दादी के पुराने दोस्त", "mr": "आजीचे जुने मित्र", "gu": "દાદીના જૂના મિત્રો" }, "playable": false },
-        { "n": 4, "title": { "en": "Evening at the haat", "hi": "हाट की शाम", "mr": "बाजारातली संध्याकाळ", "gu": "હાટની સાંજ" }, "playable": false },
         {
-          "n": 5, "id": "sanjay", "concluding": true, "playable": true,
-          "title": { "en": "Sanjay's Photo", "hi": "संजय की तस्वीर", "mr": "संजयचा फोटो", "gu": "સંજયનો ફોટો" },
+          "n": 1,
+          "title": {
+            "en": "Arriving at the mela",
+            "hi": "मेले में पहुँचे",
+            "mr": "जत्रेत पोहोचलो",
+            "gu": "મેળામાં પહોંચ્યા"
+          },
+          "playable": false
+        },
+        {
+          "n": 2,
+          "title": {
+            "en": "The lost jhoola ticket",
+            "hi": "खोया झूले का टिकट",
+            "mr": "हरवलेले तिकीट",
+            "gu": "ખોવાયેલી ટિકિટ"
+          },
+          "playable": false
+        },
+        {
+          "n": 3,
+          "title": {
+            "en": "Dadi's old friends",
+            "hi": "दादी के पुराने दोस्त",
+            "mr": "आजीचे जुने मित्र",
+            "gu": "દાદીના જૂના મિત્રો"
+          },
+          "playable": false
+        },
+        {
+          "n": 4,
+          "title": {
+            "en": "Evening at the haat",
+            "hi": "हाट की शाम",
+            "mr": "बाजारातली संध्याकाळ",
+            "gu": "હાટની સાંજ"
+          },
+          "playable": false
+        },
+        {
+          "n": 5,
+          "id": "sanjay",
+          "concluding": true,
+          "playable": true,
+          "title": {
+            "en": "Sanjay's Photo",
+            "hi": "संजय की तस्वीर",
+            "mr": "संजयचा फोटो",
+            "gu": "સંજયનો ફોટો"
+          },
           "sides": {
-            "blue": { "role": "teen", "page": "/assets/pages/teen.png", "label": { "en": "Jhoola side", "hi": "झूले वाली तरफ़", "mr": "पाळण्याची बाजू", "gu": "ચકડોળ બાજુ" } },
-            "yellow": { "role": "dadi", "page": "/assets/pages/dadi.png", "label": { "en": "Haat side", "hi": "हाट वाली तरफ़", "mr": "बाजाराची बाजू", "gu": "હાટ બાજુ" } }
+            "blue": {
+              "role": "teen",
+              "page": "/assets/pages/teen.png",
+              "label": {
+                "en": "Jhoola side",
+                "hi": "झूले वाली तरफ़",
+                "mr": "पाळण्याची बाजू",
+                "gu": "ચકડોળ બાજુ"
+              },
+              "pageNo": 9
+            },
+            "yellow": {
+              "role": "dadi",
+              "page": "/assets/pages/dadi.png",
+              "label": {
+                "en": "Haat side",
+                "hi": "हाट वाली तरफ़",
+                "mr": "बाजाराची बाजू",
+                "gu": "હાટ બાજુ"
+              },
+              "pageNo": 10
+            }
           }
         }
-      ]
+      ],
+      "description": {
+        "en": "One peppermint trail. Six riddles. Find Dadi's lost brother somewhere in the village mela.",
+        "hi": "पीपरमिंट का एक निशान, छह पहेलियाँ। गाँव के मेले में दादी के बिछड़े भाई को ढूँढिए।",
+        "mr": "पेपरमिंटचा एक माग, सहा कोडी. गावच्या जत्रेत आजीच्या हरवलेल्या भावाला शोधा.",
+        "gu": "પીપરમિન્ટનું એક પગેરું, છ ઉખાણાં. ગામના મેળામાં દાદીના વિખૂટા પડેલા ભાઈને શોધો."
+      }
     },
     {
       "id": "2026-10",
-      "month": { "en": "October 2026", "hi": "अक्टूबर 2026", "mr": "ऑक्टोबर 2026", "gu": "ઓક્ટોબર 2026" },
-      "title": { "en": "Festival of Lights", "hi": "दीयों की रात", "mr": "दिव्यांची रात्र", "gu": "દીવાની રાત" },
-      "cover": null, "tint": "#7a3b8f",
-      "spreads": [1, 2, 3, 4, 5]
+      "month": {
+        "en": "October 2026",
+        "hi": "अक्टूबर 2026",
+        "mr": "ऑक्टोबर 2026",
+        "gu": "ઓક્ટોબર 2026"
+      },
+      "title": {
+        "en": "Festival of Lights",
+        "hi": "दीयों की रात",
+        "mr": "दिव्यांची रात्र",
+        "gu": "દીવાની રાત"
+      },
+      "cover": "/assets/pages/teen.png",
+      "tint": "#7a3b8f",
+      "spreads": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "coverPos": "85% 30%",
+      "puzzles": 6,
+      "shortMonth": {
+        "en": "October",
+        "hi": "अक्टूबर",
+        "mr": "ऑक्टोबर",
+        "gu": "ઓક્ટોબર"
+      }
     },
     {
       "id": "2026-09",
-      "month": { "en": "September 2026", "hi": "सितंबर 2026", "mr": "सप्टेंबर 2026", "gu": "સપ્ટેમ્બર 2026" },
-      "title": { "en": "The First Rain", "hi": "पहली बारिश", "mr": "पहिला पाऊस", "gu": "પહેલો વરસાદ" },
-      "cover": null, "tint": "#2e7d6b",
-      "spreads": [1, 2, 3, 4, 5]
+      "month": {
+        "en": "September 2026",
+        "hi": "सितंबर 2026",
+        "mr": "सप्टेंबर 2026",
+        "gu": "સપ્ટેમ્બર 2026"
+      },
+      "title": {
+        "en": "The First Rain",
+        "hi": "पहली बारिश",
+        "mr": "पहिला पाऊस",
+        "gu": "પહેલો વરસાદ"
+      },
+      "cover": "/assets/pages/dadi.png",
+      "tint": "#2e7d6b",
+      "spreads": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "coverPos": "90% 10%",
+      "puzzles": 6,
+      "shortMonth": {
+        "en": "September",
+        "hi": "सितंबर",
+        "mr": "सप्टेंबर",
+        "gu": "સપ્ટેમ્બર"
+      }
     }
   ]
 }

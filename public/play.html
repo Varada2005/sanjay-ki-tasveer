@@ -12,7 +12,10 @@
 <link rel="apple-touch-icon" href="/icons/icon-192.png">
 <title>Kahani Akhbaar</title>
 <link rel="stylesheet" href="/css/play.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700;800&display=swap">
 <link rel="stylesheet" href="/css/app.css">
+<link rel="stylesheet" href="/css/figma.css">
 <script type="importmap">
 { "imports": { "three": "/vendor/three/three.module.js", "three/addons/": "/vendor/three/addons/" } }
 </script>
@@ -51,41 +54,28 @@
     <div class="row-end"><button class="btn ghost" id="table-skip" data-t="skip"></button><button class="btn primary" id="table-continue" data-t="continue" hidden></button></div>
   </section>
 
-  <!-- Home: this month's book + previous books -->
-  <section id="s-home" class="screen app top">
-    <header class="bar"><h1 class="brand-name small" id="home-brand"></h1><button class="icon-btn" id="home-settings" aria-label="settings"><span data-icon="gear"></span></button></header>
-    <div class="section-label" data-t="thisMonth"></div>
+  <!-- Home (Figma 1130:278): resume this month's book, previously played books, bottom nav -->
+  <section id="s-home" class="screen app top fig">
+    <header class="fig-top"><h1 class="fig-app" id="home-brand"></h1><button class="fig-icon" id="home-settings" aria-label="settings"><span data-icon="gear"></span></button></header>
+    <h2 class="fig-resume-h"><span data-icon="playSolid" class="fig-tri"></span><span data-t="resumeBook"></span></h2>
     <div id="home-current"></div>
-    <div class="section-label" data-t="previous"></div>
-    <div id="home-previous" class="shelf"></div>
-    <div class="table-chip" id="home-table"></div>
+    <h2 class="fig-h2" data-t="previouslyPlayed"></h2>
+    <div id="home-previous" class="fig-grid"></div>
+    <div class="fig-table" id="home-table"></div>
+    <nav class="fig-nav">
+      <button class="on"><span data-icon="home"></span><span data-t="home"></span></button>
+      <button id="nav-search"><span data-icon="search"></span><span data-t="search"></span></button>
+      <button id="nav-profile"><span data-icon="user"></span><span data-t="profile"></span></button>
+    </nav>
+    <div id="toast" class="fig-toast" hidden></div>
   </section>
 
-  <!-- Book: its 5 spreads -->
-  <section id="s-book" class="screen app top">
-    <header class="bar"><button class="icon-btn" data-back="home" aria-label="back"><span data-icon="chev"></span></button><h1 id="book-title"></h1></header>
-    <div class="muted" id="book-month"></div>
-    <div id="book-spreads" class="spread-list"></div>
-  </section>
-
-  <!-- Spread: choose your side (blue / yellow dot) -->
-  <section id="s-side" class="screen app top">
-    <header class="bar"><button class="icon-btn" data-back="book" aria-label="back"><span data-icon="chev"></span></button><h1 id="side-title"></h1></header>
-    <h2 data-t="chooseSide"></h2>
-    <p class="muted" data-t="chooseSideBody"></p>
+  <!-- Pick a side (Figma 1133:545): orange and blue circles; tapping one starts the game -->
+  <section id="s-side" class="screen app fig">
+    <header class="fig-bar"><button class="fig-back" data-back="home" aria-label="back"><span data-icon="chev"></span></button><h1 id="side-title"></h1><span class="fig-bar-pad"></span></header>
     <div class="sides" id="sides"></div>
     <div class="partner-line"><i class="dot" id="side-partner-dot"></i><span id="side-partner"></span></div>
-    <button id="watch-btn" class="btn ghost" data-t="watch" hidden></button>
-  </section>
-
-  <!-- Place the phone landscape, then Start (unlocks camera + audio, goes full screen) -->
-  <section id="s-place" class="screen app">
-    <div class="place-art" data-icon="stand"></div>
-    <h2 data-t="placeTitle"></h2>
-    <p class="muted" data-t="placeBody"></p>
-    <div class="side-badge" id="place-side"></div>
-    <button id="start-btn" class="start" aria-label="start"><span data-icon="peppermint"></span></button>
-    <div class="start-label" data-t="start"></div>
+    <button id="watch-btn" class="fig-link" data-t="watch" hidden></button>
   </section>
 
   <!-- ===== Game (landscape) ===== -->
@@ -96,6 +86,9 @@
     <div id="dots"></div>
     <div id="hint" class="hint" data-icon="hint"></div>
     <div id="crosshair"><svg viewBox="0 0 100 100"><circle class="bg" cx="50" cy="50" r="40"/><circle id="ring" class="ring" cx="50" cy="50" r="40" pathLength="100"/><path d="M50 36v28M36 50h28" class="cross"/></svg></div>
+    <!-- Your page, small, in the corner, and what to do now -->
+    <div id="page-preview" class="page-preview"><img id="page-preview-img" alt=""><i class="pp-dot" id="page-preview-dot"></i></div>
+    <div id="scan-tip" class="scan-tip"></div>
     <div id="debug-text" hidden></div>
   </section>
 
@@ -104,11 +97,14 @@
     <canvas id="spectator-photo"></canvas>
   </section>
 
-  <!-- Game sidebar: torn photo with 6 slots, partner dot, menu -->
+  <!-- Game header (Figma 1152:17): back, book title, torn-photo strip, your side dot + page number, settings -->
   <div id="topbar" hidden>
-    <button class="icon-btn side-menu" id="game-menu" aria-label="menu"><span data-icon="gear"></span></button>
+    <button class="fig-back" id="game-back" aria-label="back"><span data-icon="chev"></span></button>
+    <div class="gh-title" id="game-title"></div>
     <div id="strip"></div>
     <i id="partner-dot" class="dot"></i>
+    <span class="gh-side"><i class="gh-dot" id="game-dot"></i><span id="game-page"></span></span>
+    <button class="fig-icon small" id="game-menu" aria-label="menu"><span data-icon="gear"></span></button>
   </div>
 
   <div id="rotate" class="overlay" hidden><div class="rotate-art" data-icon="rotate"></div><div class="rotate-text" data-t="rotate"></div></div>

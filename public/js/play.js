@@ -98,7 +98,6 @@ function setLang(l) {
   applyTexts();
   if (role && role !== 'spectator') socket.emit('lang', { lang: l });
   if (curScreen === 'home') goHome();
-  if (curScreen === 'book') goBook(book);
   if (curScreen === 'side') goSide();
   if (sheet.puzzleId) $('#riddle').textContent = lineText(`${sheet.puzzleId}.riddle`);
 }
@@ -159,7 +158,7 @@ function onReset(b) {
   celebrated = false;
   $('#celebrate').hidden = true;
   audio.stopAll();
-  if (b.freeRoles) { role = null; side = null; if (started) exitGame(); else if (curScreen === 'place') goSide(); }
+  if (b.freeRoles) { role = null; side = null; if (started) exitGame(); else if (curScreen === 'side') goSide(); }
 }
 
 // ---------------- onboarding: table pairing ----------------
@@ -195,67 +194,82 @@ function openTableScreen() {
   show('table');
 }
 
-// ---------------- home, book, spread ----------------
+// ---------------- home (Figma 1130:278) ----------------
+function toast(msg) {
+  const el = $('#toast');
+  el.textContent = msg;
+  el.hidden = false;
+  clearTimeout(toast.t);
+  toast.t = setTimeout(() => { el.hidden = true; }, 2200);
+}
 function goHome() {
-  const cover = (b) => b.cover
-    ? `<div class="cover" style="background-image:url(${b.cover})"></div>`
-    : `<div class="cover plain" style="background:${b.tint}"><span>${pick(b.title)}</span></div>`;
-  $('#home-current').innerHTML = `<button class="book-card" id="open-current">${cover(book)}
-      <div class="book-meta"><div class="muted">${pick(book.month)}</div><div class="book-title">${pick(book.title)}</div>
-      <div class="btn primary small">${t('open')}</div></div></button>`;
-  $('#open-current').onclick = () => goBook(book);
-  $('#home-previous').innerHTML = BOOKS.books.filter((b) => !b.current).map((b) => `<button class="mini-book" data-book="${b.id}">${cover(b)}<div class="muted small">${pick(b.month)}</div></button>`).join('');
-  for (const el of $$('#home-previous .mini-book')) el.onclick = () => goBook(BOOKS.books.find((b) => b.id === el.dataset.book));
-  $('#home-table').innerHTML = table ? `${t('table')} <b>${table}</b>` : `<button class="btn small" id="pair-now">${t('tableTitle')}</button>`;
+  const total = D.puzzles.length;
+  const solved = state ? state.solved.length : 0;
+  const pct = Math.round((solved / total) * 100);
+  const cover = (b) => `<div class="fig-cover" style="background-image:url(${b.cover});background-position:${b.coverPos || 'center'}"></div>`;
+  $('#home-brand').textContent = BOOKS.app.name;
+  $('#home-current').innerHTML = `<div class="fig-card">
+      ${cover(book)}
+      <div class="fig-card-body">
+        <div class="fig-title">${pick(book.title)}</div>
+        <div class="fig-meta">${t('nPuzzles', { n: total })} &nbsp;| ${pick(book.month)}</div>
+        <div class="fig-desc">${pick(book.description)}</div>
+        <div class="fig-prog-row"><span>${t('nSolved', { a: solved, b: total })}</span><span>${pct}%</span></div>
+        <div class="fig-prog"><i style="width:${pct}%"></i></div>
+        <button class="fig-btn" id="open-current"><span data-icon="playLine" class="fig-btn-ic">${I.playLine}</span>${solved ? t('resumeBtn') : t('startBtn')}</button>
+      </div></div>`;
+  $('#open-current').onclick = () => { if (!table) return openTableScreen(); goSide(); };
+  $('#home-previous').innerHTML = BOOKS.books.filter((b) => !b.current).map((b) => `<button class="fig-mini" data-book="${b.id}">
+      ${cover(b)}<div class="fig-mini-title">${pick(b.title)}</div><div class="fig-mini-meta">${pick(b.shortMonth || b.month)} &nbsp;·&nbsp; ${t('nPuzzles', { n: b.puzzles || 6 })}</div></button>`).join('');
+  for (const el of $$('#home-previous .fig-mini')) el.onclick = () => toast(t('notAvailable'));
+  $('#home-table').innerHTML = table ? `${t('table')} <b>${table}</b>` : `<button class="fig-link" id="pair-now">${t('tableTitle')}</button>`;
   if (!table) $('#pair-now').onclick = openTableScreen;
   show('home');
 }
-let viewedBook = null;
-function goBook(b) {
-  viewedBook = b;
-  $('#book-title').textContent = pick(b.title);
-  $('#book-month').textContent = pick(b.month);
-  const spreads = b.spreads.map((s) => (typeof s === 'number' ? { n: s, playable: false, title: null } : s));
-  $('#book-spreads').innerHTML = spreads.map((s) => `<button class="spread-row ${s.playable ? '' : 'locked'}" data-n="${s.n}" ${s.playable ? '' : 'disabled'}>
-      <span class="spread-n">${s.n}</span><span class="spread-txt"><b>${s.title ? pick(s.title) : t('spread') + ' ' + s.n}</b>
-      <small class="muted">${s.playable ? (s.concluding ? t('concluding') : '') : (b.current ? t('comingSoon') : t('notInPrototype'))}</small></span>
-      ${s.playable ? `<span class="btn primary small">${t('play')}</span>` : ''}</button>`).join('');
-  for (const el of $$('#book-spreads .spread-row:not(.locked)')) el.onclick = () => { if (!table) return openTableScreen(); goSide(); };
-  show('book');
-}
+$('#nav-search').onclick = () => toast(t('comingSoonShort'));
+$('#nav-profile').onclick = () => toast(t('comingSoonShort'));
+
+// ---------------- pick a side (Figma 1133:545) ----------------
+// Orange circle on top, blue below, matching the dots printed on the pages.
+// Tapping a circle claims that side and starts the game straight away.
 function goSide() {
-  $('#side-title').textContent = pick(spread.title);
-  $('#sides').innerHTML = ['blue', 'yellow'].map((c) => {
-    const sd = spread.sides[c], meta = BOOKS.sides[c];
-    return `<button class="side-card" data-side="${c}" style="--side:${meta.color}">
-      <span class="side-dot"></span><img src="${sd.page}" alt=""><span class="side-name">${pick(meta.name)}</span>
-      <span class="muted small">${pick(sd.label)}</span><span class="taken-tag">${t('taken')}</span></button>`;
+  $('#side-title').textContent = pick(book.title);
+  $('#sides').innerHTML = ['yellow', 'blue'].map((c) => {
+    const meta = BOOKS.sides[c];
+    return `<button class="side-circle" data-side="${c}" style="--side:${meta.color}" aria-label="${pick(meta.name)}"><span class="taken-tag">${t('taken')}</span></button>`;
   }).join('');
-  for (const el of $$('#sides .side-card')) el.onclick = () => chooseSide(el.dataset.side);
+  for (const el of $$('#sides .side-circle')) el.onclick = () => chooseSide(el.dataset.side, true);
   renderDots();
   show('side');
 }
-function chooseSide(c) {
+function chooseSide(c, fromTap) {
+  // Inside the tap: unlock sound and ask for full screen + landscape (needs the user's gesture).
+  if (fromTap) { audio.unlock(); enterLandscape(); }
   const wanted = spread.sides[c].role;
   const go = () => socket.emit('claim', { role: wanted, lang }, (res) => {
     if (res && res.ok) {
       role = res.role; side = c;
       applyState(res.state);
-      $('#place-side').innerHTML = `<span class="side-dot" style="--side:${BOOKS.sides[c].color}"></span>${pick(BOOKS.sides[c].name)} · ${pick(spread.sides[c].label)}`;
-      show('place');
-    } else if (res && res.spectator) { $('#watch-btn').hidden = false; }
-    else { const el = $(`#sides [data-side="${c}"]`); if (el) { el.classList.add('shake'); setTimeout(() => el.classList.remove('shake'), 450); } }
+      startGame();
+    } else {
+      leaveLandscape();
+      if (res && res.spectator) { $('#watch-btn').hidden = false; }
+      const el = $(`#sides [data-side="${c}"]`);
+      if (el) { el.classList.add('shake'); setTimeout(() => el.classList.remove('shake'), 450); }
+    }
   });
   if (socket.connected) go(); else socket.once('connect', () => setTimeout(go, 300));
 }
-for (const b of $$('[data-back]')) b.onclick = () => (b.dataset.back === 'home' ? goHome() : goBook(viewedBook || book));
+for (const b of $$('[data-back]')) b.onclick = () => goHome();
 $('#home-settings').onclick = () => openMenu();
 $('#game-menu').onclick = () => openMenu();
+// Header back: closes an open riddle first, otherwise leaves the game.
+$('#game-back').onclick = () => { if ($('#lock').classList.contains('open')) closeLock(); else if (role === 'spectator') { started = false; goHome(); } else exitGame(); };
 
 function renderDots() {
   if (!state || !spread) return;
   const roleOf = (c) => spread.sides[c].role;
-  for (const el of $$('#sides .side-card')) {
+  for (const el of $$('#sides .side-circle')) {
     const p = state.players[roleOf(el.dataset.side)];
     el.classList.toggle('taken', p.taken && Date.now() < p.freeAt && role !== roleOf(el.dataset.side));
     el.classList.toggle('mine', role === roleOf(el.dataset.side));
@@ -267,18 +281,28 @@ function renderDots() {
   $('#side-partner-dot').className = 'dot' + (on ? ' on' : '');
   $('#side-partner').textContent = `${t('partner')}: ${on ? t('partnerOn') : t('partnerWaiting')}`;
   $('#watch-btn').hidden = !(['teen', 'dadi'].every((r) => state.players[r].taken && Date.now() < state.players[r].freeAt) && !role);
+  if (curScreen === 'home') { const p = $('.fig-prog i'); if (p) goHome(); }
 }
 $('#watch-btn').addEventListener('click', becomeSpectator);
 
 // ---------------- start / landscape ----------------
-$('#start-btn').addEventListener('click', startGame);
+function fillGameHeader() {
+  const meta = BOOKS.sides[side] || BOOKS.sides.blue;
+  const sd = spread.sides[side] || spread.sides.blue;
+  $('#game-title').textContent = pick(book.title);
+  $('#game-dot').style.background = meta.color;
+  $('#game-page').textContent = `${t('page')} ${sd.pageNo}`;
+  $('#page-preview-img').src = sd.page;
+  $('#page-preview-dot').style.background = meta.color;
+}
 async function startGame() {
   audio.unlock();
   started = true;
-  await enterLandscape();
+  fillGameHeader();
   show('play');
   keepAwake();
   await startView();
+  updateHint();
   if (state && state.won && !celebrated) celebrate(false);
 }
 // Full screen + landscape lock where the browser allows it (Android Chrome, installed app).
@@ -286,6 +310,10 @@ async function startGame() {
 async function enterLandscape() {
   try { if (!document.fullscreenElement && document.documentElement.requestFullscreen) await document.documentElement.requestFullscreen({ navigationUI: 'hide' }); } catch (e) {}
   try { if (window.screen.orientation && window.screen.orientation.lock) await window.screen.orientation.lock('landscape'); } catch (e) {}
+}
+async function leaveLandscape() {
+  try { if (window.screen.orientation && window.screen.orientation.unlock) window.screen.orientation.unlock(); } catch (e) {}
+  try { if (document.fullscreenElement) await document.exitFullscreen(); } catch (e) {}
 }
 async function exitGame() {
   stopViews();
@@ -391,7 +419,7 @@ function startTap(page) {
   cv.hidden = false;
   $('#hint').classList.remove('show');
   $('#crosshair').classList.add('tap', 'hidden');
-  tapView = new TapView({ canvas: cv, imageUrl: `/assets/pages/${page}.png`, onPoint: (p) => { tapPoint = p; }, drawOverlay: drawTapOverlay, insetLeft: $('#topbar').offsetWidth || 84 });
+  tapView = new TapView({ canvas: cv, imageUrl: `/assets/pages/${page}.png`, onPoint: (p) => { tapPoint = p; }, drawOverlay: drawTapOverlay, insetTop: $('#topbar').offsetHeight || 56 });
   window.__tapView = tapView;
   const view = tapView;
   const loop = () => {
@@ -407,6 +435,7 @@ function startTap(page) {
     requestAnimationFrame(loop);
   };
   requestAnimationFrame(loop);
+  updateHint();
 }
 let tapPoint = null;
 let cameraError = '';
@@ -421,8 +450,12 @@ function stopViews() {
 }
 
 let lostSince = Date.now();
+// The words under the page preview: what to do right now.
 function updateHint() {
-  $('#hint').classList.toggle('show', !!tracker && !trackingOn && Date.now() - lostSince > 1200);
+  const tip = $('#scan-tip');
+  if (!tip) return;
+  tip.textContent = tapView ? t('tapClue') : tracker && trackingOn ? t('pointAtClue') : t('scanPage');
+  tip.classList.toggle('tracking', !!(tracker && trackingOn));
 }
 function hintTimer() { if (tracker) { updateHint(); setTimeout(hintTimer, 400); } }
 
@@ -582,6 +615,7 @@ function openPuzzle(r) {
   showClue(r.visualClue);
   $('#lock').classList.remove('busy');
   $('#lock').classList.add('open');
+  document.body.classList.add('puzzle-open');
   $('#lock').scrollTop = 0;
   $('#lock').setAttribute('aria-hidden', 'false');
   $('#lock-backdrop').hidden = false;
@@ -627,6 +661,7 @@ function showDone(r) {
 }
 
 function closeLock() {
+  document.body.classList.remove('puzzle-open');
   $('#lock').classList.remove('open', 'busy');
   $('#lock').style.transform = '';
   $('#lock').setAttribute('aria-hidden', 'true');
@@ -701,7 +736,9 @@ function revealPiece(slot) {
   layer.hidden = false;
   const c = pieceThumb(photo, slot, false);
   c.className = 'flying grow';
-  const w = Math.min(window.innerWidth * 0.6, 260), h = (w * c.height) / c.width;
+  // fit inside 60% of the width and 55% of the height (landscape screens are short)
+  const k0 = Math.min((window.innerWidth * 0.6) / c.width, (window.innerHeight * 0.55) / c.height, 260 / c.width);
+  const w = c.width * k0, h = c.height * k0;
   Object.assign(c.style, { width: w + 'px', height: h + 'px', left: (innerWidth - w) / 2 + 'px', top: (innerHeight - h) / 2 + 'px' });
   layer.appendChild(c);
   setTimeout(() => {

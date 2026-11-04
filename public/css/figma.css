@@ -1,0 +1,133 @@
+/* Look from the Figma frames "Collaborative" 1130:278 (home), 1133:545 (pick a side), 1152:17 (landscape riddle).
+   Measurements are the 2x exports halved. Loaded last, so it overrides play.css / app.css. */
+:root, :root:not([data-theme="light"]) {
+  --fig-ink: #000; --fig-muted: #5f5f5f; --fig-faint: #9b9b9b; --fig-card: #ebebeb; --fig-line: #e6e6e6;
+  --fig-gold: #e3b05a; --fig-panel: #d4d4d4; --fig-cream: #f2e6cf;
+  --app-bg: #fff; --app-ink: #000; --app-muted: #5f5f5f; --app-card: #fff; --app-line: #e6e6e6;
+}
+body { font-family: "Urbanist", system-ui, "Noto Sans Devanagari", "Noto Sans Gujarati", sans-serif; }
+.screen.app { background: #fff; color: var(--fig-ink); }
+.screen.app .btn.primary, .btn.primary { background: #000; border-color: #000; color: #fff; border-radius: 999px; }
+.screen.app .btn { border-radius: 999px; }
+.screen.app .lang.sel, .chip.sel { border-color: #000; }
+
+/* ---------- home ---------- */
+.fig { padding: calc(28px + var(--safe-top)) 25px calc(96px + var(--safe-bot)); gap: 0; }
+.fig-top { display: flex; align-items: center; justify-content: space-between; }
+.fig-app { font-size: 26px; font-weight: 600; letter-spacing: -.01em; margin: 0; }
+.fig-icon { width: 40px; height: 40px; padding: 9px; border-radius: 12px; color: var(--fig-ink); }
+.fig-icon.small { width: 36px; height: 36px; padding: 8px; }
+.fig-resume-h { display: flex; align-items: center; justify-content: center; gap: 12px; font-size: 20px; font-weight: 700; margin: 30px 0 14px !important; }
+.fig-tri { width: 14px; height: 14px; display: inline-block; }
+.fig-card { background: var(--fig-card); border-radius: 28px; padding: 16px 15px 16px; }
+.fig-cover { background: #24262c center/cover no-repeat; border-radius: 22px; height: 244px; }
+.fig-card-body { padding: 16px 0 0; display: flex; flex-direction: column; }
+.fig-title { font-size: 22px; font-weight: 600; letter-spacing: -.01em; }
+.fig-meta { font-size: 14px; color: var(--fig-muted); margin-top: 6px; }
+.fig-desc { font-size: 13.5px; line-height: 1.35; color: var(--fig-muted); margin-top: 8px; }
+.fig-prog-row { display: flex; justify-content: space-between; font-size: 12.5px; color: #333; margin-top: 18px; }
+.fig-prog { height: 4px; border-radius: 4px; background: #f3f3f3; margin-top: 10px; overflow: hidden; }
+.fig-prog i { display: block; height: 100%; background: var(--fig-gold); border-radius: 4px; }
+.fig-btn { margin-top: 16px; height: 46px; border-radius: 999px; background: #000; color: #fff; display: flex; align-items: center; justify-content: center; gap: 12px; font-size: 15.5px; font-weight: 600; }
+.fig-btn-ic { width: 16px; height: 16px; display: inline-block; }
+.fig-h2 { font-size: 20px; font-weight: 700; margin: 42px 0 18px !important; }
+.fig-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 17px; }
+.fig-mini { text-align: left; display: flex; flex-direction: column; color: var(--fig-ink); }
+.fig-mini .fig-cover { height: 134px; border-radius: 22px; border: 5px solid var(--fig-cream); }
+.fig-mini-title { font-size: 15px; font-weight: 600; margin-top: 12px; }
+.fig-mini-meta { font-size: 12.5px; color: var(--fig-muted); margin-top: 4px; }
+.fig-table { text-align: center; color: var(--fig-faint); font-size: 13px; margin-top: 26px; }
+.fig-link { background: none; color: var(--fig-ink); text-decoration: underline; font-weight: 600; min-height: 44px; }
+.fig-nav { position: fixed; left: 0; right: 0; bottom: 0; z-index: 5; height: calc(70px + var(--safe-bot)); padding-bottom: var(--safe-bot);
+  background: #fff; border-radius: 24px 24px 0 0; box-shadow: 0 -4px 20px rgba(0,0,0,.06); display: grid; grid-template-columns: repeat(3, 1fr); }
+.fig-nav button { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; color: var(--fig-faint); font-size: 11.5px; font-weight: 500; }
+.fig-nav button span:first-child { width: 22px; height: 22px; }
+.fig-nav button.on { color: var(--fig-ink); }
+.fig-toast { position: fixed; left: 50%; bottom: calc(86px + var(--safe-bot)); transform: translateX(-50%); z-index: 6; background: #000; color: #fff; padding: 10px 16px; border-radius: 999px; font-size: 14px; font-weight: 600; white-space: nowrap; }
+
+/* ---------- pick a side ---------- */
+#s-side { justify-content: flex-start; padding-top: calc(16px + var(--safe-top)); }
+.fig-bar { display: grid; grid-template-columns: 48px 1fr 48px; align-items: center; width: 100%; }
+.fig-bar h1 { font-size: 18px !important; font-weight: 500; text-align: center; margin: 0; }
+.fig-back { width: 44px; height: 44px; padding: 9px; color: var(--fig-ink); }
+#s-side .sides { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: space-evenly; width: 100%; grid-template-columns: none; }
+.side-circle { position: relative; width: 175px; height: 175px; border-radius: 50%; background: var(--side); transition: transform .15s, opacity .2s; }
+.side-circle:active { transform: scale(.96); }
+.side-circle.taken { opacity: .25; pointer-events: none; }
+.side-circle .taken-tag { display: none; position: absolute; left: 50%; bottom: -30px; transform: translateX(-50%); color: var(--fig-muted); font-size: 13px; font-weight: 600; background: none; }
+.side-circle.taken .taken-tag { display: block; }
+.side-circle.shake { animation: shake .4s; }
+#s-side .partner-line { font-size: 13px; color: var(--fig-faint); margin-bottom: 8px; }
+
+/* ---------- game header (landscape) ---------- */
+body.in-game #topbar { left: 0; right: 0; top: 0; bottom: auto; width: auto; height: calc(56px + var(--safe-top)); flex-direction: row; align-items: center;
+  gap: 12px; padding: var(--safe-top) calc(16px + env(safe-area-inset-right, 0px)) 0 calc(14px + env(safe-area-inset-left, 0px)); background: #fff; color: #000; box-shadow: 0 1px 0 var(--fig-line); }
+body.in-game #topbar .fig-back { flex: none; }
+.gh-title { font-size: 20px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; flex: 1 1 auto; min-width: 0; }
+body.in-game #strip { flex: none; display: flex; gap: 5px; height: 38px; width: auto; }
+body.in-game .slot { width: 30px; height: 38px; flex: none; border-radius: 6px; background: #f2f2f2; border: 1.5px dashed #c9c9c9; }
+body.in-game .slot.filled { background: var(--fig-cream); border: 1.5px solid var(--fig-cream); }
+body.in-game #partner-dot { width: 10px; height: 10px; }
+.gh-side { display: flex; align-items: center; gap: 10px; color: var(--fig-muted); font-size: 12.5px; flex: none; }
+.gh-dot { width: 21px; height: 21px; border-radius: 50%; display: inline-block; }
+body.in-game #topbar .fig-icon { color: #000; }
+
+/* camera screen: page preview in the corner + what to do */
+.page-preview { position: absolute; left: calc(14px + env(safe-area-inset-left, 0px)); bottom: 14px; z-index: 5; width: 150px; border-radius: 12px; overflow: hidden; border: 3px solid #fff; box-shadow: 0 6px 20px rgba(0,0,0,.35); background: #fff; }
+.page-preview img { display: block; width: 100%; aspect-ratio: 1491 / 1055; object-fit: cover; }
+.page-preview .pp-dot { position: absolute; right: 7px; top: 7px; width: 16px; height: 16px; border-radius: 50%; box-shadow: 0 0 0 2px #fff; }
+.scan-tip { position: absolute; left: 50%; bottom: 18px; transform: translateX(-50%); z-index: 5; background: #fff; color: #000; font-size: 16px; font-weight: 700; padding: 11px 20px; border-radius: 999px; box-shadow: 0 6px 20px rgba(0,0,0,.25); white-space: nowrap; }
+.scan-tip.tracking { background: #000; color: #fff; }
+body.in-game .hint { display: none; }
+body.puzzle-open .page-preview, body.puzzle-open .scan-tip, body.puzzle-open #crosshair, body.puzzle-open #dots { visibility: hidden; }
+body.in-game #s-play #crosshair { top: calc(50% + 28px); }
+
+/* ---------- riddle screen (landscape, Figma 1152:17): riddle left, grey inputs panel right ---------- */
+@media (orientation: landscape) {
+  body.in-game #lock { top: calc(56px + var(--safe-top)); left: 0; right: 0; bottom: 0; width: auto; max-height: none; border-radius: 0; background: #fff; color: #000; box-shadow: none;
+    padding: 22px calc(18px + env(safe-area-inset-right, 0px)) calc(22px + var(--safe-bot)) calc(46px + env(safe-area-inset-left, 0px));
+    display: grid; grid-template-columns: 0.75fr 1fr; column-gap: 40px; transform: none; opacity: 0; pointer-events: none; transition: opacity .25s; }
+  body.in-game #lock.open { opacity: 1; pointer-events: auto; transform: none; }
+  body.in-game #lock .grab { display: none; }
+  body.in-game #lock .lock-left { grid-column: 1; grid-row: 1; align-self: center; max-height: 100%; overflow-y: auto; padding: 0; }
+  body.in-game #lock .lock-right { grid-column: 2; grid-row: 1; height: 100%; background: var(--fig-panel); padding: 16px 18px; display: flex; flex-direction: column; justify-content: center; }
+  body.in-game #lock .riddle-card { background: none; box-shadow: none; padding: 0; color: #000; display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+  body.in-game #lock #lock-pic { height: 54px; border-radius: 10px; border: 2px solid var(--fig-line); }
+  body.in-game #lock .replay { background: #f0f0f0; color: #000; margin-left: auto; }
+  body.in-game #lock .riddle { font-family: "Urbanist", "Noto Sans Devanagari", system-ui, sans-serif; font-weight: 700; font-size: 18px; line-height: 1.45; color: #000; }
+  body.in-game #lock .clue { justify-content: flex-start; margin-top: 12px; }
+  body.in-game #lock .clue canvas { height: 76px; border-color: #000; box-shadow: none; }
+  body.in-game #lock .clue .who, body.in-game #lock .done .who { background: #f0f0f0; }
+  body.in-game #lock .boxes .box { background: #fff; color: #000; box-shadow: none; width: 54px; height: 60px; font-size: 38px; line-height: 60px; border-radius: 12px; }
+  body.in-game #lock .keypad button { background: #fff; color: #000; border-radius: 12px; height: calc((100vh - 56px - 44px - 32px - 76px) / 4); min-height: 44px; font-size: min(48pt, 8vh); font-family: "Urbanist", system-ui, sans-serif; font-weight: 600; }
+  body.in-game #lock .keypad button:active { background: #ececec; }
+  body.in-game #lock .keypad .ok { background: #000; }
+  body.in-game #lock .keypad .ok[disabled] { opacity: .35; }
+  body.in-game #lock.solved { grid-template-columns: 1fr; }
+  body.in-game #lock.solved .lock-left { max-width: 640px; justify-self: center; text-align: center; }
+  body.in-game #lock.solved .riddle-card { justify-content: center; }
+  body.in-game #lock .done-answer { color: #000; }
+  body.in-game #lock .done-text { color: #000; font-weight: 600; }
+  body.in-game #lock .done-next .arrow { color: #000; }
+  body.in-game #lock .done-close { background: #000; color: #fff; }
+}
+
+/* ---------- other app screens in the same look ---------- */
+#menu .settings { background: #fff; color: #000; }
+#menu .settings .btn, .chip { border-radius: 999px; }
+#s-lang .brand-name { font-weight: 600; }
+.table-code { font-family: "Urbanist", ui-monospace, monospace; font-weight: 800; }
+/* the riddle screen is a full page, not a pop-up: no dimming layer over the header */
+body.in-game #lock-backdrop { display: none !important; }
+@media (orientation: landscape) { body.in-game #lock { grid-template-columns: 0.9fr 1fr; } }
+@media (orientation: landscape) {
+  body.in-game #lock.solved .lock-left { align-self: stretch; display: flex; flex-direction: column; justify-content: center; gap: 4px; }
+  body.in-game #lock.solved .riddle-card { margin: 0; }
+  body.in-game #lock.solved #lock-pic { height: 42px; }
+  body.in-game #lock .done { padding: 0; }
+  body.in-game #lock .done-answer { font-size: 40px; margin: 0 0 4px; }
+  body.in-game #lock .done-text { font-size: 16px; line-height: 1.45; margin-bottom: 8px; }
+  body.in-game #lock .done-next { margin-bottom: 8px; }
+  body.in-game #lock .done-next .who { width: 44px; height: 44px; }
+  body.in-game #lock .done-close { width: 48px; height: 48px; padding: 13px; }
+}
