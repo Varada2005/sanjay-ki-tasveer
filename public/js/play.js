@@ -14,7 +14,7 @@ const store = {
   get(k) { try { return localStorage.getItem('sanjay.' + k); } catch (e) { return null; } },
   set(k, v) { try { if (v == null) localStorage.removeItem('sanjay.' + k); else localStorage.setItem('sanjay.' + k, v); } catch (e) {} }
 };
-const MIN_REGION_PX2 = 350;   // a region smaller than ~19x19 css px on screen is ignored (wrapper zones are small)
+const MIN_REGION_PX2 = 250;   // a region smaller than ~16x16 css px on screen is ignored (santra goli zones are small)
 const GRACE_MS = 220;         // the aim may slip off a target for this long without restarting the hold
 const vibrate = (p) => { try { navigator.vibrate && navigator.vibrate(p); } catch (e) {} };
 

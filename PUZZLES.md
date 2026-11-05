@@ -33,14 +33,14 @@ partner finds the number on their page, and the next wrapper is waiting right th
 
 ## The six puzzles
 
-| # | Wrapper (scan here) | Riddle asks for | Where the number is | Answer | What the number means | Next wrapper | Photo piece |
-|---|---|---|---|---|---|---|---|
-| 1 | **Dadi**: jute sack on Pappu's bullock cart, stencil "PAPPU" | Pappu's stall across, his name in Hindi, the number beside it | **Teen**: board "पप्पू २३" | **23** | Pappu's stall number. Sanjay rode in on Pappu's cart, then went to his stall | Pappu's stall (Teen) | red head-cloth |
-| 2 | **Teen**: Pappu's "Toy stop" stall | the kulfi in the red-cloth matka, the price on the slate | **Dadi**: kulfi slate "कुल्फ़ी ₹१५" | **15** | Price of the kulfi he ate after buying the pinwheel | Kulfi stall (Dadi) | curled moustache |
-| 3 | **Dadi**: kulfi stall, with the LEFT half of a torn wheel ticket "जायंट व्हील · डिब्बा नं. 1" | the other half of the ticket, lying where the kids pick up santra goli | **Teen**: right half of the ticket "6" | **16** | The cabin he rode | Cabin 16 (Teen) | eyes (eyebrow scar) |
-| 4 | **Teen**: giant-wheel cabin 16 (blue-yellow-blue) | from the top: the bangle stall, "our mausi" with the chin godna, price of a dozen | **Dadi**: board by the old mausi "दर्जन ₹४०" | **40** | What he paid for a dozen bangles for Didi | Bangle stall (Dadi) | ear with gold murki |
-| 5 | **Dadi**: old mausi's bangle tray | the jaimala photo at the studio, the year written on it | **Teen**: "1982" under the photo | **1982** | Didi's (Dadi's) wedding year, the day they parted | Photo studio (Teen) | mole |
-| 6 | **Teen**: santra goli on the ground in front of the photo studio | the santra goli stall, the time fresh santra goli arrive | **Dadi**: sign "ताज़ी संतरा गोली रोज़ शाम ५:३०" | **530** | The time he waits there every evening | **Final**: find Sanjay at the santra goli stall | gap-tooth smile |
+| # | Santra goli (scan here) | Where the number is | Answer | What the number means | Photo piece |
+|---|---|---|---|---|---|
+| 1 | **Orange / haat**: Pappu's bullock cart, jute sack stencilled "PAPPU" | Blue: board "पप्पू २३ Toy stop" on Pappu's stall | **23** | Pappu's stall number. Sanjay came to the mela on his friend Pappu's cart, then went to Pappu's stall. | red headcloth |
+| 2 | **Blue / jhoola**: Pappu's Toy stop stall (पप्पू २३) | Orange: kulfi stall sign "कुल्फ़ी ₹१५" | **15** | The price of one kulfi. After buying a pinwheel at Pappu's, Sanjay cooled off with a matka kulfi. | moustache |
+| 3 | **Orange / haat**: Kulfi counter, next to the pink "GIANT WHEEL" ticket half | Blue: right half of the pink ticket "6", on the ground where the kids pick up santra goli | **16** | The giant-wheel cabin Sanjay rode. His ticket tore in two at the kulfi stall. | eyes |
+| 4 | **Blue / jhoola**: Giant-wheel cabin 16 (blue-yellow-blue) | Orange: bangle stall board "₹50 हर दर्जन" | **50** | Price of a dozen bangles (₹50). From the top of the wheel Sanjay saw the bangle stall and bought Didi a dozen. | ear murki |
+| 5 | **Orange / haat**: Bangle stall: santra goli on the sellers' purple mat | Blue: year "1982" written under the jaimala photo | **1982** | The year of Didi's (Dadi's) wedding, the day brother and sister parted. The jaimala photo at the studio is dated 1982. | mole |
+| 6 | **Blue / jhoola**: Photo studio: santra goli on the ground in front of it | Orange: sign "5:30 से खुला" on the santra goli shop | **530** | The time the santra goli shop opens, 5:30. Sanjay is there every evening from then. | gap tooth |
 
 Who types: the phone that scanned the wrapper (1, 3, 5 on the Dadi phone; 2, 4, 6 on the Teen phone).
 Who finds the number: the other player, on their page.
@@ -59,29 +59,29 @@ Right: "हाँ, तेईस! पप्पू की दुकान ते�
 
 **2. पप्पू की फिरकी** (answer 15)
 > पप्पू से ली रंगीन फिरकी, फिर गर्मी ने सताया,
-> लाल कपड़े में लिपटा मटका, ठंडक का घर पाया।
-> उस पार कुल्फ़ी वाले की, पट्टी पर दाम लिखा है,
+> बड़े-से मटके वाली कुल्फ़ी ने, फिर ठंडक का घर पाया।
+> उस पार कुल्फ़ी वाले की, तख़्ती पर दाम लिखा है,
 > जितने में मैंने कुल्फ़ी खाई, वही अंक छिपा है।
 
-Right: "पंद्रह रुपये! इतने में मैंने लाल मटके वाली ठंडी कुल्फ़ी खाई, बचपन जैसी।"
+Right: "पंद्रह रुपये! इतने में मैंने बड़े मटके वाली ठंडी कुल्फ़ी खाई, बचपन जैसी।"
 
 **3. फटा टिकट** (answer 16)
 > कुल्फ़ी खा के झूले का, टिकट मैंने निकाला,
 > जल्दी में वो फट गया, आधा यहीं पे डाला।
-> बाक़ी आधा उड़ के गिरा, गोली बीनते बच्चों में,
-> दोनों जोड़ो, डिब्बा बोलो, बैठा था मैं जिसमें।
+> बाक़ी आधा अंक लिए, बच्चों के पास जा पड़ा,
+> उसी अंक पे ख़त्म हो जो, वो डिब्बा ढूँढो ज़रा।
 
 Right: "डिब्बा सोलह! नीला, पीला, फिर नीला। सबसे ऊपर पहुँच के मैंने पूरा मेला देखा।"
 
-**4. सोलह नंबर डिब्बा** (answer 40)
+**4. सोलह नंबर डिब्बा** (answer 50)
 > सोलह नंबर डिब्बे से, मैंने देखा सारा मेला,
 > नीचे चूड़ी की दुकान पे, रंगों का था रेला।
-> अपनी मौसी बैठी थीं, ठोड़ी पे वही गोदना,
-> दर्जन चूड़ी कितने की? उनकी तख़्ती पे खोजना।
+> दीदी के लिए चूड़ी ली, दाम की तख़्ती देखो,
+> एक दर्जन कितने की थी? वही अंक यहाँ लिखो।
 
-Right: "चालीस रुपये दर्जन! मौसी ने मुझे पहचान लिया, और दीदी के नाप की चूड़ियाँ ख़ुद चुनीं।"
+Right: "पचास रुपये दर्जन! मौसी ने मुझे पहचान लिया, और दीदी के नाप की चूड़ियाँ ख़ुद चुनीं।"
 
-**5. मौसी की चूड़ियाँ** (answer 1982)
+**5. चूड़ियों की चटाई** (answer 1982)
 > मौसी से चूड़ी ली मैंने, दीदी, तेरे नाप की,
 > याद आ गई वो शादी, बात बड़े पुराने साल की।
 > उस पार फ़ोटो वाले ने, जयमाला की फ़ोटो सजाई,
@@ -93,9 +93,9 @@ Right: "उन्नीस सौ बयासी! तेरी शादी क
 > उस फ़ोटो में छोटा-सा मैं, दुल्हन के पास खड़ा,
 > आज भी हर शाम आता हूँ, बूढ़ा हो के बड़ा।
 > संतरा गोली की दुकान पे, तख़्ती टँगी है देखो,
-> ताज़ी गोलियाँ किस वक़्त आतीं, वो वक़्त यहाँ लिखो।
+> किस वक़्त से दुकान खुली है, वो वक़्त यहाँ लिखो।
 
-Right: "साढ़े पाँच! हर शाम ठीक इसी वक़्त, मैं संतरा गोली की दुकान पे तेरी राह देखता हूँ।"
+Right: "साढ़े पाँच! दुकान खुलते ही, हर शाम मैं वहीं संतरा गोली लेकर तेरी राह देखता हूँ।"
 
 Then: "मेरी पूरी फ़ोटो जुड़ गई! अब संतरा गोली की दुकान पे मुझे ढूँढो, फ़ोटो से पहचानो, और मुझ पर फ़ोन रखो।"
 
@@ -103,7 +103,7 @@ Then: "मेरी पूरी फ़ोटो जुड़ गई! अब स
 
 | Man | Page / where | red head-cloth | eyebrow scar | curled moustache | murki | mole | gap tooth |
 |---|---|---|---|---|---|---|---|
-| **Sanjay** | Dadi, LEFT man at the santra goli stall | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| **Sanjay** | Orange page, white cap and orange kurta, behind the santra goli shop counter | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | A | Dadi, RIGHT man at the santra goli stall | ✓ | ✓ | ✓ | | | ✓ |
 | B | Teen, red turban eating ice gola | ✓ | | ✓ | ✓ | ✓ | |
 | C | Dadi, red turban playing chaupar | ✓ | ✓ | | ✓ | | |

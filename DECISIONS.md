@@ -34,7 +34,18 @@
 - Teen old men on the new art: B = moustached man with red cloth and ice candy, D = white Gandhi cap, E = the sketched figure
   at Pappu's stall, plus two extra old men (`other_1` glasses, `other_4` orange dupatta). Their faces do not yet show the
   face-table features.
-- The haat (Dadi) page is still the earlier AI draft and its regions are unchanged.
+
+## Hand-drawn haat page (IMG_2171.PNG, 2178 x 1544)
+- `assets/pages/dadi.png` is the hand-drawn page; every haat region re-placed. The three santra goli zones are centred on the
+  circles in "Frame 47.png" (pixel diff). The bangle-mat zone is smaller (radius 38 px) to stay clear of the grey-turban man.
+- **Puzzles changed to what is drawn:** P4's answer is now **50** (the board says ₹50 हर दर्जन, not ₹40); P6 asks when the shop
+  opens ("5:30 से खुला"); P2 no longer mentions red cloth on the matka; P3's haat ticket half shows "GIANT WHEEL" with no number,
+  so the riddle now says: the half with the number lies where the children play; find the cabin that ends in it (11 to 18 -> 16).
+- **Sanjay** = the white-haired man in the white cap and orange kurta behind the santra goli shop counter (the LEFT man, as the
+  checklist placed him). A = the man in the red turban beside him. C = grey-turban man crouched over the game on the ground.
+  Extra men: `other_5` (grey cap, beard), `other_6` (blue-turban potter).
+- The smallest santra goli zone is about 16 px across when the whole page fits a phone in tap mode, so the minimum on-screen
+  target size was lowered from 350 to 250 px².
 
 ## Spread list and the intro before the scanner
 - Home → **book page** (5 spreads with titles, in all four languages) → tap the playable spread → pick a side →

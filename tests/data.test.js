@@ -117,9 +117,9 @@ const emitted = new Set(need);
 for (const id of Object.keys(L)) check(emitted.has(id), `line ${id} is used`);
 
 // Each riddle mentions where to look (a word for the answer place) and each "next" line names its wrapper's place.
-const PLACE = { p1: ['पप्पू', 'दुकान'], p2: ['कुल्फ़ी', 'पट्टी'], p3: ['टिकट', 'डिब्बा'], p4: ['चूड़ी', 'तख़्ती'], p5: ['फ़ोटो', 'साल'], p6: ['संतरा गोली', 'तख़्ती'] };
+const PLACE = { p1: ['पप्पू', 'दुकान'], p2: ['कुल्फ़ी', 'तख़्ती'], p3: ['टिकट', 'डिब्बा'], p4: ['चूड़ी', 'तख़्ती'], p5: ['फ़ोटो', 'साल'], p6: ['संतरा गोली', 'तख़्ती'] };
 for (const p of P) check(PLACE[p.id].every((w) => p.lines.hi.riddle.includes(w)), `${p.id}: riddle tells where to look (${PLACE[p.id].join(', ')})`);
-const WRAP = { p1: 'बोरी', p2: 'पप्पू', p3: 'कुल्फ़ी', p4: 'डिब्बे', p5: 'चूड़ियों', p6: 'फ़ोटो' };
+const WRAP = { p1: 'बोरी', p2: 'पप्पू', p3: 'कुल्फ़ी', p4: 'डिब्बे', p5: 'चूड़ी', p6: 'फ़ोटो' };
 for (const p of P) check(game.next.hi.across[p.id].includes(WRAP[p.id]) && game.next.hi.same[p.id].includes(WRAP[p.id]), `next line for ${p.id} names its wrapper place (${WRAP[p.id]})`);
 check(!Object.values(game.next.hi.same).some((s) => s.includes('उस पार')), '"same page" next lines never say "across"');
 

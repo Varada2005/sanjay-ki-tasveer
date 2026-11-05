@@ -360,7 +360,9 @@ const wait = (ms) => new Promise((r) => setTimeout(r, ms));
     await cam.waitForSelector('#s-play.on');
     await cam.setViewportSize({ width: 844, height: 390 });
     await cam.waitForSelector('#ar-container video', { timeout: 30000 }).catch(() => {});
-    await wait(4000);
+    // the tracking file is now several MB: wait until the camera view has really started
+    await cam.waitForFunction(() => !!document.querySelector('#ar-container video') && document.getElementById('tap-canvas').hidden && !!document.getElementById('scan-tip').dataset.msg, null, { timeout: 30000 }).catch(() => {});
+    await wait(800);
     const camMode = await cam.evaluate(() => !!document.querySelector('#ar-container video') && document.getElementById('tap-canvas').hidden);
     check(camMode, 'camera mode starts MindAR with the teen target');
     await shot(cam, 'phone-camera-untracked-hint');

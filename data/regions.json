@@ -6,574 +6,11 @@
    1544
   ],
   "dadi": [
-   1491,
-   1055
+   2178,
+   1544
   ]
  },
  "regions": [
-  {
-   "id": "w_sack",
-   "page": "dadi",
-   "type": "hook",
-   "note": "P1 wrapper: the red-white bow on the jute sack (drawn in the draft). Tight hit circle around the wrapper only.",
-   "polygon": [
-    [
-     0.9443,
-     0.6227
-    ],
-    [
-     0.9424,
-     0.6383
-    ],
-    [
-     0.9368,
-     0.652
-    ],
-    [
-     0.9282,
-     0.6622
-    ],
-    [
-     0.9177,
-     0.6676
-    ],
-    [
-     0.9065,
-     0.6676
-    ],
-    [
-     0.896,
-     0.6622
-    ],
-    [
-     0.8875,
-     0.652
-    ],
-    [
-     0.8819,
-     0.6383
-    ],
-    [
-     0.8799,
-     0.6227
-    ],
-    [
-     0.8819,
-     0.6072
-    ],
-    [
-     0.8875,
-     0.5935
-    ],
-    [
-     0.896,
-     0.5833
-    ],
-    [
-     0.9065,
-     0.5779
-    ],
-    [
-     0.9177,
-     0.5779
-    ],
-    [
-     0.9282,
-     0.5833
-    ],
-    [
-     0.9368,
-     0.5935
-    ],
-    [
-     0.9424,
-     0.6072
-    ]
-   ],
-   "puzzleId": "p1",
-   "anchor": [
-    0.9121,
-    0.6227
-   ]
-  },
-  {
-   "id": "w_kulfi",
-   "page": "dadi",
-   "type": "hook",
-   "note": "P3 wrapper (NEW art, best guess): on the kulfi counter beside the left half of the torn ticket. Move to the real wrapper.",
-   "polygon": [
-    [
-     0.1288,
-     0.4787
-    ],
-    [
-     0.1271,
-     0.4923
-    ],
-    [
-     0.1222,
-     0.5043
-    ],
-    [
-     0.1147,
-     0.5131
-    ],
-    [
-     0.1055,
-     0.5179
-    ],
-    [
-     0.0957,
-     0.5179
-    ],
-    [
-     0.0865,
-     0.5131
-    ],
-    [
-     0.079,
-     0.5043
-    ],
-    [
-     0.0741,
-     0.4923
-    ],
-    [
-     0.0724,
-     0.4787
-    ],
-    [
-     0.0741,
-     0.4651
-    ],
-    [
-     0.079,
-     0.4531
-    ],
-    [
-     0.0865,
-     0.4442
-    ],
-    [
-     0.0957,
-     0.4395
-    ],
-    [
-     0.1055,
-     0.4395
-    ],
-    [
-     0.1147,
-     0.4442
-    ],
-    [
-     0.1222,
-     0.4531
-    ],
-    [
-     0.1271,
-     0.4651
-    ]
-   ],
-   "puzzleId": "p3",
-   "anchor": [
-    0.1006,
-    0.4787
-   ]
-  },
-  {
-   "id": "w_bangle",
-   "page": "dadi",
-   "type": "hook",
-   "note": "P5 wrapper (NEW art, best guess): in the old mausi's bangle tray. Move to the real wrapper.",
-   "polygon": [
-    [
-     0.4306,
-     0.4664
-    ],
-    [
-     0.4289,
-     0.48
-    ],
-    [
-     0.424,
-     0.4919
-    ],
-    [
-     0.4165,
-     0.5008
-    ],
-    [
-     0.4073,
-     0.5056
-    ],
-    [
-     0.3975,
-     0.5056
-    ],
-    [
-     0.3883,
-     0.5008
-    ],
-    [
-     0.3808,
-     0.4919
-    ],
-    [
-     0.3759,
-     0.48
-    ],
-    [
-     0.3742,
-     0.4664
-    ],
-    [
-     0.3759,
-     0.4527
-    ],
-    [
-     0.3808,
-     0.4408
-    ],
-    [
-     0.3883,
-     0.4319
-    ],
-    [
-     0.3975,
-     0.4271
-    ],
-    [
-     0.4073,
-     0.4271
-    ],
-    [
-     0.4165,
-     0.4319
-    ],
-    [
-     0.424,
-     0.4408
-    ],
-    [
-     0.4289,
-     0.4527
-    ]
-   ],
-   "puzzleId": "p5",
-   "anchor": [
-    0.4024,
-    0.4664
-   ]
-  },
-  {
-   "id": "clue_p2",
-   "page": "dadi",
-   "type": "clue",
-   "puzzleId": "p2",
-   "note": "P2 answer: kulfi seller's slate \"कुल्फ़ी ₹१५\".",
-   "polygon": [
-    [
-     0.1529,
-     0.4209
-    ],
-    [
-     0.2093,
-     0.4209
-    ],
-    [
-     0.2093,
-     0.4815
-    ],
-    [
-     0.1529,
-     0.4815
-    ]
-   ]
-  },
-  {
-   "id": "clue_p4",
-   "page": "dadi",
-   "type": "clue",
-   "puzzleId": "p4",
-   "note": "P4 answer: small board at the old mausi's end of the bangle stall \"दर्जन ₹४०\". NEW ART, best-guess position.",
-   "polygon": [
-    [
-     0.3568,
-     0.273
-    ],
-    [
-     0.4105,
-     0.273
-    ],
-    [
-     0.4105,
-     0.3185
-    ],
-    [
-     0.3568,
-     0.3185
-    ]
-   ]
-  },
-  {
-   "id": "clue_p6",
-   "page": "dadi",
-   "type": "clue",
-   "puzzleId": "p6",
-   "note": "P6 answer: sign on the peppermint stall \"ताज़ी पीपरमिंट रोज़ शाम ५:३०\". NEW ART, best-guess position.",
-   "polygon": [
-    [
-     0.3474,
-     0.0417
-    ],
-    [
-     0.4105,
-     0.0417
-    ],
-    [
-     0.4105,
-     0.0986
-    ],
-    [
-     0.3474,
-     0.0986
-    ]
-   ]
-  },
-  {
-   "id": "cand_sanjay",
-   "page": "dadi",
-   "type": "candidate",
-   "candidateId": "sanjay",
-   "note": "SANJAY: LEFT old man at the peppermint stall, top centre.",
-   "polygon": [
-    [
-     0.4051,
-     0.0664
-    ],
-    [
-     0.4574,
-     0.0664
-    ],
-    [
-     0.4574,
-     0.2275
-    ],
-    [
-     0.4051,
-     0.2275
-    ]
-   ]
-  },
-  {
-   "id": "cand_A",
-   "page": "dadi",
-   "type": "candidate",
-   "candidateId": "A",
-   "note": "A: RIGHT old man at the peppermint stall.",
-   "polygon": [
-    [
-     0.4588,
-     0.0664
-    ],
-    [
-     0.5164,
-     0.0664
-    ],
-    [
-     0.5164,
-     0.2275
-    ],
-    [
-     0.4588,
-     0.2275
-    ]
-   ]
-  },
-  {
-   "id": "cand_C",
-   "page": "dadi",
-   "type": "candidate",
-   "candidateId": "C",
-   "note": "C: old man in the red turban playing chaupar, bottom left.",
-   "polygon": [
-    [
-     0.0671,
-     0.6493
-    ],
-    [
-     0.2012,
-     0.6493
-    ],
-    [
-     0.2012,
-     0.855
-    ],
-    [
-     0.0671,
-     0.855
-    ]
-   ]
-  },
-  {
-   "id": "other_2",
-   "page": "dadi",
-   "type": "candidate",
-   "candidateId": "other_2",
-   "note": "Old man in white turban and blue shawl, chaupar partner, bottom left.",
-   "polygon": [
-    [
-     0.2495,
-     0.6749
-    ],
-    [
-     0.4024,
-     0.6749
-    ],
-    [
-     0.4024,
-     0.855
-    ],
-    [
-     0.2495,
-     0.855
-    ]
-   ]
-  },
-  {
-   "id": "other_3",
-   "page": "dadi",
-   "type": "candidate",
-   "candidateId": "other_3",
-   "note": "Old man with white beard and white turban, front of the pattal pangat row.",
-   "polygon": [
-    [
-     0.5392,
-     0.3962
-    ],
-    [
-     0.6224,
-     0.3962
-    ],
-    [
-     0.6224,
-     0.5687
-    ],
-    [
-     0.5392,
-     0.5687
-    ]
-   ]
-  },
-  {
-   "id": "amb_bullocks",
-   "page": "dadi",
-   "type": "ambient",
-   "ambient": "bells",
-   "note": "Resting bullocks with bells (ambient sound only).",
-   "polygon": [
-    [
-     0.5298,
-     0.6825
-    ],
-    [
-     0.7914,
-     0.6825
-    ],
-    [
-     0.7914,
-     0.9289
-    ],
-    [
-     0.5298,
-     0.9289
-    ]
-   ]
-  },
-  {
-   "id": "amb_chaupar",
-   "page": "dadi",
-   "type": "ambient",
-   "note": "Chaupar game under the neem (sound only).",
-   "polygon": [
-    [
-     0.1596,
-     0.8607
-    ],
-    [
-     0.3622,
-     0.8607
-    ],
-    [
-     0.3655,
-     0.9972
-    ],
-    [
-     0.1207,
-     0.9972
-    ],
-    [
-     0.1207,
-     0.9384
-    ],
-    [
-     0.1596,
-     0.9384
-    ]
-   ],
-   "ambient": "cowries"
-  },
-  {
-   "id": "amb_rahat",
-   "page": "dadi",
-   "type": "ambient",
-   "note": "Rahat at the well with bullocks (sound only).",
-   "polygon": [
-    [
-     0.674,
-     0
-    ],
-    [
-     1,
-     0
-    ],
-    [
-     1,
-     0.1943
-    ],
-    [
-     0.674,
-     0.1943
-    ]
-   ],
-   "ambient": "water"
-  },
-  {
-   "id": "amb_pangat",
-   "page": "dadi",
-   "type": "ambient",
-   "note": "Pangat, women eating from steel thalis (sound only).",
-   "polygon": [
-    [
-     0.5687,
-     0.2483
-    ],
-    [
-     0.8753,
-     0.2483
-    ],
-    [
-     0.8753,
-     0.3791
-    ],
-    [
-     0.5687,
-     0.3791
-    ]
-   ],
-   "ambient": "pangat"
-  },
   {
    "id": "w_pappu",
    "page": "teen",
@@ -1130,7 +567,7 @@
    ]
   },
   {
-   "id": "amb_bangles",
+   "id": "amb_bangles_teen",
    "page": "teen",
    "type": "ambient",
    "ambient": "bangles",
@@ -1176,6 +613,619 @@
     [
      0.8219,
      0.2655
+    ]
+   ]
+  },
+  {
+   "id": "w_sack",
+   "page": "dadi",
+   "type": "hook",
+   "puzzleId": "p1",
+   "note": "P1 santra goli: on the \"PAPPU\" sack on the bullock cart (red circle).",
+   "polygon": [
+    [
+     0.8402,
+     0.5764
+    ],
+    [
+     0.8389,
+     0.5871
+    ],
+    [
+     0.8351,
+     0.5964
+    ],
+    [
+     0.8292,
+     0.6033
+    ],
+    [
+     0.822,
+     0.607
+    ],
+    [
+     0.8144,
+     0.607
+    ],
+    [
+     0.8072,
+     0.6033
+    ],
+    [
+     0.8013,
+     0.5964
+    ],
+    [
+     0.7975,
+     0.5871
+    ],
+    [
+     0.7961,
+     0.5764
+    ],
+    [
+     0.7975,
+     0.5658
+    ],
+    [
+     0.8013,
+     0.5564
+    ],
+    [
+     0.8072,
+     0.5495
+    ],
+    [
+     0.8144,
+     0.5458
+    ],
+    [
+     0.822,
+     0.5458
+    ],
+    [
+     0.8292,
+     0.5495
+    ],
+    [
+     0.8351,
+     0.5564
+    ],
+    [
+     0.8389,
+     0.5658
+    ]
+   ],
+   "anchor": [
+    0.8182,
+    0.5764
+   ]
+  },
+  {
+   "id": "w_kulfi",
+   "page": "dadi",
+   "type": "hook",
+   "puzzleId": "p3",
+   "note": "P3 santra goli: on the kulfi counter next to the pink \"GIANT WHEEL\" ticket half (red circle).",
+   "polygon": [
+    [
+     0.9073,
+     0.5907
+    ],
+    [
+     0.9059,
+     0.6013
+    ],
+    [
+     0.9021,
+     0.6107
+    ],
+    [
+     0.8962,
+     0.6176
+    ],
+    [
+     0.889,
+     0.6213
+    ],
+    [
+     0.8814,
+     0.6213
+    ],
+    [
+     0.8742,
+     0.6176
+    ],
+    [
+     0.8683,
+     0.6107
+    ],
+    [
+     0.8645,
+     0.6013
+    ],
+    [
+     0.8632,
+     0.5907
+    ],
+    [
+     0.8645,
+     0.58
+    ],
+    [
+     0.8683,
+     0.5707
+    ],
+    [
+     0.8742,
+     0.5638
+    ],
+    [
+     0.8814,
+     0.5601
+    ],
+    [
+     0.889,
+     0.5601
+    ],
+    [
+     0.8962,
+     0.5638
+    ],
+    [
+     0.9021,
+     0.5707
+    ],
+    [
+     0.9059,
+     0.58
+    ]
+   ],
+   "anchor": [
+    0.8852,
+    0.5907
+   ]
+  },
+  {
+   "id": "w_bangle",
+   "page": "dadi",
+   "type": "hook",
+   "puzzleId": "p5",
+   "note": "P5 santra goli: on the bangle sellers' purple mat, below the \"₹50 हर दर्जन\" stall where P4's answer (50) is (red circle).",
+   "polygon": [
+    [
+     0.2241,
+     0.5842
+    ],
+    [
+     0.223,
+     0.5926
+    ],
+    [
+     0.22,
+     0.6
+    ],
+    [
+     0.2153,
+     0.6055
+    ],
+    [
+     0.2096,
+     0.6084
+    ],
+    [
+     0.2036,
+     0.6084
+    ],
+    [
+     0.1979,
+     0.6055
+    ],
+    [
+     0.1932,
+     0.6
+    ],
+    [
+     0.1902,
+     0.5926
+    ],
+    [
+     0.1892,
+     0.5842
+    ],
+    [
+     0.1902,
+     0.5758
+    ],
+    [
+     0.1932,
+     0.5684
+    ],
+    [
+     0.1979,
+     0.5629
+    ],
+    [
+     0.2036,
+     0.56
+    ],
+    [
+     0.2096,
+     0.56
+    ],
+    [
+     0.2153,
+     0.5629
+    ],
+    [
+     0.22,
+     0.5684
+    ],
+    [
+     0.223,
+     0.5758
+    ]
+   ],
+   "anchor": [
+    0.2066,
+    0.5842
+   ]
+  },
+  {
+   "id": "clue_p2",
+   "page": "dadi",
+   "type": "clue",
+   "puzzleId": "p2",
+   "note": "P2 answer: kulfi sign \"कुल्फ़ी ₹१५\" on the kulfi stall.",
+   "polygon": [
+    [
+     0.8889,
+     0.7008
+    ],
+    [
+     0.9376,
+     0.7008
+    ],
+    [
+     0.9376,
+     0.7759
+    ],
+    [
+     0.8889,
+     0.7759
+    ]
+   ]
+  },
+  {
+   "id": "clue_p4",
+   "page": "dadi",
+   "type": "clue",
+   "puzzleId": "p4",
+   "note": "P4 answer: bangle price board \"₹50 हर दर्जन\".",
+   "polygon": [
+    [
+     0.3517,
+     0.419
+    ],
+    [
+     0.3981,
+     0.419
+    ],
+    [
+     0.3981,
+     0.4981
+    ],
+    [
+     0.3517,
+     0.4981
+    ]
+   ]
+  },
+  {
+   "id": "clue_p6",
+   "page": "dadi",
+   "type": "clue",
+   "puzzleId": "p6",
+   "note": "P6 answer: sign \"5:30 से खुला\" on the santra goli shop.",
+   "polygon": [
+    [
+     0.4073,
+     0.3808
+    ],
+    [
+     0.4366,
+     0.3808
+    ],
+    [
+     0.4366,
+     0.4313
+    ],
+    [
+     0.4073,
+     0.4313
+    ]
+   ]
+  },
+  {
+   "id": "cand_sanjay",
+   "page": "dadi",
+   "type": "candidate",
+   "candidateId": "sanjay",
+   "note": "SANJAY: white-haired old man in the white cap and orange kurta, behind the counter of the santra goli shop (LEFT man).",
+   "polygon": [
+    [
+     0.4298,
+     0.408
+    ],
+    [
+     0.4848,
+     0.408
+    ],
+    [
+     0.4848,
+     0.5259
+    ],
+    [
+     0.4298,
+     0.5259
+    ]
+   ]
+  },
+  {
+   "id": "cand_A",
+   "page": "dadi",
+   "type": "candidate",
+   "candidateId": "A",
+   "note": "A: man in the red turban and blue shirt beside the santra goli shop (RIGHT man).",
+   "polygon": [
+    [
+     0.4876,
+     0.3925
+    ],
+    [
+     0.5253,
+     0.3925
+    ],
+    [
+     0.5253,
+     0.6153
+    ],
+    [
+     0.4876,
+     0.6153
+    ]
+   ]
+  },
+  {
+   "id": "cand_C",
+   "page": "dadi",
+   "type": "candidate",
+   "candidateId": "C",
+   "note": "C: man in the grey turban with a moustache, crouched over the game drawn on the ground (notched clear of the santra goli).",
+   "polygon": [
+    [
+     0.242,
+     0.5363
+    ],
+    [
+     0.2755,
+     0.5363
+    ],
+    [
+     0.2755,
+     0.6865
+    ],
+    [
+     0.2002,
+     0.6865
+    ],
+    [
+     0.2002,
+     0.6347
+    ],
+    [
+     0.242,
+     0.6347
+    ]
+   ]
+  },
+  {
+   "id": "other_5",
+   "page": "dadi",
+   "type": "candidate",
+   "candidateId": "other_5",
+   "note": "Bearded man in the grey cap and blue kurta with a basket.",
+   "polygon": [
+    [
+     0.528,
+     0.487
+    ],
+    [
+     0.5647,
+     0.487
+    ],
+    [
+     0.5647,
+     0.5991
+    ],
+    [
+     0.528,
+     0.5991
+    ]
+   ]
+  },
+  {
+   "id": "other_6",
+   "page": "dadi",
+   "type": "candidate",
+   "candidateId": "other_6",
+   "note": "Bearded potter in the blue turban at the wheel, bottom right.",
+   "polygon": [
+    [
+     0.8104,
+     0.7254
+    ],
+    [
+     0.8953,
+     0.7254
+    ],
+    [
+     0.8953,
+     0.9326
+    ],
+    [
+     0.8104,
+     0.9326
+    ]
+   ]
+  },
+  {
+   "id": "amb_bullocks",
+   "page": "dadi",
+   "type": "ambient",
+   "ambient": "bells",
+   "note": "Bullocks pulling Pappu's cart (sound only).",
+   "polygon": [
+    [
+     0.6887,
+     0.5699
+    ],
+    [
+     0.7805,
+     0.5699
+    ],
+    [
+     0.7805,
+     0.6865
+    ],
+    [
+     0.6887,
+     0.6865
+    ]
+   ]
+  },
+  {
+   "id": "amb_swing",
+   "page": "dadi",
+   "type": "ambient",
+   "ambient": "wheel",
+   "note": "Boat swing ride (sound only).",
+   "polygon": [
+    [
+     0.6061,
+     0.1036
+    ],
+    [
+     0.8724,
+     0.1036
+    ],
+    [
+     0.8724,
+     0.4016
+    ],
+    [
+     0.6061,
+     0.4016
+    ]
+   ]
+  },
+  {
+   "id": "amb_bangles",
+   "page": "dadi",
+   "type": "ambient",
+   "ambient": "bangles",
+   "note": "Bangle stall wall (sound only).",
+   "polygon": [
+    [
+     0.1377,
+     0.3951
+    ],
+    [
+     0.3489,
+     0.3951
+    ],
+    [
+     0.3489,
+     0.5505
+    ],
+    [
+     0.1377,
+     0.5505
+    ]
+   ]
+  },
+  {
+   "id": "amb_kulfi",
+   "page": "dadi",
+   "type": "ambient",
+   "ambient": "kulfi",
+   "note": "The big kulfi matka (sound only).",
+   "polygon": [
+    [
+     0.9137,
+     0.557
+    ],
+    [
+     1,
+     0.557
+    ],
+    [
+     1,
+     0.6865
+    ],
+    [
+     0.9137,
+     0.6865
+    ]
+   ]
+  },
+  {
+   "id": "amb_potter",
+   "page": "dadi",
+   "type": "ambient",
+   "ambient": "potter",
+   "note": "Potter's wheel (sound only).",
+   "polygon": [
+    [
+     0.7163,
+     0.9197
+    ],
+    [
+     0.8081,
+     0.9197
+    ],
+    [
+     0.8081,
+     1
+    ],
+    [
+     0.7163,
+     1
+    ]
+   ]
+  },
+  {
+   "id": "amb_coconut",
+   "page": "dadi",
+   "type": "ambient",
+   "ambient": "bells",
+   "note": "Coconut seller on his bicycle (bell, sound only).",
+   "polygon": [
+    [
+     0.2938,
+     0.6218
+    ],
+    [
+     0.4408,
+     0.6218
+    ],
+    [
+     0.4408,
+     0.9197
+    ],
+    [
+     0.2938,
+     0.9197
     ]
    ]
   }

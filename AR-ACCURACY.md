@@ -46,3 +46,13 @@ That is a camera-lens offset. Send me the recording and the phone model; I can a
 
 0.5 % of the page width is about 1.5 mm on A4. Before the page-part targets were added, close-ups and half-page views of the
 corner santra goli (Pappu's stall, cabin 16) were not recognised at all; with them all 19 views pass.
+
+## Hand-drawn haat page: measured (simulated phone camera)
+| View | Recognised | Pointer error |
+|---|---|---|
+| Whole page in view | 3 of 3 santra goli | 0.33 to 0.43 % of page width |
+| Half the page, turned 8 degrees | 3 of 3 | 0.05 to 0.44 % |
+| Close-up, a third of the page | 3 of 3 | 0.16 to 0.37 % |
+| Tilted 32 degrees and turned 14 degrees | 3 of 3 | 0.38 to 0.82 % |
+| Page turned round (180 degrees) | 3 of 3 | 0.16 to 0.64 % |
+| Sanjay and the red-turban man, far and tilted | 4 of 4 | 0.27 to 0.40 % |

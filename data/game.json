@@ -93,7 +93,7 @@
       "answerSource": {
         "page": "dadi",
         "regionId": "clue_p2",
-        "object": "kulfi seller's slate \"कुल्फ़ी ₹१५\""
+        "object": "kulfi stall sign \"कुल्फ़ी ₹१५\""
       },
       "needs": [
         {
@@ -102,17 +102,17 @@
         },
         {
           "page": "dadi",
-          "item": "Kulfi seller with matkas wrapped in wet RED cloth, slate reading कुल्फ़ी ₹१५"
+          "item": "Kulfi stall with a big clay matka, sign: कुल्फ़ी ₹१५"
         }
       ],
       "lines": {
         "hi": {
-          "riddle": "पप्पू से ली रंगीन फिरकी, फिर गर्मी ने सताया,\nलाल कपड़े में लिपटा मटका, ठंडक का घर पाया।\nउस पार कुल्फ़ी वाले की, पट्टी पर दाम लिखा है,\nजितने में मैंने कुल्फ़ी खाई, वही अंक छिपा है।",
-          "solved": "पंद्रह रुपये! इतने में मैंने लाल मटके वाली ठंडी कुल्फ़ी खाई, बचपन जैसी।"
+          "riddle": "पप्पू से ली रंगीन फिरकी, फिर गर्मी ने सताया,\nबड़े-से मटके वाली कुल्फ़ी ने, फिर ठंडक का घर पाया।\nउस पार कुल्फ़ी वाले की, तख़्ती पर दाम लिखा है,\nजितने में मैंने कुल्फ़ी खाई, वही अंक छिपा है।",
+          "solved": "पंद्रह रुपये! इतने में मैंने बड़े मटके वाली ठंडी कुल्फ़ी खाई, बचपन जैसी।"
         },
         "en": {
-          "riddle": "From Pappu I bought a pinwheel, then the heat came on strong,\nA matka wrapped in red cloth kept the cold all along.\nAcross, the kulfi seller wrote his price upon a slate,\nThe rupees that I paid for kulfi: that's the number to state.",
-          "solved": "Fifteen rupees! That's what my red-matka kulfi cost, just like when we were children."
+          "riddle": "From Pappu I bought a pinwheel, then the heat came on strong,\nA big clay matka of kulfi kept me cool all along.\nAcross, the kulfi seller has a sign that shows the rate,\nThe rupees that I paid for kulfi: that's the number to state.",
+          "solved": "Fifteen rupees! That's what my kulfi from the big matka cost, just like when we were children."
         },
         "mr": {
           "riddle": "TODO",
@@ -130,7 +130,7 @@
       "wrapperRegionId": "w_kulfi",
       "answer": "16",
       "photoPiece": "eyes",
-      "place": "Kulfi stall, with the left half of a torn jhoola ticket",
+      "place": "Kulfi counter, next to the pink \"GIANT WHEEL\" ticket half",
       "meaning": "The giant-wheel cabin Sanjay rode. His ticket tore in two at the kulfi stall.",
       "answerSource": {
         "page": "teen",
@@ -140,7 +140,7 @@
       "needs": [
         {
           "page": "dadi",
-          "item": "Left half of a pink jhoola ticket on the kulfi counter: \"जायंट व्हील · डिब्बा 1\" (torn after the 1)"
+          "item": "Pink ticket half on the kulfi counter: \"GIANT WHEEL\" (torn), with a santra goli beside it"
         },
         {
           "page": "teen",
@@ -149,15 +149,19 @@
         {
           "page": "teen",
           "item": "Giant wheel cabins with number plates 11 to 18"
+        },
+        {
+          "page": "teen",
+          "item": "Giant wheel cabins numbered 11 to 18 (only one ends in 6)"
         }
       ],
       "lines": {
         "hi": {
-          "riddle": "कुल्फ़ी खा के झूले का, टिकट मैंने निकाला,\nजल्दी में वो फट गया, आधा यहीं पे डाला।\nबाक़ी आधा उड़ के गिरा, गोली बीनते बच्चों में,\nदोनों जोड़ो, डिब्बा बोलो, बैठा था मैं जिसमें।",
+          "riddle": "कुल्फ़ी खा के झूले का, टिकट मैंने निकाला,\nजल्दी में वो फट गया, आधा यहीं पे डाला।\nबाक़ी आधा अंक लिए, बच्चों के पास जा पड़ा,\nउसी अंक पे ख़त्म हो जो, वो डिब्बा ढूँढो ज़रा।",
           "solved": "डिब्बा सोलह! नीला, पीला, फिर नीला। सबसे ऊपर पहुँच के मैंने पूरा मेला देखा।"
         },
         "en": {
-          "riddle": "After kulfi I bought a ticket for the giant wheel's ride,\nIn my hurry it tore in two; one half fell by my side.\nThe other half flew where kids pick santra goli off the ground,\nJoin both halves: name the cabin where I went round and round.",
+          "riddle": "After kulfi I bought a ticket for the giant wheel's ride,\nIn my hurry it tore in two; one half fell by my side.\nThe half with the number flew where the children play,\nFind the cabin ending in it: I rode in it that day.",
           "solved": "Cabin sixteen! Blue, yellow, then blue. From the very top I saw the whole mela."
         },
         "mr": {
@@ -174,37 +178,33 @@
       "id": "p4",
       "page": "teen",
       "wrapperRegionId": "w_cabin16",
-      "answer": "40",
+      "answer": "50",
       "photoPiece": "ear_murki",
       "place": "Giant-wheel cabin 16 (blue-yellow-blue)",
-      "meaning": "Price of a dozen bangles. From the top Sanjay saw the bangle stall where his and Didi's mausi sits, and bought Didi a dozen.",
+      "meaning": "Price of a dozen bangles (₹50). From the top of the wheel Sanjay saw the bangle stall and bought Didi a dozen.",
       "answerSource": {
         "page": "dadi",
         "regionId": "clue_p4",
-        "object": "board at the old mausi's end of the bangle stall \"दर्जन ₹४०\""
+        "object": "bangle stall board \"₹50 हर दर्जन\""
       },
       "needs": [
         {
           "page": "teen",
-          "item": "Cabin 16 striped blue-yellow-blue, high on the wheel"
+          "item": "Cabin 16 striped blue-yellow-blue, with a santra goli packet"
         },
         {
           "page": "dadi",
-          "item": "Bangle stall with TWO sellers: the old mausi (white hair, crescent godna on chin) and a young seller"
-        },
-        {
-          "page": "dadi",
-          "item": "Small board beside the old mausi only: दर्जन ₹४०"
+          "item": "Bangle stall with a board: ₹50 हर दर्जन"
         }
       ],
       "lines": {
         "hi": {
-          "riddle": "सोलह नंबर डिब्बे से, मैंने देखा सारा मेला,\nनीचे चूड़ी की दुकान पे, रंगों का था रेला।\nअपनी मौसी बैठी थीं, ठोड़ी पे वही गोदना,\nदर्जन चूड़ी कितने की? उनकी तख़्ती पे खोजना।",
-          "solved": "चालीस रुपये दर्जन! मौसी ने मुझे पहचान लिया, और दीदी के नाप की चूड़ियाँ ख़ुद चुनीं।"
+          "riddle": "सोलह नंबर डिब्बे से, मैंने देखा सारा मेला,\nनीचे चूड़ी की दुकान पे, रंगों का था रेला।\nदीदी के लिए चूड़ी ली, दाम की तख़्ती देखो,\nएक दर्जन कितने की थी? वही अंक यहाँ लिखो।",
+          "solved": "पचास रुपये दर्जन! मौसी ने मुझे पहचान लिया, और दीदी के नाप की चूड़ियाँ ख़ुद चुनीं।"
         },
         "en": {
-          "riddle": "From cabin number sixteen I looked down on the fair,\nA stall of shining bangles, every colour there.\nOur mausi sat there smiling, that godna on her chin,\nWhat does a dozen cost? Her board has the answer within.",
-          "solved": "Forty rupees a dozen! Mausi knew me at once, and chose Didi's size herself."
+          "riddle": "From cabin number sixteen I looked down on the fair,\nA stall of shining bangles, every colour there.\nI bought a dozen for Didi; the price is on a board,\nHow much was one dozen? Type in what I paid for the hoard.",
+          "solved": "Fifty rupees a dozen! Mausi knew me at once, and chose Didi's size herself."
         },
         "mr": {
           "riddle": "TODO",
@@ -222,7 +222,7 @@
       "wrapperRegionId": "w_bangle",
       "answer": "1982",
       "photoPiece": "mole",
-      "place": "Bangle stall, the old mausi",
+      "place": "Bangle stall: santra goli on the sellers' purple mat",
       "meaning": "The year of Didi's (Dadi's) wedding, the day brother and sister parted. The jaimala photo at the studio is dated 1982.",
       "answerSource": {
         "page": "teen",
@@ -232,7 +232,7 @@
       "needs": [
         {
           "page": "dadi",
-          "item": "Old mausi at the bangle stall"
+          "item": "Bangle sellers on a purple mat, with a santra goli on the mat"
         },
         {
           "page": "teen",
@@ -265,11 +265,11 @@
       "answer": "530",
       "photoPiece": "gap_tooth",
       "place": "Photo studio: santra goli on the ground in front of it",
-      "meaning": "The time Sanjay waits every evening: 5:30, when fresh santra goli arrive at the santra goli stall.",
+      "meaning": "The time the santra goli shop opens, 5:30. Sanjay is there every evening from then.",
       "answerSource": {
         "page": "dadi",
         "regionId": "clue_p6",
-        "object": "sign on the santra goli stall \"ताज़ी संतरा गोली रोज़ शाम ५:३०\""
+        "object": "sign \"5:30 से खुला\" on the santra goli shop"
       },
       "needs": [
         {
@@ -278,17 +278,17 @@
         },
         {
           "page": "dadi",
-          "item": "Santra goli stall with jars of santra goli and a sign: ताज़ी संतरा गोली रोज़ शाम ५:३०"
+          "item": "Santra goli shop with a jar of santra goli and a sign: 5:30 से खुला"
         }
       ],
       "lines": {
         "hi": {
-          "riddle": "उस फ़ोटो में छोटा-सा मैं, दुल्हन के पास खड़ा,\nआज भी हर शाम आता हूँ, बूढ़ा हो के बड़ा।\nसंतरा गोली की दुकान पे, तख़्ती टँगी है देखो,\nताज़ी गोलियाँ किस वक़्त आतीं, वो वक़्त यहाँ लिखो।",
-          "solved": "साढ़े पाँच! हर शाम ठीक इसी वक़्त, मैं संतरा गोली की दुकान पे तेरी राह देखता हूँ।"
+          "riddle": "उस फ़ोटो में छोटा-सा मैं, दुल्हन के पास खड़ा,\nआज भी हर शाम आता हूँ, बूढ़ा हो के बड़ा।\nसंतरा गोली की दुकान पे, तख़्ती टँगी है देखो,\nकिस वक़्त से दुकान खुली है, वो वक़्त यहाँ लिखो।",
+          "solved": "साढ़े पाँच! दुकान खुलते ही, हर शाम मैं वहीं संतरा गोली लेकर तेरी राह देखता हूँ।"
         },
         "en": {
-          "riddle": "In that photo I'm the little boy beside the bride,\nNow every single evening, old and grey, I wait outside.\nLook at the santra goli stall, a little sign is there,\nThe time fresh santra goli arrive: type that time with care.",
-          "solved": "Half past five! Every evening at exactly that time, I wait for you at the santra goli stall."
+          "riddle": "In that photo I'm the little boy beside the bride,\nNow every single evening, old and grey, I wait outside.\nLook at the santra goli shop, a little sign is there,\nThe time from when it opens: type that time with care.",
+          "solved": "Half past five! The moment the shop opens, every evening, I wait there for you with santra goli."
         },
         "mr": {
           "riddle": "TODO",
@@ -306,38 +306,38 @@
       "across": {
         "p1": "अब उस पार पप्पू की बैलगाड़ी पे लदी बोरी पर, मेरी अगली संतरा गोली ढूँढो।",
         "p2": "अब उस पार पप्पू की खिलौनों वाली दुकान पर, मेरी अगली संतरा गोली ढूँढो।",
-        "p3": "अब उस पार लाल कपड़े वाले कुल्फ़ी के मटकों के पास, मेरी अगली संतरा गोली ढूँढो।",
+        "p3": "अब उस पार कुल्फ़ी के मटके के पास, गुलाबी टिकट के साथ, मेरी अगली संतरा गोली ढूँढो।",
         "p4": "अब उस पार झूले के सोलह नंबर डिब्बे पर, मेरी अगली संतरा गोली ढूँढो।",
-        "p5": "अब उस पार मौसी की चूड़ियों के बीच, मेरी अगली संतरा गोली ढूँढो।",
+        "p5": "अब उस पार चूड़ी वालियों की चटाई पर, मेरी अगली संतरा गोली ढूँढो।",
         "p6": "अब उस पार फ़ोटो वाले की दुकान के सामने, ज़मीन पर, मेरी अगली संतरा गोली ढूँढो।",
         "final": "मेरी पूरी फ़ोटो जुड़ गई! अब संतरा गोली की दुकान पे मुझे ढूँढो, फ़ोटो से पहचानो, और मुझ पर फ़ोन रखो।"
       },
       "same": {
         "p1": "अब पप्पू की बैलगाड़ी पे लदी बोरी पर, मेरी अगली संतरा गोली ढूँढो।",
         "p2": "अब पप्पू की खिलौनों वाली दुकान पर, मेरी अगली संतरा गोली ढूँढो।",
-        "p3": "अब लाल कपड़े वाले कुल्फ़ी के मटकों के पास, मेरी अगली संतरा गोली ढूँढो।",
+        "p3": "अब कुल्फ़ी के मटके के पास, गुलाबी टिकट के साथ, मेरी अगली संतरा गोली ढूँढो।",
         "p4": "अब झूले के सोलह नंबर डिब्बे पर, मेरी अगली संतरा गोली ढूँढो।",
-        "p5": "अब मौसी की चूड़ियों के बीच, मेरी अगली संतरा गोली ढूँढो।",
+        "p5": "अब चूड़ी वालियों की चटाई पर, मेरी अगली संतरा गोली ढूँढो।",
         "p6": "अब फ़ोटो वाले की दुकान के सामने, ज़मीन पर, मेरी अगली संतरा गोली ढूँढो।",
         "final": "मेरी पूरी फ़ोटो जुड़ गई! अब संतरा गोली की दुकान पे मुझे ढूँढो, फ़ोटो से पहचानो, और मुझ पर फ़ोन रखो।"
       }
     },
     "en": {
       "across": {
-        "p1": "Now, on the other page, find my next santra goli on the sack on Pappu's bullock cart.",
+        "p1": "Now, on the other page, find my next santra goli on the PAPPU sack on the bullock cart.",
         "p2": "Now, on the other page, find my next santra goli at Pappu's toy stall.",
-        "p3": "Now, on the other page, find my next santra goli by the kulfi matkas wrapped in red cloth.",
+        "p3": "Now, on the other page, find my next santra goli at the kulfi stall, beside the pink ticket.",
         "p4": "Now, on the other page, find my next santra goli on cabin sixteen of the giant wheel.",
-        "p5": "Now, on the other page, find my next santra goli among mausi's bangles.",
+        "p5": "Now, on the other page, find my next santra goli on the bangle sellers' mat.",
         "p6": "Now, on the other page, find my next santra goli on the ground in front of the photo studio.",
         "final": "My photo is complete! Now find me at the santra goli stall. Match my face, and point your phone at me."
       },
       "same": {
-        "p1": "Now find my next santra goli on the sack on Pappu's bullock cart.",
+        "p1": "Now find my next santra goli on the PAPPU sack on the bullock cart.",
         "p2": "Now find my next santra goli at Pappu's toy stall.",
-        "p3": "Now find my next santra goli by the kulfi matkas wrapped in red cloth.",
+        "p3": "Now find my next santra goli at the kulfi stall, beside the pink ticket.",
         "p4": "Now find my next santra goli on cabin sixteen of the giant wheel.",
-        "p5": "Now find my next santra goli among mausi's bangles.",
+        "p5": "Now find my next santra goli on the bangle sellers' mat.",
         "p6": "Now find my next santra goli on the ground in front of the photo studio.",
         "final": "My photo is complete! Now find me at the santra goli stall. Match my face, and point your phone at me."
       }
@@ -388,7 +388,7 @@
       "id": "sanjay",
       "page": "dadi",
       "isSanjay": true,
-      "label": "Sanjay (left, santra goli stall)",
+      "label": "Sanjay (white cap, orange kurta, at the santra goli shop)",
       "features": {
         "red_headcloth": true,
         "eyebrow_scar": true,
@@ -415,7 +415,7 @@
     {
       "id": "A",
       "page": "dadi",
-      "label": "A (right, santra goli stall)",
+      "label": "A (red turban, blue shirt, beside the santra goli shop)",
       "features": {
         "red_headcloth": true,
         "eyebrow_scar": true,
@@ -426,10 +426,10 @@
       },
       "lines": {
         "hi": {
-          "voice": "नहीं बेटा, मैं तो हलवाई हूँ। संतरा गोली लेने आया था, बस।"
+          "voice": "नहीं बेटा, मैं तो बस गोली लेने आया था। संजय? वो तो यहीं कहीं होगा!"
         },
         "en": {
-          "voice": "No, child, I am the sweet-maker. I only came for santra goli."
+          "voice": "No, child, I only came for santra goli. Sanjay? He must be around here somewhere!"
         },
         "mr": {
           "voice": "TODO"
@@ -469,7 +469,7 @@
     {
       "id": "C",
       "page": "dadi",
-      "label": "C (red turban, chaupar)",
+      "label": "C (grey turban, playing the game drawn on the ground)",
       "features": {
         "red_headcloth": true,
         "eyebrow_scar": true,
@@ -480,10 +480,10 @@
       },
       "lines": {
         "hi": {
-          "voice": "अरे, चौपड़ बीच में मत रुकवाओ! मेरी बारी है, बेटा।"
+          "voice": "अरे, खेल बीच में मत रुकवाओ! मेरी बारी है, बेटा।"
         },
         "en": {
-          "voice": "Don't stop the chaupar now! It's my turn, child."
+          "voice": "Don't stop the game now! It's my turn, child."
         },
         "mr": {
           "voice": "TODO"
@@ -567,42 +567,6 @@
         }
       }
     },
-    "other_2": {
-      "page": "dadi",
-      "label": "Chaupar partner, white turban",
-      "lines": {
-        "hi": {
-          "voice": "हा हा, मैं? मैं तो हार रहा हूँ, बेटा, मुझे छोड़ो।"
-        },
-        "en": {
-          "voice": "Ha ha, me? I am losing this game, leave me be."
-        },
-        "mr": {
-          "voice": "TODO"
-        },
-        "gu": {
-          "voice": "TODO"
-        }
-      }
-    },
-    "other_3": {
-      "page": "dadi",
-      "label": "Bearded man in the pangat",
-      "lines": {
-        "hi": {
-          "voice": "पहले खा लेने दो, बेटा, फिर बात करेंगे।"
-        },
-        "en": {
-          "voice": "Let me finish eating first, child, then we will talk."
-        },
-        "mr": {
-          "voice": "TODO"
-        },
-        "gu": {
-          "voice": "TODO"
-        }
-      }
-    },
     "other_4": {
       "page": "teen",
       "label": "Old man in white kurta and orange dupatta",
@@ -612,6 +576,42 @@
         },
         "en": {
           "voice": "No, child, I came with my daughter-in-law to buy bangles."
+        },
+        "mr": {
+          "voice": "TODO"
+        },
+        "gu": {
+          "voice": "TODO"
+        }
+      }
+    },
+    "other_5": {
+      "page": "dadi",
+      "label": "Bearded man in grey cap with a basket",
+      "lines": {
+        "hi": {
+          "voice": "ना बेटा, मैं तो घर के लिए आलू-प्याज़ लेने आया हूँ।"
+        },
+        "en": {
+          "voice": "No, child, I just came to buy vegetables for home."
+        },
+        "mr": {
+          "voice": "TODO"
+        },
+        "gu": {
+          "voice": "TODO"
+        }
+      }
+    },
+    "other_6": {
+      "page": "dadi",
+      "label": "Bearded potter in blue turban",
+      "lines": {
+        "hi": {
+          "voice": "मैं तो मटके बनाता हूँ, बेटा। एक मटका लोगे?"
+        },
+        "en": {
+          "voice": "I make pots, child. Want a matka?"
         },
         "mr": {
           "voice": "TODO"
