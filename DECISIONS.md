@@ -21,6 +21,19 @@
 - **Hosting recommendation**: mode A (Render free web service) for the professors' demo, because phones only need
   mobile data or any Wi-Fi and a trusted HTTPS certificate; mode C as the no-internet backup.
 
+## Spread list and the intro before the scanner
+- Home → **book page** (5 spreads with titles, in all four languages) → tap the playable spread → pick a side →
+  **poem card** → **"take your phone in your hands"** card → scanner. Exiting the game returns to the book page.
+- **The poem** (`data/game.json` → `intro.poem`, four lines, rhymed couplets, hi / en / mr / gu): Sanjay loved peppermints,
+  dropped wrappers wherever he went, look where each one lies, each holds a clue. Marathi and Gujarati are drafts that a
+  native speaker should check.
+- **Timing** (constants in `public/js/play.js`, `INTRO`): lines appear every 1.8 s (all four by about 6 s); the poem card stays
+  at least 10.5 s and until the voice has finished (never beyond 22 s), plus a 1.2 s calm beat; the "take your phone" card
+  stays at least 4.8 s and until its voice ends (max 9 s), plus 1.2 s. A thin progress bar shows that it is automatic.
+- The voice reads both cards, so the speech paces the reading. A tap on the poem skips to the next card; back leaves.
+- On **resume** (pieces already won) the poem is skipped; only "take your phone" shows before the scanner.
+- `?introscale=0.05` in the page address shortens all pauses (tests).
+
 ## Look and pointer
 - **Theme** (`public/css/theme.css`): dark maroon-ink base, cream serif headings (Playfair Display, Noto Serif for Devanagari and Gujarati), marigold accents, arch-shaped covers, one thin zigzag band, one sunburst behind the side circles. Cream pills over the camera. Numbers stay in the plain sans.
 - **Wrapper hit zones are circles on the wrapper itself** (about 90 px on a 1491 px page) with priority over everything; 220 ms grace for jitter; the glowing dot sits on the wrapper. Details in AR-ACCURACY.md.

@@ -277,6 +277,11 @@ function lineTable(game) {
     for (const kind of ['across', 'same']) for (const [k, v] of Object.entries(nx[kind] || {})) {
       if (k === 'final') put('next.final', lang, v); else put(`next.${kind}.${k}`, lang, v);
     }
+    // The poem + "take your phone" shown before the scanner starts (spoken, so the voice paces the reading).
+    if (game.intro) {
+      if (game.intro.poem && game.intro.poem[lang]) put('intro.poem', lang, game.intro.poem[lang].join('\n'));
+      if (game.intro.take && game.intro.take[lang]) put('intro.take', lang, game.intro.take[lang]);
+    }
     for (const c of game.candidates) put(`cand.${c.id}`, lang, ((c.lines || {})[lang] || {}).voice);
     for (const [id, o] of Object.entries(game.otherOldMen || {})) put(`other.${id}`, lang, ((o.lines || {})[lang] || {}).voice);
   }

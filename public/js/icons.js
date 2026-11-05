@@ -70,4 +70,6 @@ I.user = `<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="
 
 I.bookOpen = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 5.2C4.6 4 7.6 4 11 5.4V20c-3.3-1.4-6.4-1.4-9-.2zM22 5.2C19.4 4 16.4 4 13 5.4V20c3.3-1.4 6.4-1.4 9-.2z" fill="currentColor"/></svg>`;
 
+I.takePhone = `<svg viewBox="0 0 160 140" aria-hidden="true"><g class="tp-lift"><path d="M64 20l16-12 16 12M64 38l16-12 16 12" fill="none" stroke="#f2a72b" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" opacity=".9"/><rect x="30" y="52" width="100" height="58" rx="10" fill="#1c0e16" stroke="#f4e7c9" stroke-width="4"/><rect x="39" y="60" width="82" height="42" rx="3" fill="#7c2344"/><circle cx="80" cy="81" r="10" fill="#f2a72b"/><path d="M30 76c-10 0-18 8-18 20s8 22 20 22h16V92" fill="#f4e7c9" stroke="#1c0e16" stroke-width="3" stroke-linejoin="round"/><path d="M130 76c10 0 18 8 18 20s-8 22-20 22h-16V92" fill="#f4e7c9" stroke="#1c0e16" stroke-width="3" stroke-linejoin="round"/></g></svg>`;
+
 export default I;

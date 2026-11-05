@@ -105,6 +105,7 @@ for (const p of P) {
 }
 for (const id of game.chain) need.push(`next.across.${id}`, `next.same.${id}`);
 need.push('next.final');
+need.push('intro.poem', 'intro.take');
 for (const c of game.candidates) need.push(`cand.${c.id}`);
 for (const k of Object.keys(game.otherOldMen)) need.push(`other.${k}`);
 for (const id of need) check(L[id] && L[id].hi && L[id].hi.trim().length > 3 && !/TODO/.test(L[id].hi), `line ${id} exists in Hindi`);
@@ -120,6 +121,20 @@ for (const p of P) check(PLACE[p.id].every((w) => p.lines.hi.riddle.includes(w))
 const WRAP = { p1: 'बोरी', p2: 'पप्पू', p3: 'कुल्फ़ी', p4: 'डिब्बे', p5: 'चूड़ियों', p6: 'तस्वीर' };
 for (const p of P) check(game.next.hi.across[p.id].includes(WRAP[p.id]) && game.next.hi.same[p.id].includes(WRAP[p.id]), `next line for ${p.id} names its wrapper place (${WRAP[p.id]})`);
 check(!Object.values(game.next.hi.same).some((s) => s.includes('उस पार')), '"same page" next lines never say "across"');
+
+section('Intro poem and book list');
+for (const lang of ['hi', 'en', 'mr', 'gu']) {
+  const p = game.intro.poem[lang];
+  check(Array.isArray(p) && p.length === 4 && p.every((l) => l.trim().length > 8), `intro poem (${lang}): 4 lines`);
+  check(typeof game.intro.take[lang] === 'string' && game.intro.take[lang].length > 5, `intro "take your phone" line (${lang})`);
+  check(p.join(' ').length < 220, `intro poem (${lang}) is short enough to read in about ten seconds`);
+}
+check(/पीपरमिंट/.test(game.intro.poem.hi.join(' ')) && /peppermint/i.test(game.intro.poem.en.join(' ')), 'the poem names Sanjay\'s peppermint');
+const books = JSON.parse(require('fs').readFileSync(require('path').join(__dirname, '..', 'public', 'books.json'), 'utf8'));
+const cur = books.books.find((b) => b.current);
+check(cur.spreads.length === 5, 'the current book has 5 spreads');
+check(cur.spreads.filter((s) => s.playable).length === 1, 'exactly one spread is playable');
+for (const s of cur.spreads) for (const lang of ['en', 'hi', 'mr', 'gu']) check(s.title && s.title[lang] && s.title[lang].length > 2, `spread ${s.n} has a ${lang} title`);
 
 section('Every answer at every wrapper (through the real rules)');
 for (const p of P) {

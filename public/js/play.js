@@ -222,7 +222,7 @@ function goHome() {
         <div class="fig-prog"><i style="width:${pct}%"></i></div>
         <button class="fig-btn" id="open-current"><span class="fig-btn-ic">${I.playLine}</span>${started ? t('resumeBtn') : t('startBtn')}</button>
       </div></div>`;
-  $('#open-current').onclick = () => { if (!table) return openTableScreen(); goSide(); };
+  $('#open-current').onclick = () => { if (!table) return openTableScreen(); goBook(book); };
   $('#home-previous').innerHTML = BOOKS.books.filter((b) => !b.current).map((b) => `<button class="fig-mini" data-book="${b.id}">
       ${cover(b)}<div class="fig-mini-title">${pick(b.title)}</div><div class="fig-mini-meta">${pick(b.shortMonth || b.month)} &nbsp;·&nbsp; ${t('nPuzzles', { n: b.puzzles || 5 })}</div></button>`).join('');
   for (const el of $$('#home-previous .fig-mini')) el.onclick = () => toast(t('notAvailable'));
@@ -261,6 +261,23 @@ $('#prof-table-btn').onclick = () => openTableScreen();
 $('#prof-subs').onclick = () => { settings.subs = !settings.subs; store.set('subs', settings.subs ? '1' : '0'); goProfile(); };
 $('#prof-tap').onclick = () => { settings.tap = !settings.tap; store.set('tap', settings.tap ? '1' : '0'); goProfile(); };
 
+// ---------------- book: the 5 spreads ----------------
+let viewedBook = null;
+function goBook(b) {
+  viewedBook = b;
+  $('#book-title').textContent = pick(b.title);
+  $('#book-month').textContent = pick(b.month);
+  const spreads = b.spreads.map((s) => (typeof s === 'number' ? { n: s, playable: false, title: null } : s));
+  $('#book-spreads').innerHTML = spreads.map((s) => `<button class="spread-row ${s.playable ? 'playable' : 'locked'}" data-n="${s.n}">
+      <span class="spread-n">${s.n}</span>
+      <span class="spread-txt"><b>${s.title ? pick(s.title) : t('spread') + ' ' + s.n}</b>
+      <small>${s.playable ? (s.concluding ? t('concluding') : t('play')) : t('comingSoon')}</small></span>
+      ${s.playable ? `<span class="spread-go">${I.playSolid}</span>` : ''}</button>`).join('');
+  for (const el of $$('#book-spreads .spread-row')) el.onclick = () => (el.classList.contains('playable') ? goSide() : toast(t('comingSoon')));
+  $('#book-table').innerHTML = table ? `${t('table')} <b>${table}</b>` : '';
+  show('book');
+}
+
 // ---------------- pick a side (Figma 1133:545) ----------------
 // Orange circle on top, blue below, matching the dots printed on the pages.
 // Tapping a circle claims that side and starts the game straight away.
@@ -282,7 +299,7 @@ function chooseSide(c, fromTap) {
     if (res && res.ok) {
       role = res.role; side = c;
       applyState(res.state);
-      startGame();
+      startIntro();
     } else {
       leaveLandscape();
       if (res && res.spectator) { $('#watch-btn').hidden = false; }
@@ -292,7 +309,7 @@ function chooseSide(c, fromTap) {
   });
   if (socket.connected) go(); else socket.once('connect', () => setTimeout(go, 300));
 }
-for (const b of $$('[data-back]')) b.onclick = () => goHome();
+for (const b of $$('[data-back]')) b.onclick = () => (b.dataset.back === 'book' ? goBook(viewedBook || book) : goHome());
 $('#home-settings').onclick = () => openMenu();
 
 // ---------------- game bar ----------------
@@ -320,7 +337,9 @@ window.addEventListener('popstate', () => {
   history.pushState({ app: 2 }, '');
   if (!$('#menu').hidden) { $('#menu').hidden = true; return; }
   if (curScreen === 'play' || curScreen === 'spectator') { gameBack(); return; }
-  if (curScreen === 'side' || curScreen === 'profile' || curScreen === 'table') { goHome(); return; }
+  if (curScreen === 'intro') { cancelIntro(); return; }
+  if (curScreen === 'side') { goBook(viewedBook || book); return; }
+  if (curScreen === 'book' || curScreen === 'profile' || curScreen === 'table') { goHome(); return; }
 });
 
 function renderDots() {
@@ -341,6 +360,83 @@ function renderDots() {
   if (curScreen === 'home') { const p = $('.fig-prog i'); if (p) goHome(); }
 }
 $('#watch-btn').addEventListener('click', becomeSpectator);
+
+// ---------------- intro: poem, then "take your phone" ----------------
+// Runs by itself, nothing to press. The phone's voice reads each card; the card stays at least
+// as long as the minimum below and until the voice has finished, so there is always time to read.
+// ?introscale=0.05 shortens every pause (tests only).
+const INTRO_SCALE = Number(qs.get('introscale') || 1);
+const INTRO = {
+  lineGap: 1800,          // a new poem line appears every 1.8 s
+  poemMin: 10500,         // the poem stays at least this long (all 4 lines are up by ~6 s)
+  poemMax: 22000,         // ...and never longer than this, even if the voice is slow
+  takeMin: 4800,          // "take your phone" stays at least this long
+  takeMax: 9000,
+  after: 1200             // a calm beat after the voice ends, before the next card
+};
+let introRun = 0;
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms * INTRO_SCALE));
+// Wait for the voice, but never longer than maxMs.
+const voiceDone = (promise, maxMs) => Promise.race([promise.catch(() => {}), sleep(maxMs)]);
+function introBar(ms) {
+  const f = $('#intro-bar-fill');
+  f.style.transition = 'none'; f.style.width = '0%'; void f.offsetWidth;
+  f.style.transition = `width ${ms * INTRO_SCALE}ms linear`; f.style.width = '100%';
+}
+async function startIntro() {
+  const my = ++introRun;
+  audio.stopAll();
+  fillGameHeader();
+  const fresh = !(state && (state.pieces.length || state.won));
+  show('intro');
+  if (fresh) {
+    // card 1: the poem, line by line
+    $('#intro-poem').hidden = false; $('#intro-take').hidden = true;
+    const lines = lineText('intro.poem').split('\n');
+    $('#intro-lines').innerHTML = lines.map((l) => `<div class="intro-line">${l}</div>`).join('');
+    introBar(INTRO.poemMin);
+    const voice = audio.playLines(['intro.poem'], { interrupt: true, delay: 700 });
+    const els = $$('#intro-lines .intro-line');
+    for (let i = 0; i < els.length; i++) { await sleep(i === 0 ? 500 : INTRO.lineGap); if (my !== introRun) return; els[i].classList.add('on'); }
+    const shown = INTRO.lineGap * (els.length - 1) + 500;
+    await Promise.all([sleep(Math.max(0, INTRO.poemMin - shown)), voiceDone(voice, INTRO.poemMax - shown)]);
+    if (my !== introRun) return;
+    await sleep(INTRO.after);
+    if (my !== introRun) return;
+    $('#intro-poem').classList.add('out');
+    await sleep(600);
+    if (my !== introRun) return;
+  }
+  // card 2: take the phone in your hands
+  $('#intro-poem').hidden = true; $('#intro-poem').classList.remove('out');
+  $('#intro-take').hidden = false;
+  await takeCard(my);
+}
+async function takeCard(my) {
+  $('#intro-take-text').textContent = lineText('intro.take');
+  introBar(INTRO.takeMin);
+  const voice = audio.playLines(['intro.take'], { interrupt: true, delay: 500 });
+  await Promise.all([sleep(INTRO.takeMin), voiceDone(voice, INTRO.takeMax)]);
+  if (my !== introRun) return;
+  await sleep(INTRO.after);
+  if (my !== introRun) return;
+  startGame();
+}
+function cancelIntro() {
+  introRun++;
+  audio.stopAll();
+  leaveLandscape();
+  goSide();
+}
+$('#intro-back').onclick = cancelIntro;
+// A tap on the poem moves straight on to the next card (never required; handy when presenting).
+$('#s-intro').addEventListener('click', (e) => {
+  if (e.target.closest('#intro-back') || $('#intro-poem').hidden) return;
+  const my = ++introRun;
+  audio.stopAll();
+  $('#intro-poem').hidden = true; $('#intro-take').hidden = false;
+  takeCard(my);
+});
 
 // ---------------- start / landscape ----------------
 function fillGameHeader() {
@@ -384,7 +480,7 @@ async function exitGame() {
   $('#menu').hidden = true;
   try { if (window.screen.orientation && window.screen.orientation.unlock) window.screen.orientation.unlock(); } catch (e) {}
   try { if (document.fullscreenElement) await document.exitFullscreen(); } catch (e) {}
-  goSide();
+  goBook(viewedBook || book);
 }
 function checkRotate() {
   const inGame = curScreen === 'play' || curScreen === 'spectator';
@@ -667,7 +763,7 @@ function hideFace() { $('#face-bubble').hidden = true; }
 function showSubtitle(text) {
   const el = $('#subtitle');
   // The puzzle sheet already shows its own text.
-  const onSheet = $('#lock').classList.contains('open');
+  const onSheet = $('#lock').classList.contains('open') || curScreen === 'intro';
   el.textContent = text || '';
   el.hidden = !(settings.subs && text && !onSheet);
 }

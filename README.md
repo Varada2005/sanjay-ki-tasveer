@@ -36,13 +36,15 @@ The phones run **Kahani Akhbaar**, a placeholder app shell (the UI team's screen
 1. **Language** (first time only): English, हिन्दी, मराठी, ગુજરાતી.
 2. **Pair the two phones** (first time only): phone 1 taps "This is the first phone" and shows a 4-letter
    **table code** + QR; phone 2 scans that QR (or types the code). Both phones remember it from then on.
-3. **Home**: this month's book, previous books below. Open the book → its **5 spreads** (only spread 5,
-   "Sanjay's Photo", is playable in this prototype).
-4. **Choose your side**: the **blue dot** (jhoola page) or the **yellow dot** (haat page), matching the dot printed
-   on the page in front of you. A side your partner already took is greyed out.
-5. **Turn the phone sideways** and press the peppermint. The game runs **landscape**: camera full screen, photo strip
-   as a sidebar, a **glowing dot over every peppermint wrapper**; point the centre circle at one, the phone buzzes
-   and its riddle opens.
+3. **Home**: this month's book ("Book of the month"), previous books below. Open it → the **book page**: 5 spreads,
+   each with a title (only spread 5, "Sanjay's Photo", is playable in this prototype; the others say "coming soon").
+4. **Choose your side**: the **blue circle** (jhoola page, page 9) or the **orange circle** (haat page, page 10),
+   matching the dot printed on the page in front of you. A side your partner already took is greyed out.
+5. It then plays by itself, nothing to press: a short **poem card** (four lines, read aloud, about 10 to 12 seconds:
+   Sanjay's favourite peppermint, the wrappers he dropped, go and find them), then **"Now take your phone in your
+   hands"** (about 6 seconds), then the scanner starts. The game runs **landscape**: camera full screen, a floating bar,
+   the photo pieces along the bottom, a **glowing dot on every peppermint wrapper**; point the centre circle at one,
+   the phone buzzes and its riddle opens.
 6. The gear (home or game sidebar) opens **Settings**: language, table, tap mode, switch camera, subtitles,
    restart the spread, leave the game. "Add to Home screen" from the browser menu installs it like an app.
 
