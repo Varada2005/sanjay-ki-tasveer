@@ -41,9 +41,9 @@ The phones run **Kahani Akhbaar**, a placeholder app shell (the UI team's screen
 4. **Choose your side**: the **blue circle** (jhoola page, page 9) or the **orange circle** (haat page, page 10),
    matching the dot printed on the page in front of you. A side your partner already took is greyed out.
 5. It then plays by itself, nothing to press: a short **poem card** (four lines, read aloud, about 10 to 12 seconds:
-   Sanjay's favourite peppermint, the wrappers he dropped, go and find them), then **"Now take your phone in your
+   Sanjay's favourite santra goli, the wrappers he dropped, go and find them), then **"Now take your phone in your
    hands"** (about 6 seconds), then the scanner starts. The game runs **landscape**: camera full screen, a floating bar,
-   the photo pieces along the bottom, a **glowing dot on every peppermint wrapper**; point the centre circle at one,
+   the photo pieces along the bottom, a **glowing dot on every santra goli**; point the centre circle at one,
    the phone buzzes and its riddle opens.
 6. The gear (home or game sidebar) opens **Settings**: language, table, tap mode, switch camera, subtitles,
    restart the spread, leave the game. "Add to Home screen" from the browser menu installs it like an app.
@@ -186,9 +186,9 @@ General > About > Certificate Trust Settings > enable full trust. A cert you put
 
 1. Start the server (mode A: just open the URL; B: `npm run tunnel`; C: `npm run https`).
 2. Laptop: open `/host`. A room is created and its QR shown (projector-friendly).
-3. Phone 1 scans the QR > taps the **giant wheel** (Teen) > **हिन्दी** > the big **peppermint** button > allows the camera.
-4. Phone 2 scans the same QR > taps the **neem tree** (Dadi) > language > peppermint.
-5. Both green dots on the host = ready. Point a phone at a peppermint wrapper on its page: the riddle opens.
+3. Phone 1 scans the QR > taps the **giant wheel** (Teen) > **हिन्दी** > the big **santra goli** button > allows the camera.
+4. Phone 2 scans the same QR > taps the **neem tree** (Dadi) > language > santra goli.
+5. Both green dots on the host = ready. Point a phone at a santra goli on its page: the riddle opens.
 
 Turn the phone volume up; the phone's mute switch silences Web Speech on iPhone.
 
@@ -208,13 +208,13 @@ Turn the phone volume up; the phone's mute switch silences Web Speech on iPhone.
 ## Ten-minute demo script for professors
 
 1. **(1 min) The story.** Show both printed pages side by side across the fold. "Dadi's brother Sanjay left after
-   her wedding in 1982. Every evening he waits at the peppermint stall. Today he left a trail of peppermint
+   her wedding in 1982. Every evening he waits at the santra goli stall. Today he left a trail of santra goli
    wrappers, each with a childhood riddle and a piece of his torn photo."
 2. **(1 min) Joining.** Show `/host` on the projector. Two volunteers scan the QR, pick Teen (giant wheel) and
-   Dadi (neem tree), language, peppermint button.
+   Dadi (neem tree), language, santra goli button.
 3. **(2 min) Puzzle 1.** Dadi scans the wrapper on the sack marked PAPPU. Her phone shows and speaks a rhyming
    riddle: Pappu's stall is across, his name in Hindi, type the number beside it. Teen finds **पप्पू २३**.
-   Dadi types 23. Sanjay explains (that's Pappu's stall, he bought a whistle there) and sends them to Pappu's
+   Dadi types 23. Sanjay explains (that's Pappu's stall, he bought a pinwheel there) and sends them to Pappu's
    stall on the Teen page. The red head-cloth piece flies into the strip on **both** phones.
 4. **(2 min) Puzzle 2, with misses.** Teen scans the wrapper at Pappu's stall: kulfi in red cloth, the price on the
    slate. Type a wrong number on purpose three times: the riddle repeats, then a **picture clue** of the kulfi
@@ -225,8 +225,8 @@ Turn the phone volume up; the phone's mute switch silences Web Speech on iPhone.
    price board (40). Point out that every number is part of the story: a stall, a price, a cabin, a year, a time.
 7. **(1 min) The photo.** Tap the strip: five of six men wear red, so red alone isn't enough. Point at a wrong man
    (he answers in his own voice); a second wrong guess rests both phones under a sleeping diya for a minute.
-8. **(1 min) The finale.** Puzzles 5 (1982) and 6 (5:30), then point at Sanjay at the peppermint stall: his voice,
-   his full face, peppermint confetti on both phones.
+8. **(1 min) The finale.** Puzzles 5 (1982) and 6 (5:30), then point at Sanjay at the santra goli stall: his voice,
+   his full face, santra goli confetti on both phones.
 Questions: [PUZZLES.md](PUZZLES.md) for the logic, region outlines in the presenter menu, `npm test` output.
 
 ## Scripts

@@ -47,7 +47,7 @@ Print both pages at 100% on matte paper first, run `npm run targets` on the exac
 - [ ] Scanning a wrapper: riddle written and spoken, one box per digit, replay button works.
 - [ ] Right answer: meaning + "next" line, arrow to the right page, piece on **both** phones, bell, vibration (Android).
 - [ ] Wrong answer: the same riddle again; on the 3rd miss the picture of the answer spot appears.
-- [ ] Following "next" from any first wrapper alternates the phones and ends at the peppermint stall.
+- [ ] Following "next" from any first wrapper alternates the phones and ends at the santra goli stall.
 - [ ] Two wrong men: both phones show the diya for a minute, then play resumes.
 - [ ] Pointing at Sanjay: voice + celebration on both phones.
 - [ ] Host log shows the T→D→T flow; Export log downloads JSON.

@@ -105,7 +105,7 @@ async function start(opts = {}) {
   app.use(express.json({ limit: '1mb' }));
   const noStore = (res) => res.set('Cache-Control', 'no-store');
   app.get('/', (req, res) => res.redirect('/host'));
-  app.get('/favicon.ico', (req, res) => res.type('image/svg+xml').sendFile(path.join(ROOT, 'public', 'favicon.svg')));
+    app.get('/favicon.ico', (req, res) => res.type('image/png').sendFile(path.join(ROOT, 'public', 'favicon.png')));
   app.get('/host', (req, res) => res.sendFile(path.join(ROOT, 'public', 'host.html')));
   app.get('/play', (req, res) => res.sendFile(path.join(ROOT, 'public', 'play.html')));
   app.get('/app', (req, res) => res.sendFile(path.join(ROOT, 'public', 'play.html')));

@@ -541,11 +541,14 @@ async function startView() {
       const head = await fetch(`/targets/${page}.mind`, { method: 'HEAD' });
       if (!head.ok) throw new Error('target file missing: run npm run targets');
       const { PageTracker } = await import('./ar.js');
+      let tiles = null;
+      try { const tj = await fetch(`/targets/${page}.json`); if (tj.ok) tiles = (await tj.json()).tiles; } catch (e) {}
       const profiles = cameraProfiles();
       if (camIndex >= profiles.length) camIndex = 0;
       tracker = new PageTracker({
         container: $('#ar-container'), targetUrl: `/targets/${page}.mind`, aspect: H / W,
         camera: profiles[camIndex],
+        tiles,
         onFrame: (hit) => { updateDots(trackingOn ? tracker : null); feed(hit, 'camera'); },
         onTracking: (on) => { trackingOn = on; if (!on) lostSince = Date.now(); updateHint(); },
         onBrokenFeed: async () => {

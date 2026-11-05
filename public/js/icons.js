@@ -14,12 +14,9 @@ I.neem = `<svg viewBox="0 0 120 120" aria-hidden="true">
 <rect x="34" y="0" width="16" height="22" fill="#f4e3c1" stroke="currentColor" stroke-width="2"/><rect x="0" y="7" width="84" height="8" fill="#f4e3c1" stroke="currentColor" stroke-width="2"/>
 <ellipse cx="14" cy="11" rx="5" ry="3.5" fill="#fff" stroke="currentColor" stroke-width="1.5"/><ellipse cx="68" cy="11" rx="5" ry="3.5" fill="#fff" stroke="currentColor" stroke-width="1.5"/></g></svg>`;
 
-I.peppermint = `<svg viewBox="0 0 100 60" aria-hidden="true">
-<path d="M4 30 L24 14 L24 46 Z M96 30 L76 14 L76 46 Z" fill="#f2f2f2" stroke="#c0262d" stroke-width="3" stroke-linejoin="round"/>
-<path d="M8 30 L24 22 M8 30 L24 38 M92 30 L76 22 M92 30 L76 38" stroke="#c0262d" stroke-width="2.5"/>
-<circle cx="50" cy="30" r="24" fill="#fff" stroke="#c0262d" stroke-width="3"/>
-<path d="M50 6 A24 24 0 0 1 74 30 L50 30Z M50 54 A24 24 0 0 1 26 30 L50 30Z" fill="#d7262e"/>
-<path d="M50 30 L50 6 M50 30 L26 30" stroke="#d7262e" stroke-width="0"/></svg>`;
+// The santra goli (orange candy) from the illustrator's asset. Kept under the old key so every data-icon still works.
+I.peppermint = `<img class="goli-img" src="/assets/santra-goli.png" alt="" draggable="false">`;
+I.goli = I.peppermint;
 
 I.hint = `<svg viewBox="0 0 200 200" aria-hidden="true">
 <g transform="rotate(-6 100 140)"><rect x="18" y="118" width="164" height="64" rx="4" fill="#f4e7cc" stroke="#fff" stroke-width="3"/>

@@ -21,10 +21,25 @@
 - **Hosting recommendation**: mode A (Render free web service) for the professors' demo, because phones only need
   mobile data or any Wi-Fi and a trusted HTTPS certificate; mode C as the no-internet backup.
 
+## Hand-drawn teen page (Teen.png, 2178 x 1544)
+- `assets/pages/teen.png` is the hand-drawn page. Every teen region was re-placed on it; the three santra goli zones are
+  centred on the circles in "with clues.png" (found by comparing it with Teen.png pixel by pixel).
+- **Tracking uses the whole page plus five overlapping parts** (four 55 % quarters and a centre part) compiled into one
+  `teen.mind`; `assets/targets/teen.json` lists the parts. A close-up that shows only part of the page is recognised through
+  the part it contains and mapped back to page coordinates. The tracking file grew from 1 MB to 4.8 MB.
+- Words changed to match the drawing: Pappu's stall is a "Toy stop" with a pinwheel (no clay whistles), the "6" ticket half lies
+  where the kids pick up santra goli (no queue), the P6 santra goli is on the ground in front of the photo studio.
+- **Santra goli** replaces "peppermint" everywhere players can see or hear it (riddles, voices, poem, interface, icon).
+  The icon is the illustrator's santra goli drawing (`public/assets/santra-goli.png`, white background removed).
+- Teen old men on the new art: B = moustached man with red cloth and ice candy, D = white Gandhi cap, E = the sketched figure
+  at Pappu's stall, plus two extra old men (`other_1` glasses, `other_4` orange dupatta). Their faces do not yet show the
+  face-table features.
+- The haat (Dadi) page is still the earlier AI draft and its regions are unchanged.
+
 ## Spread list and the intro before the scanner
 - Home → **book page** (5 spreads with titles, in all four languages) → tap the playable spread → pick a side →
   **poem card** → **"take your phone in your hands"** card → scanner. Exiting the game returns to the book page.
-- **The poem** (`data/game.json` → `intro.poem`, four lines, rhymed couplets, hi / en / mr / gu): Sanjay loved peppermints,
+- **The poem** (`data/game.json` → `intro.poem`, four lines, rhymed couplets, hi / en / mr / gu): Sanjay loved santra goli,
   dropped wrappers wherever he went, look where each one lies, each holds a clue. Marathi and Gujarati are drafts that a
   native speaker should check.
 - **Timing** (constants in `public/js/play.js`, `INTRO`): lines appear every 1.8 s (all four by about 6 s); the poem card stays
@@ -68,7 +83,7 @@
 - **Right answer**: the "solved" line says what the number meant, then a "next" line names the place of the next
   wrapper; an arrow and the next page's icon show who scans next. The photo piece goes to both phones.
 - **Next pointer**: the next UNSOLVED puzzle along the chain (wrapping round), so any wrapper can be the start; after
-  all six, the final line sends players to the peppermint stall. The chain alternates pages, so following it always
+  all six, the final line sends players to the santra goli stall. The chain alternates pages, so following it always
   hands the next wrapper to the other phone (verified in the simulation).
 - **Answer length**: one box per digit (2, 2, 2, 2, 4, 3 boxes).
 - **Clue areas** (`type: "clue"`) are hint pictures only; aiming at them does nothing.
@@ -119,15 +134,13 @@ Every region was checked against a full-resolution overlay of the drafts, but th
 
 | Region | Why it is a guess |
 |---|---|
-| `clue_p3` (teen) | NEW art: the right half of the torn ticket in the wheel queue, placed on the ground by the rope posts. |
 | `clue_p4` (dadi) | NEW art: the "दर्जन ₹४०" board beside the old mausi, placed at the left post of the bangle stall. |
-| `clue_p6` (dadi) | NEW art: the "ताज़ी पीपरमिंट रोज़ शाम ५:३०" sign, placed on the peppermint stall's awning. |
+| `clue_p6` (dadi) | NEW art: the "ताज़ी संतरा गोली रोज़ शाम ५:३०" sign, placed on the santra goli stall's awning. |
 | `w_kulfi`, `w_bangle`, `w_pappu`, `w_cabin16` | Wrappers here are NEW art; the regions cover the whole stall/cabin, so the wrapper only needs to be inside. |
 | `w_pappu` / `cand_E` (teen) | The stall polygon is notched around E (Pappu) so they do not overlap; check E's box covers his face. |
 | `clue_p1`, `clue_p2`, `clue_p5` | Pappu's board, the kulfi slate and the year under the photo: placed on the existing art; recheck after redrawing. |
 | `other_1` (teen) | Old man with red turban, stick and shoulder bag, bottom-left edge: judged "old"; remove if not. |
 | `other_2`, `other_3` (dadi) | White-turban chaupar partner and the bearded man in the pattal row, judged "old men". |
-| `cand_D` (teen) | White-cap man at the queue rope; box starts below cabin 14. |
 
 No other old men were found on either page (the kulfi seller, potter, toy sellers, chai seller, server and
 photographer read as middle-aged). If the final art adds any, draw a `candidate` region with candidateId

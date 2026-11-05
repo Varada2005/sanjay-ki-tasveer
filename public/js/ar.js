@@ -37,7 +37,10 @@ MindARThree.prototype.resize = function guardedResize() {
 */
 
 export class PageTracker {
-  constructor({ container, targetUrl, aspect, onFrame, onTracking, camera = {}, onBrokenFeed }) {
+  constructor({ container, targetUrl, aspect, onFrame, onTracking, camera = {}, onBrokenFeed, tiles }) {
+    // tiles: the parts of the page compiled as targets ({x, y, w, h} as page fractions); target 0 = whole page
+    this.tiles = tiles && tiles.length ? tiles : [{ x: 0, y: 0, w: 1, h: 1 }];
+    this.active = 0;
     this.container = container;
     this.cameraProfile = camera;    // extra getUserMedia video constraints (size, deviceId)
     this.onBrokenFeed = onBrokenFeed;
@@ -54,16 +57,20 @@ export class PageTracker {
     this.mindar = new MindARThree({
       container: this.container,
       imageTargetSrc: this.targetUrl,
-      maxTrack: 1,
+      maxTrack: 1,           // one target at a time: whichever part of the page is in view
       uiLoading: 'no', uiScanning: 'no', uiError: 'no',
       filterMinCF: 0.0005, filterBeta: 0.01, // a bit more smoothing than default: steadier crosshair
       missTolerance: 6, warmupTolerance: 3
     });
     const { renderer, scene, camera } = this.mindar;
     this.renderer = renderer; this.scene = scene; this.camera = camera;
-    this.anchor = this.mindar.addAnchor(0);
-    this.anchor.onTargetFound = () => { this.tracking = true; this.onTracking && this.onTracking(true); };
-    this.anchor.onTargetLost = () => { this.tracking = false; this.onTracking && this.onTracking(false); };
+    this.anchors = this.tiles.map((_, k) => {
+      const a = this.mindar.addAnchor(k);
+      a.onTargetFound = () => { this.active = k; this.anchor = a; this.tracking = true; this.onTracking && this.onTracking(true); };
+      a.onTargetLost = () => { if (this.active === k) { this.tracking = false; this.onTracking && this.onTracking(false); } };
+      return a;
+    });
+    this.anchor = this.anchors[0];
     // MindAR asks only for "a back camera", no size. On some Android phones that default
     // stream arrives corrupted (half green, half grey with coloured stripes). Add an explicit
     // standard size / a chosen lens to MindAR's request, just for this start.
@@ -164,12 +171,19 @@ export class PageTracker {
     const t = -o.z / d.z;                        // ray meets the plane z = 0
     if (t <= 0) return null;                     // page is behind the camera
     const x = o.x + t * d.x, y = o.y + t * d.y;
-    return { u: x + 0.5, v: 0.5 - y / this.h };
+    // (x, y) is in the recognised tile; map it back onto the whole page.
+    const tl = this.tiles[this.active], th = this.tileAspect(tl);
+    return { u: tl.x + (x + 0.5) * tl.w, v: tl.y + (0.5 - y / th) * tl.h };
   }
+
+  // height / width of a tile, in the same units MindAR uses for that target
+  tileAspect(tl) { return (tl.h / tl.w) * this.h; }
 
   // Project a page-space point to CSS pixels on screen.
   toScreen(u, v) {
-    const pt = new THREE.Vector3(u - 0.5, (0.5 - v) * this.h, 0).applyMatrix4(this.anchor.group.matrix).project(this.camera);
+    const tl = this.tiles[this.active], th = this.tileAspect(tl);
+    const uc = (u - tl.x) / tl.w, vc = (v - tl.y) / tl.h;   // page point in the recognised tile
+    const pt = new THREE.Vector3(uc - 0.5, (0.5 - vc) * th, 0).applyMatrix4(this.anchor.group.matrix).project(this.camera);
     const r = this.container.getBoundingClientRect();
     return [((pt.x + 1) / 2) * r.width, ((1 - pt.y) / 2) * r.height];
   }

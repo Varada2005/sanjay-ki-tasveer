@@ -1,7 +1,7 @@
 {
   "version": 2,
   "title": "Sanjay ki Tasveer",
-  "story": "Dadi's younger brother Sanjay left the village after her wedding in 1982. Every year he comes back to this mela and waits at the peppermint stall at 5:30 in the evening, the peppermints the two of them shared as children. This year he has left a trail of peppermint wrappers, each holding one of his childhood paheliyan (riddles) and one torn piece of his photo. Following the trail retraces his day: Pappu's cart, Pappu's whistle stall, kulfi, the giant wheel, the bangle stall of their mausi, the 1982 wedding photo, and finally the peppermint stall, where he is waiting.",
+  "story": "Dadi's younger brother Sanjay left the village after her wedding in 1982. Every year he comes back to this mela and waits at the santra goli stall at 5:30 in the evening, the santra goli the two of them shared as children. This year he has left a trail of santra goli wrappers, each holding one of his childhood paheliyan (riddles) and one torn piece of his photo. Following the trail retraces his day: Pappu's cart, Pappu's whistle stall, kulfi, the giant wheel, the bangle stall of their mausi, the 1982 wedding photo, and finally the santra goli stall, where he is waiting.",
   "languages": [
     "hi",
     "en",
@@ -51,7 +51,7 @@
       "answerSource": {
         "page": "teen",
         "regionId": "clue_p1",
-        "object": "board \"पप्पू २३\" on the clay-whistle stall"
+        "object": "board \"पप्पू २३ Toy stop\" on Pappu's stall"
       },
       "needs": [
         {
@@ -60,17 +60,17 @@
         },
         {
           "page": "teen",
-          "item": "Toy stall board in Devanagari: पप्पू २३ (stall number 23)"
+          "item": "Pappu's stall board in Devanagari: पप्पू २३ (stall number 23), \"Toy stop\""
         }
       ],
       "lines": {
         "hi": {
           "riddle": "पप्पू की बैलगाड़ी पर, मैं मेले तक आया,\nबोरी पर उसका नाम लिखा, अंग्रेज़ी में छपाया।\nउस पार उसकी दुकान खड़ी, नाम वहाँ हिंदी में,\nनाम के संग जो अंक लिखा, वो भर दो इन खानों में।",
-          "solved": "हाँ, तेईस! पप्पू की दुकान तेईस नंबर। वहीं से मैंने दीदी के लिए मिट्टी की सीटी ली थी।"
+          "solved": "हाँ, तेईस! पप्पू की दुकान तेईस नंबर। वहीं से मैंने दीदी के लिए रंगीन फिरकी ली थी।"
         },
         "en": {
           "riddle": "On Pappu's bullock cart I rode into the fair,\nHis name is on the sack, in English letters there.\nAcross, you'll find his stall, his name in Hindi signs,\nThe number painted with it goes into these lines.",
-          "solved": "Yes, twenty-three! Pappu's stall number. That's where I bought a clay whistle for Didi."
+          "solved": "Yes, twenty-three! Pappu's stall number. That's where I bought a colourful pinwheel for Didi."
         },
         "mr": {
           "riddle": "TODO",
@@ -88,8 +88,8 @@
       "wrapperRegionId": "w_pappu",
       "answer": "15",
       "photoPiece": "moustache",
-      "place": "Pappu's clay-whistle stall (पप्पू २३)",
-      "meaning": "The price of one kulfi. After buying the whistle Sanjay cooled off with a matka kulfi.",
+      "place": "Pappu's Toy stop stall (पप्पू २३)",
+      "meaning": "The price of one kulfi. After buying a pinwheel at Pappu's, Sanjay cooled off with a matka kulfi.",
       "answerSource": {
         "page": "dadi",
         "regionId": "clue_p2",
@@ -98,7 +98,7 @@
       "needs": [
         {
           "page": "teen",
-          "item": "Clay whistles hanging at Pappu's stall"
+          "item": "Pappu's Toy stop stall with a pinwheel; a santra goli packet over its counter"
         },
         {
           "page": "dadi",
@@ -107,11 +107,11 @@
       ],
       "lines": {
         "hi": {
-          "riddle": "पप्पू से ली मिट्टी की सीटी, फिर गर्मी ने सताया,\nलाल कपड़े में लिपटा मटका, ठंडक का घर पाया।\nउस पार कुल्फ़ी वाले की, पट्टी पर दाम लिखा है,\nजितने में मैंने कुल्फ़ी खाई, वही अंक छिपा है।",
+          "riddle": "पप्पू से ली रंगीन फिरकी, फिर गर्मी ने सताया,\nलाल कपड़े में लिपटा मटका, ठंडक का घर पाया।\nउस पार कुल्फ़ी वाले की, पट्टी पर दाम लिखा है,\nजितने में मैंने कुल्फ़ी खाई, वही अंक छिपा है।",
           "solved": "पंद्रह रुपये! इतने में मैंने लाल मटके वाली ठंडी कुल्फ़ी खाई, बचपन जैसी।"
         },
         "en": {
-          "riddle": "From Pappu I bought a whistle, then the heat came on strong,\nA matka wrapped in red cloth kept the cold all along.\nAcross, the kulfi seller wrote his price upon a slate,\nThe rupees that I paid for kulfi: that's the number to state.",
+          "riddle": "From Pappu I bought a pinwheel, then the heat came on strong,\nA matka wrapped in red cloth kept the cold all along.\nAcross, the kulfi seller wrote his price upon a slate,\nThe rupees that I paid for kulfi: that's the number to state.",
           "solved": "Fifteen rupees! That's what my red-matka kulfi cost, just like when we were children."
         },
         "mr": {
@@ -135,7 +135,7 @@
       "answerSource": {
         "page": "teen",
         "regionId": "clue_p3",
-        "object": "right half of the torn ticket \"6\", on the ground in the wheel queue"
+        "object": "right half of the pink ticket \"6\", on the ground where the kids pick up santra goli"
       },
       "needs": [
         {
@@ -144,7 +144,7 @@
         },
         {
           "page": "teen",
-          "item": "Right half of the same pink ticket on the ground by the queue rope: \"6\""
+          "item": "Right half of the same pink ticket on the ground, by the kids picking up santra goli: \"6\""
         },
         {
           "page": "teen",
@@ -153,11 +153,11 @@
       ],
       "lines": {
         "hi": {
-          "riddle": "कुल्फ़ी खा के झूले का, टिकट मैंने निकाला,\nजल्दी में वो फट गया, आधा यहीं पे डाला।\nबाक़ी आधा उड़ के गिरा, झूले की लाइन में,\nदोनों जोड़ो, डिब्बा बोलो, बैठा था मैं जिसमें।",
+          "riddle": "कुल्फ़ी खा के झूले का, टिकट मैंने निकाला,\nजल्दी में वो फट गया, आधा यहीं पे डाला।\nबाक़ी आधा उड़ के गिरा, गोली बीनते बच्चों में,\nदोनों जोड़ो, डिब्बा बोलो, बैठा था मैं जिसमें।",
           "solved": "डिब्बा सोलह! नीला, पीला, फिर नीला। सबसे ऊपर पहुँच के मैंने पूरा मेला देखा।"
         },
         "en": {
-          "riddle": "After kulfi I bought a ticket for the giant wheel's ride,\nIn my hurry it tore in two; one half fell by my side.\nThe other half flew off and landed in the queue,\nJoin both halves: which cabin did I ride? Tell me true.",
+          "riddle": "After kulfi I bought a ticket for the giant wheel's ride,\nIn my hurry it tore in two; one half fell by my side.\nThe other half flew where kids pick santra goli off the ground,\nJoin both halves: name the cabin where I went round and round.",
           "solved": "Cabin sixteen! Blue, yellow, then blue. From the very top I saw the whole mela."
         },
         "mr": {
@@ -264,31 +264,31 @@
       "wrapperRegionId": "w_photo",
       "answer": "530",
       "photoPiece": "gap_tooth",
-      "place": "Photo studio, the framed 1982 jaimala photo",
-      "meaning": "The time Sanjay waits every evening: 5:30, when fresh peppermints arrive at the peppermint stall.",
+      "place": "Photo studio: santra goli on the ground in front of it",
+      "meaning": "The time Sanjay waits every evening: 5:30, when fresh santra goli arrive at the santra goli stall.",
       "answerSource": {
         "page": "dadi",
         "regionId": "clue_p6",
-        "object": "sign on the peppermint stall \"ताज़ी पीपरमिंट रोज़ शाम ५:३०\""
+        "object": "sign on the santra goli stall \"ताज़ी संतरा गोली रोज़ शाम ५:३०\""
       },
       "needs": [
         {
           "page": "teen",
-          "item": "In the 1982 photo: a small boy (young Sanjay) standing beside the bride, holding a peppermint"
+          "item": "Photo studio with the 1982 wedding photo (young Sanjay beside the bride); a santra goli packet on the ground in front"
         },
         {
           "page": "dadi",
-          "item": "Peppermint stall with jars of red-white peppermints and a sign: ताज़ी पीपरमिंट रोज़ शाम ५:३०"
+          "item": "Santra goli stall with jars of santra goli and a sign: ताज़ी संतरा गोली रोज़ शाम ५:३०"
         }
       ],
       "lines": {
         "hi": {
-          "riddle": "उस फ़ोटो में छोटा-सा मैं, दुल्हन के पास खड़ा,\nआज भी हर शाम आता हूँ, बूढ़ा हो के बड़ा।\nपीपरमिंट की दुकान पे, तख़्ती टँगी है देखो,\nताज़ी पीपरमिंट किस वक़्त आती, वो वक़्त यहाँ लिखो।",
-          "solved": "साढ़े पाँच! हर शाम ठीक इसी वक़्त, मैं पीपरमिंट की दुकान पे तेरी राह देखता हूँ।"
+          "riddle": "उस फ़ोटो में छोटा-सा मैं, दुल्हन के पास खड़ा,\nआज भी हर शाम आता हूँ, बूढ़ा हो के बड़ा।\nसंतरा गोली की दुकान पे, तख़्ती टँगी है देखो,\nताज़ी गोलियाँ किस वक़्त आतीं, वो वक़्त यहाँ लिखो।",
+          "solved": "साढ़े पाँच! हर शाम ठीक इसी वक़्त, मैं संतरा गोली की दुकान पे तेरी राह देखता हूँ।"
         },
         "en": {
-          "riddle": "In that photo I'm the little boy beside the bride,\nNow every single evening, old and grey, I wait outside.\nLook at the peppermint stall, a little sign is there,\nThe time fresh peppermints arrive: type that time with care.",
-          "solved": "Half past five! Every evening at exactly that time, I wait for you at the peppermint stall."
+          "riddle": "In that photo I'm the little boy beside the bride,\nNow every single evening, old and grey, I wait outside.\nLook at the santra goli stall, a little sign is there,\nThe time fresh santra goli arrive: type that time with care.",
+          "solved": "Half past five! Every evening at exactly that time, I wait for you at the santra goli stall."
         },
         "mr": {
           "riddle": "TODO",
@@ -304,42 +304,42 @@
   "next": {
     "hi": {
       "across": {
-        "p1": "अब पप्पू की बैलगाड़ी पे लदी बोरी पर, मेरा अगला रैपर ढूँढो।",
-        "p2": "अब उस पार पप्पू की सीटियों वाली दुकान पर, मेरा अगला रैपर ढूँढो।",
-        "p3": "अब उस पार लाल कपड़े वाले कुल्फ़ी के मटकों के पास, मेरा अगला रैपर ढूँढो।",
-        "p4": "अब उस पार झूले के सोलह नंबर डिब्बे पर, मेरा अगला रैपर ढूँढो।",
-        "p5": "अब उस पार मौसी की चूड़ियों के बीच, मेरा अगला रैपर ढूँढो।",
-        "p6": "अब उस पार फ़ोटो वाले की जयमाला वाली तस्वीर पर, मेरा अगला रैपर ढूँढो।",
-        "final": "मेरी पूरी फ़ोटो जुड़ गई! अब पीपरमिंट की दुकान पे मुझे ढूँढो, फ़ोटो से पहचानो, और मुझ पर फ़ोन रखो।"
+        "p1": "अब उस पार पप्पू की बैलगाड़ी पे लदी बोरी पर, मेरी अगली संतरा गोली ढूँढो।",
+        "p2": "अब उस पार पप्पू की खिलौनों वाली दुकान पर, मेरी अगली संतरा गोली ढूँढो।",
+        "p3": "अब उस पार लाल कपड़े वाले कुल्फ़ी के मटकों के पास, मेरी अगली संतरा गोली ढूँढो।",
+        "p4": "अब उस पार झूले के सोलह नंबर डिब्बे पर, मेरी अगली संतरा गोली ढूँढो।",
+        "p5": "अब उस पार मौसी की चूड़ियों के बीच, मेरी अगली संतरा गोली ढूँढो।",
+        "p6": "अब उस पार फ़ोटो वाले की दुकान के सामने, ज़मीन पर, मेरी अगली संतरा गोली ढूँढो।",
+        "final": "मेरी पूरी फ़ोटो जुड़ गई! अब संतरा गोली की दुकान पे मुझे ढूँढो, फ़ोटो से पहचानो, और मुझ पर फ़ोन रखो।"
       },
       "same": {
-        "p1": "अब पप्पू की बैलगाड़ी पे लदी बोरी पर, मेरा अगला रैपर ढूँढो।",
-        "p2": "अब पप्पू की सीटियों वाली दुकान पर, मेरा अगला रैपर ढूँढो।",
-        "p3": "अब लाल कपड़े वाले कुल्फ़ी के मटकों के पास, मेरा अगला रैपर ढूँढो।",
-        "p4": "अब झूले के सोलह नंबर डिब्बे पर, मेरा अगला रैपर ढूँढो।",
-        "p5": "अब मौसी की चूड़ियों के बीच, मेरा अगला रैपर ढूँढो।",
-        "p6": "अब फ़ोटो वाले की जयमाला वाली तस्वीर पर, मेरा अगला रैपर ढूँढो।",
-        "final": "मेरी पूरी फ़ोटो जुड़ गई! अब पीपरमिंट की दुकान पे मुझे ढूँढो, फ़ोटो से पहचानो, और मुझ पर फ़ोन रखो।"
+        "p1": "अब पप्पू की बैलगाड़ी पे लदी बोरी पर, मेरी अगली संतरा गोली ढूँढो।",
+        "p2": "अब पप्पू की खिलौनों वाली दुकान पर, मेरी अगली संतरा गोली ढूँढो।",
+        "p3": "अब लाल कपड़े वाले कुल्फ़ी के मटकों के पास, मेरी अगली संतरा गोली ढूँढो।",
+        "p4": "अब झूले के सोलह नंबर डिब्बे पर, मेरी अगली संतरा गोली ढूँढो।",
+        "p5": "अब मौसी की चूड़ियों के बीच, मेरी अगली संतरा गोली ढूँढो।",
+        "p6": "अब फ़ोटो वाले की दुकान के सामने, ज़मीन पर, मेरी अगली संतरा गोली ढूँढो।",
+        "final": "मेरी पूरी फ़ोटो जुड़ गई! अब संतरा गोली की दुकान पे मुझे ढूँढो, फ़ोटो से पहचानो, और मुझ पर फ़ोन रखो।"
       }
     },
     "en": {
       "across": {
-        "p1": "Now, on the other page, find my next wrapper on the sack on Pappu's bullock cart.",
-        "p2": "Now, on the other page, find my next wrapper at Pappu's whistle stall.",
-        "p3": "Now, on the other page, find my next wrapper by the kulfi matkas wrapped in red cloth.",
-        "p4": "Now, on the other page, find my next wrapper on cabin sixteen of the giant wheel.",
-        "p5": "Now, on the other page, find my next wrapper among mausi's bangles.",
-        "p6": "Now, on the other page, find my next wrapper on the wedding photo at the photo studio.",
-        "final": "My photo is complete! Now find me at the peppermint stall. Match my face, and point your phone at me."
+        "p1": "Now, on the other page, find my next santra goli on the sack on Pappu's bullock cart.",
+        "p2": "Now, on the other page, find my next santra goli at Pappu's toy stall.",
+        "p3": "Now, on the other page, find my next santra goli by the kulfi matkas wrapped in red cloth.",
+        "p4": "Now, on the other page, find my next santra goli on cabin sixteen of the giant wheel.",
+        "p5": "Now, on the other page, find my next santra goli among mausi's bangles.",
+        "p6": "Now, on the other page, find my next santra goli on the ground in front of the photo studio.",
+        "final": "My photo is complete! Now find me at the santra goli stall. Match my face, and point your phone at me."
       },
       "same": {
-        "p1": "Now find my next wrapper on the sack on Pappu's bullock cart.",
-        "p2": "Now find my next wrapper at Pappu's whistle stall.",
-        "p3": "Now find my next wrapper by the kulfi matkas wrapped in red cloth.",
-        "p4": "Now find my next wrapper on cabin sixteen of the giant wheel.",
-        "p5": "Now find my next wrapper among mausi's bangles.",
-        "p6": "Now find my next wrapper on the wedding photo at the photo studio.",
-        "final": "My photo is complete! Now find me at the peppermint stall. Match my face, and point your phone at me."
+        "p1": "Now find my next santra goli on the sack on Pappu's bullock cart.",
+        "p2": "Now find my next santra goli at Pappu's toy stall.",
+        "p3": "Now find my next santra goli by the kulfi matkas wrapped in red cloth.",
+        "p4": "Now find my next santra goli on cabin sixteen of the giant wheel.",
+        "p5": "Now find my next santra goli among mausi's bangles.",
+        "p6": "Now find my next santra goli on the ground in front of the photo studio.",
+        "final": "My photo is complete! Now find me at the santra goli stall. Match my face, and point your phone at me."
       }
     },
     "mr": {
@@ -388,7 +388,7 @@
       "id": "sanjay",
       "page": "dadi",
       "isSanjay": true,
-      "label": "Sanjay (left, peppermint stall)",
+      "label": "Sanjay (left, santra goli stall)",
       "features": {
         "red_headcloth": true,
         "eyebrow_scar": true,
@@ -399,10 +399,10 @@
       },
       "lines": {
         "hi": {
-          "voice": "दीदी? तुम सच में आ गईं! हर शाम साढ़े पाँच बजे, इसी दुकान पे तुम्हारी राह देखता था। लो, एक पीपरमिंट, बिल्कुल पहले जैसी।"
+          "voice": "दीदी? तुम सच में आ गईं! हर शाम साढ़े पाँच बजे, इसी दुकान पे तुम्हारी राह देखता था। लो, एक संतरा गोली, बिल्कुल पहले जैसी।"
         },
         "en": {
-          "voice": "Didi? You really came! Every evening at half past five I waited here for you. Here, a peppermint, just like before."
+          "voice": "Didi? You really came! Every evening at half past five I waited here for you. Here, a santra goli, just like before."
         },
         "mr": {
           "voice": "TODO"
@@ -415,7 +415,7 @@
     {
       "id": "A",
       "page": "dadi",
-      "label": "A (right, peppermint stall)",
+      "label": "A (right, santra goli stall)",
       "features": {
         "red_headcloth": true,
         "eyebrow_scar": true,
@@ -426,10 +426,10 @@
       },
       "lines": {
         "hi": {
-          "voice": "नहीं बेटा, मैं तो हलवाई हूँ। पीपरमिंट लेने आया था, बस।"
+          "voice": "नहीं बेटा, मैं तो हलवाई हूँ। संतरा गोली लेने आया था, बस।"
         },
         "en": {
-          "voice": "No, child, I am the sweet-maker. I only came for peppermints."
+          "voice": "No, child, I am the sweet-maker. I only came for santra goli."
         },
         "mr": {
           "voice": "TODO"
@@ -442,7 +442,7 @@
     {
       "id": "B",
       "page": "teen",
-      "label": "B (red turban, ice gola)",
+      "label": "B (moustache, red cloth on shoulder, ice candy)",
       "features": {
         "red_headcloth": true,
         "eyebrow_scar": false,
@@ -453,10 +453,10 @@
       },
       "lines": {
         "hi": {
-          "voice": "मैं? ना बेटा, मैं तो गोला खा रहा हूँ, गला ठंडा कर रहा हूँ। किसे ढूँढ रहे हो?"
+          "voice": "मैं? ना बेटा, मैं तो चुस्की खा रहा हूँ, गला ठंडा कर रहा हूँ। किसे ढूँढ रहे हो?"
         },
         "en": {
-          "voice": "Me? No, child, I am just cooling down with an ice gola. Who are you looking for?"
+          "voice": "Me? No, child, I am just cooling down with an ice candy. Who are you looking for?"
         },
         "mr": {
           "voice": "TODO"
@@ -496,7 +496,7 @@
     {
       "id": "D",
       "page": "teen",
-      "label": "D (white cap, jhoola queue)",
+      "label": "D (white Gandhi cap, handing out santra goli)",
       "features": {
         "red_headcloth": false,
         "eyebrow_scar": true,
@@ -507,10 +507,10 @@
       },
       "lines": {
         "hi": {
-          "voice": "मैं तो पोते का इंतज़ार कर रहा हूँ, बेटा। लाइन बड़ी लंबी है आज।"
+          "voice": "मैं तो बच्चों को संतरा गोली बाँट रहा हूँ, बेटा। तुम भी लोगे?"
         },
         "en": {
-          "voice": "I am waiting for my grandson, child. The queue is very long today."
+          "voice": "I am just handing out santra goli to the children, child. Want one?"
         },
         "mr": {
           "voice": "TODO"
@@ -523,7 +523,7 @@
     {
       "id": "E",
       "page": "teen",
-      "label": "E (red cap, left toy stall)",
+      "label": "E (Pappu, at his Toy stop stall)",
       "features": {
         "red_headcloth": true,
         "eyebrow_scar": false,
@@ -534,10 +534,10 @@
       },
       "lines": {
         "hi": {
-          "voice": "अरे, मैं तो सीटी बेचता हूँ! एक बजा के देखोगे?"
+          "voice": "अरे, मैं तो पप्पू हूँ, खिलौने बेचता हूँ! बोतलें गिराओगे?"
         },
         "en": {
-          "voice": "Me? I sell whistles! Want to try one?"
+          "voice": "Me? I am Pappu, I sell toys! Want to knock down the bottles?"
         },
         "mr": {
           "voice": "TODO"
@@ -551,13 +551,13 @@
   "otherOldMen": {
     "other_1": {
       "page": "teen",
-      "label": "Old man with stick, bottom left",
+      "label": "Bald old man with glasses in the crowd",
       "lines": {
         "hi": {
-          "voice": "ना बेटा, मैं तो पोते-पोतियों के लिए गुब्बारे लेने आया हूँ।"
+          "voice": "ना बेटा, मैं तो अपने पोते-पोतियों के साथ मेला घूम रहा हूँ।"
         },
         "en": {
-          "voice": "No, child, I came to buy balloons for my grandchildren."
+          "voice": "No, child, I am just walking the mela with my grandchildren."
         },
         "mr": {
           "voice": "TODO"
@@ -602,33 +602,51 @@
           "voice": "TODO"
         }
       }
+    },
+    "other_4": {
+      "page": "teen",
+      "label": "Old man in white kurta and orange dupatta",
+      "lines": {
+        "hi": {
+          "voice": "ना बेटा, मैं तो बहू के साथ चूड़ियाँ लेने आया हूँ।"
+        },
+        "en": {
+          "voice": "No, child, I came with my daughter-in-law to buy bangles."
+        },
+        "mr": {
+          "voice": "TODO"
+        },
+        "gu": {
+          "voice": "TODO"
+        }
+      }
     }
   },
   "intro": {
     "poem": {
       "hi": [
-        "पीपरमिंट की गोली संजय को भाए,",
-        "जहाँ भी गया, वो रैपर गिराए।",
-        "देखो, कौन-सा रैपर कहाँ पड़ा है,",
-        "हर एक के पास इक राज़ खड़ा है।"
+        "खट्टी-मीठी संतरा गोली संजय को भाए,",
+        "जहाँ भी गया, वो गोलियाँ गिराए।",
+        "देखो, कौन-सी गोली कहाँ पड़ी है,",
+        "हर एक के संग इक पहेली खड़ी है।"
       ],
       "en": [
-        "Sanjay loved his peppermint treat,",
-        "And dropped the wrappers on every street.",
-        "Look where each wrapper has come to stay,",
-        "Each one holds a clue to point the way."
+        "Sanjay loved his santra goli treat,",
+        "And dropped a few on every street.",
+        "Look where each santra goli has come to stay,",
+        "Each one holds a riddle to point the way."
       ],
       "mr": [
-        "पेपरमिंटची गोळी संजयला आवडे,",
-        "जिथे गेला तिथे रॅपर पडे.",
-        "पाहा कुठे कुठे रॅपर पडलं आहे,",
-        "प्रत्येकाजवळ एक गुपित दडलं आहे."
+        "आंबट-गोड संत्र्याची गोळी संजयला आवडे,",
+        "जिथे गेला तिथे एक गोळी पडे.",
+        "पाहा कुठे कुठे गोळी पडली आहे,",
+        "प्रत्येक गोळीमागे एक गोष्ट दडली आहे."
       ],
       "gu": [
-        "પીપરમિન્ટની ગોળી સંજયને ગમે,",
-        "જ્યાં જાય ત્યાં રેપર મૂકે.",
-        "જુઓ ક્યાં રેપર પડ્યું છે,",
-        "દરેક પાસે એક રહસ્ય ઊભું છે."
+        "ખાટી-મીઠી સંતરાની ગોળી સંજયને ગમે,",
+        "જ્યાં જાય ત્યાં એક ગોળી મૂકે.",
+        "જુઓ ક્યાં ક્યાં ગોળી પડી,",
+        "દરેક પાસે એક કડી જડી."
       ]
     },
     "take": {

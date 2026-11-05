@@ -165,3 +165,8 @@ body.in-game #lock .boxes .box, body.in-game #lock .keypad button, body.in-game 
 .intro-bar i { display: block; height: 100%; width: 0; background: var(--gold); }
 @media (prefers-reduced-motion: reduce) { .intro-phone .tp-lift { animation: none; } .intro-line { transition: none; } }
 .fig-toast { z-index: 70; }
+
+/* the santra goli picture inside icon slots (logo, confirm key, confetti) */
+[data-icon] img.goli-img, .goli-img { width: 100%; height: 100%; object-fit: contain; display: block; pointer-events: none; user-select: none; }
+#confetti span .goli-img { width: 34px; height: 30px; }
+body.in-game #lock .keypad .ok { background: var(--gold); }

@@ -33,3 +33,16 @@ So you aimed at the dot, and everything near the wrapper was part of the same ta
 
 ## If the pointer is slightly off in the same direction on a real phone
 That is a camera-lens offset. Send me the recording and the phone model; I can add a hidden "nudge the aim" calibration.
+
+## Hand-drawn teen page: measured (simulated phone camera)
+| View | Recognised | Pointer error |
+|---|---|---|
+| Whole page in view | 3 of 3 santra goli, 1.7 to 2.1 s | 0.34 to 0.44 % of page width |
+| Half the page, turned 8 degrees | 3 of 3, 1.6 to 2.1 s | 0.21 to 0.43 % |
+| Close-up, a third of the page | 3 of 3, 1.7 to 2.5 s | 0.27 to 0.39 % |
+| Tilted 32 degrees and turned 14 degrees | 3 of 3, 1.7 to 2.4 s | 0.45 to 0.67 % |
+| Page turned round (180 degrees) | 3 of 3, 1.7 to 2.2 s | 0.44 to 0.60 % |
+| Old men D and glasses man, far and tilted | 4 of 4 | 0.15 to 0.37 % |
+
+0.5 % of the page width is about 1.5 mm on A4. Before the page-part targets were added, close-ups and half-page views of the
+corner santra goli (Pappu's stall, cabin 16) were not recognised at all; with them all 19 views pass.

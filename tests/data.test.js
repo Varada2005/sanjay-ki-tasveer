@@ -68,12 +68,13 @@ for (const p of ['teen', 'dadi']) {
 section('Wrapper hit zones are tight and clear of everything else');
 for (const r of regionsFile.regions.filter((x) => x.type === 'hook')) {
   const xs = r.polygon.map((p) => p[0]), ys = r.polygon.map((p) => p[1]);
-  const wPx = (Math.max(...xs) - Math.min(...xs)) * 1491, hPx = (Math.max(...ys) - Math.min(...ys)) * 1055;
-  check(Math.max(wPx, hPx) <= 130 && Math.min(wPx, hPx) >= 50, `${r.id}: hit zone is wrapper-sized (${Math.round(wPx)} x ${Math.round(hPx)} px on a 1491 px page)`);
+  const [PW, PH] = regionsFile.pageSize[r.page];
+  const wPct = (Math.max(...xs) - Math.min(...xs)) * 100, hPct = ((Math.max(...ys) - Math.min(...ys)) * PH / PW) * 100;
+  check(Math.max(wPct, hPct) <= 8.7 && Math.min(wPct, hPct) >= 3.3, `${r.id}: hit zone is santra-goli-sized (${wPct.toFixed(1)} x ${hPct.toFixed(1)} % of the page width)`);
   check(Array.isArray(r.anchor) && inside(r.anchor, r.polygon), `${r.id}: anchor (the glowing dot) is inside its zone`);
   for (const o of regionsFile.regions.filter((x) => x.page === r.page && x.id !== r.id && (x.type === 'candidate' || x.type === 'hook'))) {
     const gap = Math.min(...r.polygon.map((pt) => edgeDistance(pt, o.polygon)));
-    check(!polysOverlap(r.polygon, o.polygon) && gap * 1491 >= 25, `${r.id} keeps at least 25 px from ${o.id} (gap ${Math.round(gap * 1491)} px)`);
+    check(!polysOverlap(r.polygon, o.polygon) && gap >= 0.017, `${r.id} keeps at least 1.7 % of the page width from ${o.id} (gap ${(gap * 100).toFixed(1)} %)`);
   }
 }
 
@@ -86,7 +87,7 @@ for (const c of game.candidates) {
 const sanjayRegion = regionsFile.regions.find((r) => r.candidateId === 'sanjay');
 check(polysOverlap(sanjayRegion.polygon, regions[P.find((p) => p.id === game.chain[5]).answerSource.regionId].polygon) ||
   Math.min(...sanjayRegion.polygon.map((pt) => edgeDistance(pt, regions[P.find((p) => p.id === game.chain[5]).answerSource.regionId].polygon))) < 0.12,
-  'the last answer (5:30 sign) is at the peppermint stall where Sanjay stands');
+  'the last answer (5:30 sign) is at the santra goli stall where Sanjay stands');
 for (const r of regionsFile.regions.filter((r) => r.type === 'candidate' && r.candidateId.startsWith('other_'))) check(!!game.otherOldMen[r.candidateId], `${r.id}: other old man has a line`);
 
 section('Lines: one rhyming riddle per wrapper, success, next');
@@ -116,9 +117,9 @@ const emitted = new Set(need);
 for (const id of Object.keys(L)) check(emitted.has(id), `line ${id} is used`);
 
 // Each riddle mentions where to look (a word for the answer place) and each "next" line names its wrapper's place.
-const PLACE = { p1: ['पप्पू', 'दुकान'], p2: ['कुल्फ़ी', 'पट्टी'], p3: ['टिकट', 'डिब्बा'], p4: ['चूड़ी', 'तख़्ती'], p5: ['फ़ोटो', 'साल'], p6: ['पीपरमिंट', 'तख़्ती'] };
+const PLACE = { p1: ['पप्पू', 'दुकान'], p2: ['कुल्फ़ी', 'पट्टी'], p3: ['टिकट', 'डिब्बा'], p4: ['चूड़ी', 'तख़्ती'], p5: ['फ़ोटो', 'साल'], p6: ['संतरा गोली', 'तख़्ती'] };
 for (const p of P) check(PLACE[p.id].every((w) => p.lines.hi.riddle.includes(w)), `${p.id}: riddle tells where to look (${PLACE[p.id].join(', ')})`);
-const WRAP = { p1: 'बोरी', p2: 'पप्पू', p3: 'कुल्फ़ी', p4: 'डिब्बे', p5: 'चूड़ियों', p6: 'तस्वीर' };
+const WRAP = { p1: 'बोरी', p2: 'पप्पू', p3: 'कुल्फ़ी', p4: 'डिब्बे', p5: 'चूड़ियों', p6: 'फ़ोटो' };
 for (const p of P) check(game.next.hi.across[p.id].includes(WRAP[p.id]) && game.next.hi.same[p.id].includes(WRAP[p.id]), `next line for ${p.id} names its wrapper place (${WRAP[p.id]})`);
 check(!Object.values(game.next.hi.same).some((s) => s.includes('उस पार')), '"same page" next lines never say "across"');
 
@@ -129,7 +130,10 @@ for (const lang of ['hi', 'en', 'mr', 'gu']) {
   check(typeof game.intro.take[lang] === 'string' && game.intro.take[lang].length > 5, `intro "take your phone" line (${lang})`);
   check(p.join(' ').length < 220, `intro poem (${lang}) is short enough to read in about ten seconds`);
 }
-check(/पीपरमिंट/.test(game.intro.poem.hi.join(' ')) && /peppermint/i.test(game.intro.poem.en.join(' ')), 'the poem names Sanjay\'s peppermint');
+check(/संतरा गोली/.test(game.intro.poem.hi.join(' ')) && /santra goli/i.test(game.intro.poem.en.join(' ')), 'the poem names Sanjay\'s santra goli');
+// "peppermint" is gone everywhere players can see or hear
+const everything = JSON.stringify(G.lineTable(game)) + JSON.stringify(require('../public/books.json')) + require('fs').readFileSync(require('path').join(__dirname, '..', 'public', 'js', 'i18n.js'), 'utf8');
+check(!/peppermint|पीपरमिंट|पेपरमिंट|પીપરમિન્ટ/i.test(everything), 'no line or interface text says peppermint (santra goli everywhere)');
 const books = JSON.parse(require('fs').readFileSync(require('path').join(__dirname, '..', 'public', 'books.json'), 'utf8'));
 const cur = books.books.find((b) => b.current);
 check(cur.spreads.length === 5, 'the current book has 5 spreads');

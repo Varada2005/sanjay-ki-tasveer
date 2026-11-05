@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon.png" type="image/png">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Compile Targets</title>
 <style>
@@ -47,6 +47,24 @@ function download(buf, name) {
 }
 // Used by tools/compile-targets.js
 window.compileTarget = async (url, name) => toBase64(await compile(await loadImage(url), name));
+// Whole page + overlapping parts. A close-up that shows only part of the page is still recognised
+// through the part it contains; the app maps that part back to page coordinates.
+window.compileTiles = async (url, name, tiles) => {
+  const img = await loadImage(url);
+  const canvases = tiles.map((t) => {
+    const c = document.createElement('canvas');
+    c.width = Math.round(t.w * img.width); c.height = Math.round(t.h * img.height);
+    c.getContext('2d').drawImage(img, t.x * img.width, t.y * img.height, c.width, c.height, 0, 0, c.width, c.height);
+    return c;
+  });
+  const t0 = performance.now();
+  const comp = new Compiler();
+  let last = -10;
+  await comp.compileImageTargets(canvases, (p) => { if (p - last >= 10) { last = p; log(`${name}: ${p.toFixed(0)}%`); } });
+  const buf = await comp.exportData();
+  log(`${name}: ${tiles.length} targets done in ${((performance.now() - t0) / 1000).toFixed(1)} s, ${buf.byteLength} bytes`);
+  return { b64: toBase64(buf), width: img.width, height: img.height };
+};
 
 for (const b of document.querySelectorAll('button[data-page]')) b.onclick = async () => {
   const p = b.dataset.page;

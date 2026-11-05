@@ -11,6 +11,14 @@ const { start } = require('../server');
 
 const ROOT = path.join(__dirname, '..');
 const OUT = path.join(ROOT, 'assets', 'targets');
+// Target 0 is the whole page; the others are overlapping parts (fractions of the page) so that a phone
+// held close, seeing only part of the page, still recognises it.
+const TILES = [
+  { x: 0, y: 0, w: 1, h: 1 },
+  { x: 0, y: 0, w: 0.55, h: 0.55 }, { x: 0.45, y: 0, w: 0.55, h: 0.55 },
+  { x: 0, y: 0.45, w: 0.55, h: 0.55 }, { x: 0.45, y: 0.45, w: 0.55, h: 0.55 },
+  { x: 0.225, y: 0.225, w: 0.55, h: 0.55 }
+];
 
 async function launchBrowser() {
   let chromium;
@@ -45,9 +53,10 @@ async function launchBrowser() {
     for (const p of list) {
       console.log(`Compiling ${p}.png ...`);
       const t0 = Date.now();
-      const b64 = await page.evaluate(([url, name]) => window.compileTarget(url, name), [`/assets/pages/${p}.png?${Date.now()}`, p]);
-      const buf = Buffer.from(b64, 'base64');
+      const res = await page.evaluate(([url, name, tiles]) => window.compileTiles(url, name, tiles), [`/assets/pages/${p}.png?${Date.now()}`, p, TILES]);
+      const buf = Buffer.from(res.b64, 'base64');
       fs.writeFileSync(path.join(OUT, `${p}.mind`), buf);
+      fs.writeFileSync(path.join(OUT, `${p}.json`), JSON.stringify({ page: p, size: [res.width, res.height], tiles: TILES }, null, 1));
       console.log(`  -> assets/targets/${p}.mind (${(buf.length / 1024).toFixed(0)} KB, ${((Date.now() - t0) / 1000).toFixed(0)} s)`);
     }
   } finally {
