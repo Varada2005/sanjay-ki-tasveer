@@ -31,22 +31,33 @@ npm test
 
 ## The app (what the phones show)
 
-The phones run **Kahani Akhbaar**, a placeholder app shell (the UI team's screens will replace the styling):
+The phones run **Kahani Akhbaar** (placeholder name), styled warm and playful: sunny yellow, white rounded cards,
+coral buttons, dark text, Baloo 2 type, big tap targets for a 15-year-old and a 60-year-old playing together.
 
 1. **Language** (first time only): English, हिन्दी, मराठी, ગુજરાતી.
-2. **Pair the two phones** (first time only): phone 1 taps "This is the first phone" and shows a 4-letter
-   **table code** + QR; phone 2 scans that QR (or types the code). Both phones remember it from then on.
-3. **Home**: this month's book ("Book of the month"), previous books below. Open it → the **book page**: 5 spreads,
-   each with a title (only spread 5, "Sanjay's Photo", is playable in this prototype; the others say "coming soon").
-4. **Choose your side**: the **blue circle** (jhoola page, page 9) or the **orange circle** (haat page, page 10),
-   matching the dot printed on the page in front of you. A side your partner already took is greyed out.
-5. It then plays by itself, nothing to press: a short **poem card** (four lines, read aloud, about 10 to 12 seconds:
-   Sanjay's favourite santra goli, the wrappers he dropped, go and find them), then **"Now take your phone in your
-   hands"** (about 6 seconds), then the scanner starts. The game runs **landscape**: camera full screen, a floating bar,
-   the photo pieces along the bottom, a **glowing dot on every santra goli**; point the centre circle at one,
-   the phone buzzes and its riddle opens.
-6. The gear (home or game sidebar) opens **Settings**: language, table, tap mode, switch camera, subtitles,
-   restart the spread, leave the game. "Add to Home screen" from the browser menu installs it like an app.
+2. **Game code**: the laptop dashboard (`/host`) makes the 4-letter code. Each phone types it (or scans the
+   dashboard QR). Unknown codes are refused. The dashboard shows each phone's camera and page-found status.
+3. **Home / Contribute / Profile** (bottom bar).
+   - **Contribute**: record a voice (a song, a story), photograph an old object, or add a word from your language
+     with its meaning. Everything lands in the **Reference Library** at `/contrib` (filter, export JSON) for the
+     book's designers and illustrators. Files live in `data/contrib/` (on Render's free tier that disk is wiped on
+     each deploy; export first).
+4. **Book page**: "Watch Rakesh's story" (the animatic), a big **Start the book** button, or start from any of the 5
+   pages. Starting from scratch plays the story first (once per phone): play/pause, +10 s, a seek bar, exit, and
+   "Skip to the game". Pages 1 to 4 have no puzzles yet: each shows "Puzzle solved" and Next. Page 5 is the mela.
+5. **Choose your side** (blue = jhoola page 9, orange = haat page 10), then two cards by themselves:
+   "Now take your phone in your hands", then the mission (find Sanjay, look for the santra goli, each hides a
+   riddle). Then the scanner.
+6. **In the game**: Hint (a plainer clue, spoken), Find Sanjay (pick a face any time; wrong men answer and play
+   continues, the right one ends at sunset with Sanjay and the santra goli), and on the riddle screen Partner's
+   view (unlocks after a first try or 25 s).
+
+Voices: the app only picks **Indian** voices (hi-IN, en-IN, mr-IN, gu-IN, falling back to hi-IN). On Android
+install "Speech Services by Google" voices for Hindi and English (India); on iPhone add the Lekha/Rishi voices.
+Recorded mp3s in `public/assets/audio/` sound best and are used when present.
+
+The animatic is `public/assets/story/rakesh.mp4` (40 MB, not compressed: no ffmpeg on this machine; compress to
+about 8 MB with `ffmpeg -i rakesh.mp4 -vf scale=-2:720 -crf 28 out.mp4` before a slow-network demo).
 
 ## Hosting: one permanent link (recommended)
 

@@ -34,7 +34,7 @@ function runOnce(start, follow, missRate, seed) {
     if (r() < 0.12) {
       const c = wrongCands[Math.floor(r() * wrongCands.length)];
       ev({ type: 'guess', role: c.page, regionId: c.id });
-      if (st.wrongGuesses >= game.timing.maxWrongGuesses && st.restUntil == null) totals.restViolations++;
+      if (st.restUntil != null) totals.restViolations++;
       restCheck();
     }
   };
@@ -103,8 +103,7 @@ check(totals.alternationBreaks === 0, 'following the "next" pointer, the phones 
 check(totals.badNext === 0, '"next" always points to an unsolved puzzle, or to Sanjay when all are solved');
 check(totals.wrongSolved === 0, 'wrong answers never solve and always repeat the riddle');
 check(totals.clueViolations === 0, 'picture clue appears exactly from the 3rd wrong answer');
-check(totals.restViolations === 0, 'rests block play for 60 s and reset the count');
-check(totals.rests > 1000, `rests were exercised (${totals.rests})`);
+check(totals.restViolations === 0 && totals.rests === 0, 'wrong guesses never pause the game');
 check(totals.duplicatePieces === 0, 'duplicate solves never add a piece');
 for (const c of perConfig) check(c.ok === RUNS_PER_CONFIG, `start ${c.start}, follow ${c.follow * 100}%, misses ${c.miss * 100}%: ${c.ok}/${RUNS_PER_CONFIG}`);
 
@@ -124,13 +123,13 @@ for (const start of game.chain) {
 {
   const st = G.createState('REST', 0);
   const [c1, c2] = wrongCands;
-  G.applyEvent(data, st, { type: 'guess', role: c1.page, regionId: c1.id }, 1000);
-  check(!G.isResting(st, 1000) && st.wrongGuesses === 1, 'one wrong guess: no rest yet');
-  const r2 = G.applyEvent(data, st, { type: 'guess', role: c2.page, regionId: c2.id }, 2000);
-  check(r2.broadcast.some((b) => b.type === 'rest' && b.ms === 60000), 'second wrong guess: 60 s rest on both phones');
-  check(G.applyEvent(data, st, { type: 'guess', role: 'dadi', regionId: sanjayRegion.id }, 32000).replies[0].type === 'resting', 'no guessing while resting');
-  G.applyEvent(data, st, { type: 'tick' }, 62000);
-  check(!G.isResting(st, 62000) && st.wrongGuesses === 0, 'after 60 s the rest ends and the count resets');
+  for (let i = 0; i < 5; i++) {
+    const c = i % 2 ? c1 : c2;
+    const r = G.applyEvent(data, st, { type: 'guess', role: i % 2 ? 'teen' : 'dadi', regionId: c.id }, 1000 + i);
+    check(r.replies[0].type === 'guess' && !r.replies[0].correct && !r.broadcast.some((b) => b.type === 'rest') && !G.isResting(st, 1000 + i), `wrong guess ${i + 1} (from either phone): the man answers, the game continues`);
+  }
+  const win = G.applyEvent(data, st, { type: 'guess', role: 'teen', regionId: sanjayRegion.id }, 9000);
+  check(win.broadcast.some((b) => b.type === 'celebrate') && st.won, 'Find Sanjay works at any time, from either phone');
 }
 
 section('Face table');

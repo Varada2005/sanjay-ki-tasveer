@@ -56,3 +56,9 @@ corner santra goli (Pappu's stall, cabin 16) were not recognised at all; with th
 | Tilted 32 degrees and turned 14 degrees | 3 of 3 | 0.38 to 0.82 % |
 | Page turned round (180 degrees) | 3 of 3 | 0.16 to 0.64 % |
 | Sanjay and the red-turban man, far and tilted | 4 of 4 | 0.27 to 0.40 % |
+
+## Updated mela pages (November 2026)
+
+The re-coloured jhoola and haat pages keep the same framing (checked with overlays), so all region coordinates
+stayed. Targets were recompiled from the new art: 38 of 38 simulated camera views recognised, pointer error at most
+0.62 % of the page width.

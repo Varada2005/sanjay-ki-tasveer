@@ -1,7 +1,7 @@
 {
   "version": 2,
   "title": "Sanjay ki Tasveer",
-  "story": "Dadi's younger brother Sanjay left the village after her wedding in 1982. Every year he comes back to this mela and waits at the santra goli stall at 5:30 in the evening, the santra goli the two of them shared as children. This year he has left a trail of santra goli wrappers, each holding one of his childhood paheliyan (riddles) and one torn piece of his photo. Following the trail retraces his day: Pappu's cart, Pappu's whistle stall, kulfi, the giant wheel, the bangle stall of their mausi, the 1982 wedding photo, and finally the santra goli stall, where he is waiting.",
+  "story": "Rakesh has come back to Jhunjhunu to find his childhood friend Sanjay. Sanjay left a trail of santra goli through the mela, each with a riddle from their shared past, and one torn piece of his photo. Every evening at 5:30, as the sun sets, he waits at the santra goli shop.",
   "languages": [
     "hi",
     "en",
@@ -12,7 +12,7 @@
     "dwellMs": 800,
     "candidateDwellMs": 1500,
     "restMs": 60000,
-    "maxWrongGuesses": 2,
+    "maxWrongGuesses": 0,
     "wrongBeforeVisualClue": 3
   },
   "slots": [
@@ -65,20 +65,24 @@
       ],
       "lines": {
         "hi": {
-          "riddle": "पप्पू की बैलगाड़ी पर, मैं मेले तक आया,\nबोरी पर उसका नाम लिखा, अंग्रेज़ी में छपाया।\nउस पार उसकी दुकान खड़ी, नाम वहाँ हिंदी में,\nनाम के संग जो अंक लिखा, वो भर दो इन खानों में।",
-          "solved": "हाँ, तेईस! पप्पू की दुकान तेईस नंबर। वहीं से मैंने दीदी के लिए रंगीन फिरकी ली थी।"
+          "riddle": "बोरी पे लिखा नाम, विलायती ज़बान में,\nवही नाम उस पार है, अपनी ज़बान में।\nनाम के संग जो गिनती, वहीं था मेरा ठौर,\nउसी से खुलेगा, यादों का अगला दौर।",
+          "solved": "तेईस! पप्पू की दुकान। वहीं से मैंने रंगीन फिरकी ली थी, याद है राकेश?",
+          "hint": "बोरी पर अंग्रेज़ी में PAPPU लिखा है। उस पार पप्पू की दुकान का बोर्ड पढ़िए: नाम के नीचे एक अंक है।"
         },
         "en": {
-          "riddle": "On Pappu's bullock cart I rode into the fair,\nHis name is on the sack, in English letters there.\nAcross, you'll find his stall, his name in Hindi signs,\nThe number painted with it goes into these lines.",
-          "solved": "Yes, twenty-three! Pappu's stall number. That's where I bought a colourful pinwheel for Didi."
+          "riddle": "A name on the sack, in a foreign hand,\nAcross, the same name, in the script of our land.\nThe count beside it was where I would stay,\nThat number opens the rest of my day.",
+          "solved": "Twenty-three! Pappu's stall. That's where I bought the pinwheel, remember, Rakesh?",
+          "hint": "The sack says PAPPU in English. Across, read the board on Pappu's stall: there is a number under the name."
         },
         "mr": {
           "riddle": "TODO",
-          "solved": "TODO"
+          "solved": "TODO",
+          "hint": "TODO"
         },
         "gu": {
           "riddle": "TODO",
-          "solved": "TODO"
+          "solved": "TODO",
+          "hint": "TODO"
         }
       }
     },
@@ -107,20 +111,24 @@
       ],
       "lines": {
         "hi": {
-          "riddle": "पप्पू से ली रंगीन फिरकी, फिर गर्मी ने सताया,\nबड़े-से मटके वाली कुल्फ़ी ने, फिर ठंडक का घर पाया।\nउस पार कुल्फ़ी वाले की, तख़्ती पर दाम लिखा है,\nजितने में मैंने कुल्फ़ी खाई, वही अंक छिपा है।",
-          "solved": "पंद्रह रुपये! इतने में मैंने बड़े मटके वाली ठंडी कुल्फ़ी खाई, बचपन जैसी।"
+          "riddle": "फिरकी लेकर धूप में, गला गया जब सूख,\nमिट्टी में जो जमी थी, उसने मिटाई भूख।\nउस ठंडक का मोल जो, उस पार लिखा है जो,\nवही अंक है चाबी, ढूँढो, पढ़ो, लिखो।",
+          "solved": "पंद्रह रुपये! घड़े वाली कुल्फ़ी, बिल्कुल बचपन वाली।",
+          "hint": "मिट्टी के घड़े में ठंडी कुल्फ़ी जमती है। उस पार कुल्फ़ी वाले की तख़्ती पर उसका दाम लिखा है।"
         },
         "en": {
-          "riddle": "From Pappu I bought a pinwheel, then the heat came on strong,\nA big clay matka of kulfi kept me cool all along.\nAcross, the kulfi seller has a sign that shows the rate,\nThe rupees that I paid for kulfi: that's the number to state.",
-          "solved": "Fifteen rupees! That's what my kulfi from the big matka cost, just like when we were children."
+          "riddle": "Pinwheel in hand, the sun dried me through,\nSomething set cold in clay cooled me too.\nAcross, what that coolness cost is shown,\nThat number is the key: find it, type it in.",
+          "solved": "Fifteen rupees! Kulfi from the clay pot, just like when we were kids.",
+          "hint": "Kulfi sets cold in a big clay pot. Across, the kulfi seller's sign shows its price."
         },
         "mr": {
           "riddle": "TODO",
-          "solved": "TODO"
+          "solved": "TODO",
+          "hint": "TODO"
         },
         "gu": {
           "riddle": "TODO",
-          "solved": "TODO"
+          "solved": "TODO",
+          "hint": "TODO"
         }
       }
     },
@@ -157,20 +165,24 @@
       ],
       "lines": {
         "hi": {
-          "riddle": "कुल्फ़ी खा के झूले का, टिकट मैंने निकाला,\nजल्दी में वो फट गया, आधा यहीं पे डाला।\nबाक़ी आधा अंक लिए, बच्चों के पास जा पड़ा,\nउसी अंक पे ख़त्म हो जो, वो डिब्बा ढूँढो ज़रा।",
-          "solved": "डिब्बा सोलह! नीला, पीला, फिर नीला। सबसे ऊपर पहुँच के मैंने पूरा मेला देखा।"
+          "riddle": "गुलाबी पर्ची फट गई, आधी उड़ गई दूर,\nजहाँ बच्चे बीन रहे, गोलियाँ भरपूर।\nउस टुकड़े का अंक लो, आसमानी चक्के पे जाओ,\nउसी अंक पे ख़त्म जो घर, उसका नंबर लाओ।",
+          "solved": "सोलह! उसी डिब्बे से पूरा मेला दिखता था।",
+          "hint": "यह झूले के टिकट का आधा है। बाक़ी आधा, जिस पर 6 लिखा है, उस पार गोलियाँ बीनते बच्चों के पास पड़ा है। झूले का कौन-सा डिब्बा 6 पर ख़त्म होता है?"
         },
         "en": {
-          "riddle": "After kulfi I bought a ticket for the giant wheel's ride,\nIn my hurry it tore in two; one half fell by my side.\nThe half with the number flew where the children play,\nFind the cabin ending in it: I rode in it that day.",
-          "solved": "Cabin sixteen! Blue, yellow, then blue. From the very top I saw the whole mela."
+          "riddle": "A pink slip tore; half flew away,\nTo where the children pick sweets up from the ground.\nTake its digit to the wheel in the sky,\nThe car that ends with it: bring me its number.",
+          "solved": "Sixteen! From that cabin you could see the whole mela.",
+          "hint": "This is half of a giant-wheel ticket. The other half, showing 6, lies across where children pick up sweets. Which cabin ends in 6?"
         },
         "mr": {
           "riddle": "TODO",
-          "solved": "TODO"
+          "solved": "TODO",
+          "hint": "TODO"
         },
         "gu": {
           "riddle": "TODO",
-          "solved": "TODO"
+          "solved": "TODO",
+          "hint": "TODO"
         }
       }
     },
@@ -199,20 +211,24 @@
       ],
       "lines": {
         "hi": {
-          "riddle": "सोलह नंबर डिब्बे से, मैंने देखा सारा मेला,\nनीचे चूड़ी की दुकान पे, रंगों का था रेला।\nदीदी के लिए चूड़ी ली, दाम की तख़्ती देखो,\nएक दर्जन कितने की थी? वही अंक यहाँ लिखो।",
-          "solved": "पचास रुपये दर्जन! मौसी ने मुझे पहचान लिया, और दीदी के नाप की चूड़ियाँ ख़ुद चुनीं।"
+          "riddle": "सबसे ऊँचे घर से, दिखी खनखन की क़तार,\nबहना की कलाई को, लिए बारह, एक बार।\nबारह का जो मोल लिखा, रंगों की उस दीवार,\nवही अंक है चाबी, सोचो दो-चार बार।",
+          "solved": "पचास रुपये दर्जन! दीदी के लिए हरी-लाल चूड़ियाँ।",
+          "hint": "खनखन करती हैं चूड़ियाँ, और बारह का एक दर्जन होता है। उस पार चूड़ियों की दुकान के पास एक दर्जन का दाम लिखा है।"
         },
         "en": {
-          "riddle": "From cabin number sixteen I looked down on the fair,\nA stall of shining bangles, every colour there.\nI bought a dozen for Didi; the price is on a board,\nHow much was one dozen? Type in what I paid for the hoard.",
-          "solved": "Fifty rupees a dozen! Mausi knew me at once, and chose Didi's size herself."
+          "riddle": "From the highest seat I saw a jingling row,\nTwelve for my sister's wrists, all in one go.\nWhat twelve cost is written by those colours bright,\nThat number is the key; think it through right.",
+          "solved": "Fifty rupees a dozen! Red and green bangles for Didi.",
+          "hint": "The jingling things are bangles, and twelve is a dozen. Across, by the bangle stall, the price of a dozen is written."
         },
         "mr": {
           "riddle": "TODO",
-          "solved": "TODO"
+          "solved": "TODO",
+          "hint": "TODO"
         },
         "gu": {
           "riddle": "TODO",
-          "solved": "TODO"
+          "solved": "TODO",
+          "hint": "TODO"
         }
       }
     },
@@ -241,20 +257,24 @@
       ],
       "lines": {
         "hi": {
-          "riddle": "मौसी से चूड़ी ली मैंने, दीदी, तेरे नाप की,\nयाद आ गई वो शादी, बात बड़े पुराने साल की।\nउस पार फ़ोटो वाले ने, जयमाला की फ़ोटो सजाई,\nफ़्रेम पे लिखा साल वही, जब तेरी हुई विदाई।",
-          "solved": "उन्नीस सौ बयासी! तेरी शादी का साल, दीदी। उसी दिन के बाद हम बिछड़ गए।"
+          "riddle": "चूड़ियाँ देख याद आई, दीदी की वो शाम,\nमाला डली, फ़ोटो खिंची, गूँजा सबका नाम।\nउस पार वो याद टँगी, कोने में है साल,\nवही साल लिखो यहाँ, जिसने बदला हाल।",
+          "solved": "उन्नीस सौ बयासी! दीदी की शादी। उसी दिन हम दोनों आख़िरी बार साथ नाचे थे।",
+          "hint": "माला और फ़ोटो, ये दीदी की शादी है। उस पार फ़ोटो स्टूडियो में शादी की पुरानी फ़ोटो टँगी है, उसके कोने में साल लिखा है।"
         },
         "en": {
-          "riddle": "From mausi I bought bangles, Didi, made to fit your hand,\nThey brought your wedding back to me, the drums, the dancing band.\nAcross, the photo man has hung your wedding photo high,\nType the year below the picture, the year you said goodbye.",
-          "solved": "Nineteen eighty-two! The year of your wedding, Didi. After that day we lost each other."
+          "riddle": "Bangles brought back my sister's big day,\nGarlands, a photo, the band at play.\nAcross, that memory hangs, its year in a corner,\nType that year, the one that changed everything.",
+          "solved": "Nineteen eighty-two! Didi's wedding, the last time you and I danced together.",
+          "hint": "Garlands and a photo: it is a wedding. Across, an old wedding photo hangs at the photo studio, with the year in its corner."
         },
         "mr": {
           "riddle": "TODO",
-          "solved": "TODO"
+          "solved": "TODO",
+          "hint": "TODO"
         },
         "gu": {
           "riddle": "TODO",
-          "solved": "TODO"
+          "solved": "TODO",
+          "hint": "TODO"
         }
       }
     },
@@ -283,20 +303,24 @@
       ],
       "lines": {
         "hi": {
-          "riddle": "उस फ़ोटो में छोटा-सा मैं, दुल्हन के पास खड़ा,\nआज भी हर शाम आता हूँ, बूढ़ा हो के बड़ा।\nसंतरा गोली की दुकान पे, तख़्ती टँगी है देखो,\nकिस वक़्त से दुकान खुली है, वो वक़्त यहाँ लिखो।",
-          "solved": "साढ़े पाँच! दुकान खुलते ही, हर शाम मैं वहीं संतरा गोली लेकर तेरी राह देखता हूँ।"
+          "riddle": "नन्हा था जिस फ़ोटो में, अब बूढ़ा हो गया,\nनारंगी गोली का शौक़, फिर भी न खो गया।\nजहाँ मिलती है वो, वो खुलती किस बेला,\nवही वक़्त है चाबी, उसी घड़ी मैं अकेला।",
+          "solved": "साढ़े पाँच! हर शाम ढलते सूरज के साथ, मैं वहीं होता हूँ।",
+          "hint": "नारंगी गोली, वही संतरा गोली। उस पार संतरा गोली की दुकान पर लिखा है कि वो कब खुलती है।"
         },
         "en": {
-          "riddle": "In that photo I'm the little boy beside the bride,\nNow every single evening, old and grey, I wait outside.\nLook at the santra goli shop, a little sign is there,\nThe time from when it opens: type that time with care.",
-          "solved": "Half past five! The moment the shop opens, every evening, I wait there for you with santra goli."
+          "riddle": "The little boy in that photo has turned grey,\nBut the orange sweet still makes his day.\nWhere it is sold, when does it open its door?\nThat time is the key; I am there, alone, once more.",
+          "solved": "Half past five! Every evening, with the setting sun, I am there.",
+          "hint": "The orange sweet is santra goli. Across, the santra goli shop has a sign saying when it opens."
         },
         "mr": {
           "riddle": "TODO",
-          "solved": "TODO"
+          "solved": "TODO",
+          "hint": "TODO"
         },
         "gu": {
           "riddle": "TODO",
-          "solved": "TODO"
+          "solved": "TODO",
+          "hint": "TODO"
         }
       }
     }
@@ -310,7 +334,7 @@
         "p4": "अब उस पार झूले के सोलह नंबर डिब्बे पर, मेरी अगली संतरा गोली ढूँढो।",
         "p5": "अब उस पार चूड़ी वालियों की चटाई पर, मेरी अगली संतरा गोली ढूँढो।",
         "p6": "अब उस पार फ़ोटो वाले की दुकान के सामने, ज़मीन पर, मेरी अगली संतरा गोली ढूँढो।",
-        "final": "मेरी पूरी फ़ोटो जुड़ गई! अब संतरा गोली की दुकान पे मुझे ढूँढो, फ़ोटो से पहचानो, और मुझ पर फ़ोन रखो।"
+        "final": "मेरी पूरी फ़ोटो जुड़ गई! अब मुझे ढूँढो: फ़ोटो से चेहरा मिलाओ, और \"संजय को ढूँढो\" दबाओ।"
       },
       "same": {
         "p1": "अब पप्पू की बैलगाड़ी पे लदी बोरी पर, मेरी अगली संतरा गोली ढूँढो।",
@@ -319,7 +343,7 @@
         "p4": "अब झूले के सोलह नंबर डिब्बे पर, मेरी अगली संतरा गोली ढूँढो।",
         "p5": "अब चूड़ी वालियों की चटाई पर, मेरी अगली संतरा गोली ढूँढो।",
         "p6": "अब फ़ोटो वाले की दुकान के सामने, ज़मीन पर, मेरी अगली संतरा गोली ढूँढो।",
-        "final": "मेरी पूरी फ़ोटो जुड़ गई! अब संतरा गोली की दुकान पे मुझे ढूँढो, फ़ोटो से पहचानो, और मुझ पर फ़ोन रखो।"
+        "final": "मेरी पूरी फ़ोटो जुड़ गई! अब मुझे ढूँढो: फ़ोटो से चेहरा मिलाओ, और \"संजय को ढूँढो\" दबाओ।"
       }
     },
     "en": {
@@ -330,7 +354,7 @@
         "p4": "Now, on the other page, find my next santra goli on cabin sixteen of the giant wheel.",
         "p5": "Now, on the other page, find my next santra goli on the bangle sellers' mat.",
         "p6": "Now, on the other page, find my next santra goli on the ground in front of the photo studio.",
-        "final": "My photo is complete! Now find me at the santra goli stall. Match my face, and point your phone at me."
+        "final": "My photo is complete! Now find me: match my face, and press \"Find Sanjay\"."
       },
       "same": {
         "p1": "Now find my next santra goli on the PAPPU sack on the bullock cart.",
@@ -339,7 +363,7 @@
         "p4": "Now find my next santra goli on cabin sixteen of the giant wheel.",
         "p5": "Now find my next santra goli on the bangle sellers' mat.",
         "p6": "Now find my next santra goli on the ground in front of the photo studio.",
-        "final": "My photo is complete! Now find me at the santra goli stall. Match my face, and point your phone at me."
+        "final": "My photo is complete! Now find me: match my face, and press \"Find Sanjay\"."
       }
     },
     "mr": {
@@ -399,10 +423,10 @@
       },
       "lines": {
         "hi": {
-          "voice": "दीदी? तुम सच में आ गईं! हर शाम साढ़े पाँच बजे, इसी दुकान पे तुम्हारी राह देखता था। लो, एक संतरा गोली, बिल्कुल पहले जैसी।"
+          "voice": "राकेश? तू सच में आ गया! हर शाम ढलते सूरज के साथ, यहीं संतरा गोली लेकर तेरी राह देखता था। ले, एक गोली, बचपन वाली।"
         },
         "en": {
-          "voice": "Didi? You really came! Every evening at half past five I waited here for you. Here, a santra goli, just like before."
+          "voice": "Rakesh? You really came! Every evening, as the sun went down, I waited here with santra goli for you. Here, one for you, just like when we were boys."
         },
         "mr": {
           "voice": "TODO"
@@ -623,37 +647,25 @@
     }
   },
   "intro": {
-    "poem": {
-      "hi": [
-        "खट्टी-मीठी संतरा गोली संजय को भाए,",
-        "जहाँ भी गया, वो गोलियाँ गिराए।",
-        "देखो, कौन-सी गोली कहाँ पड़ी है,",
-        "हर एक के संग इक पहेली खड़ी है।"
-      ],
-      "en": [
-        "Sanjay loved his santra goli treat,",
-        "And dropped a few on every street.",
-        "Look where each santra goli has come to stay,",
-        "Each one holds a riddle to point the way."
-      ],
-      "mr": [
-        "आंबट-गोड संत्र्याची गोळी संजयला आवडे,",
-        "जिथे गेला तिथे एक गोळी पडे.",
-        "पाहा कुठे कुठे गोळी पडली आहे,",
-        "प्रत्येक गोळीमागे एक गोष्ट दडली आहे."
-      ],
-      "gu": [
-        "ખાટી-મીઠી સંતરાની ગોળી સંજયને ગમે,",
-        "જ્યાં જાય ત્યાં એક ગોળી મૂકે.",
-        "જુઓ ક્યાં ક્યાં ગોળી પડી,",
-        "દરેક પાસે એક કડી જડી."
-      ]
-    },
     "take": {
-      "hi": "अब फ़ोन को हाथ में लीजिए",
+      "hi": "अब फ़ोन हाथ में लीजिए",
       "en": "Now take your phone in your hands",
       "mr": "आता फोन हातात घ्या",
       "gu": "હવે ફોન હાથમાં લો"
+    },
+    "mission": {
+      "hi": "संजय को ढूँढो! पन्ने पर संतरा गोली खोजो, हर गोली में एक पहेली है।",
+      "en": "Find Sanjay! Look for the santra goli on the page: each one holds a riddle.",
+      "mr": "संजयला शोधा! पानावर संत्र्याची गोळी शोधा, प्रत्येक गोळीत एक कोडे आहे.",
+      "gu": "સંજયને શોધો! પાના પર સંતરાની ગોળી શોધો, દરેક ગોળીમાં એક ઉખાણું છે."
+    }
+  },
+  "ending": {
+    "title": {
+      "hi": "आपने संजय को ढूँढ लिया!",
+      "en": "You found Sanjay!",
+      "mr": "तुम्ही संजयला शोधलं!",
+      "gu": "તમે સંજયને શોધી કાઢ્યો!"
     }
   }
 }

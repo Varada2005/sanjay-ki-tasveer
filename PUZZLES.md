@@ -19,7 +19,9 @@ partner finds the number on their page, and the next wrapper is waiting right th
 ## How one puzzle plays
 1. **Scan a wrapper** on your page. The puzzle opens: a picture of that wrapper, the **riddle written on screen**,
    the riddle **spoken**, and one box per digit.
-2. Read the riddle to your partner. It tells you exactly what to look for on **their** page.
+2. Read the riddle to your partner. It hints at what to look for on **their** page without naming it; talk it
+   through. Stuck? **Hint** gives a plain clue. After a first try (or 25 s), **Partner's view** shows the
+   evidence on the other page, so both see the full picture.
 3. Type the number and press the santra goli.
    - **Right:** Sanjay says what the number meant (narrative), a photo piece flies into the strip on **both**
      phones, and he says where his **next** wrapper is. An arrow shows whose page it is on.
@@ -28,8 +30,8 @@ partner finds the number on their page, and the next wrapper is waiting right th
      partner's page, with that page's icon.
 4. You can start with any wrapper. "Next" always points to the next unsolved wrapper in Sanjay's day, so the
    phones alternate Dadi → Teen → Dadi.
-5. After all six, the photo is complete and he says: find me at the santra goli stall. Point the phone at the man
-   who matches the photo.
+5. **Find Sanjay** (game bar) works at any time: pick a face. Wrong: that man answers and play continues.
+   Right: the sunset ending, Sanjay with the santra goli. After all six pieces the photo makes it easy.
 
 ## The six puzzles
 
@@ -47,57 +49,86 @@ Who finds the number: the other player, on their page.
 
 ## The riddles (Hindi, spoken and written on the phone)
 
-Generated from `data/game.json`. English versions are in the same file.
+Generated from `data/game.json`; English versions are in the same file. Since user testing (riddles were "hear it
+and know it"), every riddle **hints and never names**: no answer object (kulfi, pot, bangles, wedding, dozen...)
+and no digits. Each is four short lines, at most 40 words. A **Hint** button (riddle screen and game bar) shows and
+speaks a plain hint that does name the place.
 
 **1. बैलगाड़ी की बोरी** (answer 23)
-> पप्पू की बैलगाड़ी पर, मैं मेले तक आया,
-> बोरी पर उसका नाम लिखा, अंग्रेज़ी में छपाया।
-> उस पार उसकी दुकान खड़ी, नाम वहाँ हिंदी में,
-> नाम के संग जो अंक लिखा, वो भर दो इन खानों में।
+> बोरी पे लिखा नाम, विलायती ज़बान में,
+> वही नाम उस पार है, अपनी ज़बान में।
+> नाम के संग जो गिनती, वहीं था मेरा ठौर,
+> उसी से खुलेगा, यादों का अगला दौर।
 
-Right: "हाँ, तेईस! पप्पू की दुकान तेईस नंबर। वहीं से मैंने दीदी के लिए रंगीन फिरकी ली थी।"
+Hint: "बोरी पर अंग्रेज़ी में PAPPU लिखा है। उस पार पप्पू की दुकान का बोर्ड पढ़िए: नाम के नीचे एक अंक है।"
+
+Right: "तेईस! पप्पू की दुकान। वहीं से मैंने रंगीन फिरकी ली थी, याद है राकेश?"
+
+Persona check. *Dadi (60):* "विलायती ज़बान" is an everyday phrase for English for her generation; she says it aloud and points the teen at the sack. *Teen (15):* Reads PAPPU on the sack at once, but has to ask "our own language?" before looking for the Hindi पप्पू board. *They discuss:* Which board carries the same name, and which number sits with it.
 
 **2. पप्पू की फिरकी** (answer 15)
-> पप्पू से ली रंगीन फिरकी, फिर गर्मी ने सताया,
-> बड़े-से मटके वाली कुल्फ़ी ने, फिर ठंडक का घर पाया।
-> उस पार कुल्फ़ी वाले की, तख़्ती पर दाम लिखा है,
-> जितने में मैंने कुल्फ़ी खाई, वही अंक छिपा है।
+> फिरकी लेकर धूप में, गला गया जब सूख,
+> मिट्टी में जो जमी थी, उसने मिटाई भूख।
+> उस ठंडक का मोल जो, उस पार लिखा है जो,
+> वही अंक है चाबी, ढूँढो, पढ़ो, लिखो।
 
-Right: "पंद्रह रुपये! इतने में मैंने बड़े मटके वाली ठंडी कुल्फ़ी खाई, बचपन जैसी।"
+Hint: "मिट्टी के घड़े में ठंडी कुल्फ़ी जमती है। उस पार कुल्फ़ी वाले की तख़्ती पर उसका दाम लिखा है।"
+
+Right: "पंद्रह रुपये! घड़े वाली कुल्फ़ी, बिल्कुल बचपन वाली।"
+
+Persona check. *Dadi (60):* "Something set cold in clay" means matka kulfi to her straight away; she remembers the price of one as a child. *Teen (15):* Thinks of a water pot or lassi first. The pinwheel and "sweet hunger" make them look for food stalls together. *They discuss:* Kulfi or lassi? Which sign shows a price?
 
 **3. फटा टिकट** (answer 16)
-> कुल्फ़ी खा के झूले का, टिकट मैंने निकाला,
-> जल्दी में वो फट गया, आधा यहीं पे डाला।
-> बाक़ी आधा अंक लिए, बच्चों के पास जा पड़ा,
-> उसी अंक पे ख़त्म हो जो, वो डिब्बा ढूँढो ज़रा।
+> गुलाबी पर्ची फट गई, आधी उड़ गई दूर,
+> जहाँ बच्चे बीन रहे, गोलियाँ भरपूर।
+> उस टुकड़े का अंक लो, आसमानी चक्के पे जाओ,
+> उसी अंक पे ख़त्म जो घर, उसका नंबर लाओ।
 
-Right: "डिब्बा सोलह! नीला, पीला, फिर नीला। सबसे ऊपर पहुँच के मैंने पूरा मेला देखा।"
+Hint: "यह झूले के टिकट का आधा है। बाक़ी आधा, जिस पर 6 लिखा है, उस पार गोलियाँ बीनते बच्चों के पास पड़ा है। झूले का कौन-सा डिब्बा 6 पर ख़त्म होता है?"
+
+Right: "सोलह! उसी डिब्बे से पूरा मेला दिखता था।"
+
+Persona check. *Dadi (60):* Knows the pink slip is a ride ticket but not where the other half went; the teen spots the children picking up sweets. *Teen (15):* "The wheel in the sky" is the giant wheel. The two-step logic (half ticket digit, then the cabin ending in it) is the part they talk through. *They discuss:* The hardest riddle: two steps. The Hint names the ticket and the 6 if they are stuck.
 
 **4. सोलह नंबर डिब्बा** (answer 50)
-> सोलह नंबर डिब्बे से, मैंने देखा सारा मेला,
-> नीचे चूड़ी की दुकान पे, रंगों का था रेला।
-> दीदी के लिए चूड़ी ली, दाम की तख़्ती देखो,
-> एक दर्जन कितने की थी? वही अंक यहाँ लिखो।
+> सबसे ऊँचे घर से, दिखी खनखन की क़तार,
+> बहना की कलाई को, लिए बारह, एक बार।
+> बारह का जो मोल लिखा, रंगों की उस दीवार,
+> वही अंक है चाबी, सोचो दो-चार बार।
 
-Right: "पचास रुपये दर्जन! मौसी ने मुझे पहचान लिया, और दीदी के नाप की चूड़ियाँ ख़ुद चुनीं।"
+Hint: "खनखन करती हैं चूड़ियाँ, और बारह का एक दर्जन होता है। उस पार चूड़ियों की दुकान के पास एक दर्जन का दाम लिखा है।"
+
+Right: "पचास रुपये दर्जन! दीदी के लिए हरी-लाल चूड़ियाँ।"
+
+Persona check. *Dadi (60):* "खनखन" and "बहना की कलाई" say bangles to her at once; "बारह" as one dozen is natural to her. *Teen (15):* Gets "jingling row" only with the wrist line; does not link twelve to "हर दर्जन" on the board, so Dadi explains. *They discuss:* Twelve of what, and how is a price per dozen written.
 
 **5. चूड़ियों की चटाई** (answer 1982)
-> मौसी से चूड़ी ली मैंने, दीदी, तेरे नाप की,
-> याद आ गई वो शादी, बात बड़े पुराने साल की।
-> उस पार फ़ोटो वाले ने, जयमाला की फ़ोटो सजाई,
-> फ़्रेम पे लिखा साल वही, जब तेरी हुई विदाई।
+> चूड़ियाँ देख याद आई, दीदी की वो शाम,
+> माला डली, फ़ोटो खिंची, गूँजा सबका नाम।
+> उस पार वो याद टँगी, कोने में है साल,
+> वही साल लिखो यहाँ, जिसने बदला हाल।
 
-Right: "उन्नीस सौ बयासी! तेरी शादी का साल, दीदी। उसी दिन के बाद हम बिछड़ गए।"
+Hint: "माला और फ़ोटो, ये दीदी की शादी है। उस पार फ़ोटो स्टूडियो में शादी की पुरानी फ़ोटो टँगी है, उसके कोने में साल लिखा है।"
+
+Right: "उन्नीस सौ बयासी! दीदी की शादी। उसी दिन हम दोनों आख़िरी बार साथ नाचे थे।"
+
+Persona check. *Dadi (60):* Garland plus photo means a wedding; she connects it to Didi before the teen does. *Teen (15):* Looks for a garland on the page and finds the jaimala photo at the studio; reads the year in the corner. *They discuss:* Whose wedding, and which corner carries the year.
 
 **6. फ़ोटो वाले के सामने** (answer 530)
-> उस फ़ोटो में छोटा-सा मैं, दुल्हन के पास खड़ा,
-> आज भी हर शाम आता हूँ, बूढ़ा हो के बड़ा।
-> संतरा गोली की दुकान पे, तख़्ती टँगी है देखो,
-> किस वक़्त से दुकान खुली है, वो वक़्त यहाँ लिखो।
+> नन्हा था जिस फ़ोटो में, अब बूढ़ा हो गया,
+> नारंगी गोली का शौक़, फिर भी न खो गया।
+> जहाँ मिलती है वो, वो खुलती किस बेला,
+> वही वक़्त है चाबी, उसी घड़ी मैं अकेला।
 
-Right: "साढ़े पाँच! दुकान खुलते ही, हर शाम मैं वहीं संतरा गोली लेकर तेरी राह देखता हूँ।"
+Hint: "नारंगी गोली, वही संतरा गोली। उस पार संतरा गोली की दुकान पर लिखा है कि वो कब खुलती है।"
 
-Then: "मेरी पूरी फ़ोटो जुड़ गई! अब संतरा गोली की दुकान पे मुझे ढूँढो, फ़ोटो से पहचानो, और मुझ पर फ़ोन रखो।"
+Right: "साढ़े पाँच! हर शाम ढलते सूरज के साथ, मैं वहीं होता हूँ।"
+
+Persona check. *Dadi (60):* "नारंगी गोली" is santra goli to her; "किस बेला" (at what hour) is her vocabulary. *Teen (15):* Has to ask what "बेला" means; then looks for a time written on a sign. *They discuss:* Which shop, and the time written as 5:30, typed as 530.
+
+Then: "मेरी पूरी फ़ोटो जुड़ गई! अब मुझे ढूँढो: फ़ोटो से चेहरा मिलाओ, और "संजय को ढूँढो" दबाओ।"
+
+Mela intro (after Start the book reaches page 5 and a side is chosen): "अब फ़ोन हाथ में लीजिए", then "संजय को ढूँढो! पन्ने पर संतरा गोली खोजो, हर गोली में एक पहेली है।"
 
 ## The final: which man is Sanjay?
 
@@ -111,11 +142,12 @@ Then: "मेरी पूरी फ़ोटो जुड़ गई! अब स
 | E | Teen, red cap behind Pappu's counter (Pappu) | ✓ | | | | ✓ | ✓ |
 
 Pieces come in chain order: red head-cloth, moustache, eyes, murki, mole, gap tooth. Red alone fits five men;
-after four pieces (red, moustache, scar, murki) only Sanjay fits. Two wrong guesses rest both phones for a minute.
+after four pieces (red, moustache, scar, murki) only Sanjay fits. Wrong guesses never pause the game.
 
 ## Checked by `npm test`
 - Every answer typed at every wrapper: only its own answer opens it and gives exactly its own piece.
 - A wrong answer always repeats that wrapper's riddle; the picture clue appears exactly from the 3rd miss and shows
   the answer spot on the other page.
-- Each riddle names the place to look; each "next" line names the place of its wrapper; the chain alternates pages.
+- No riddle contains digits or names its answer object; each is at most 40 words and has a Hint that names the place.
+- Each "next" line names the place of its wrapper; the chain alternates pages.
 - 102,600 random games from every starting wrapper, with misses and wrong guesses, all finish.

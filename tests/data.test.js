@@ -106,7 +106,8 @@ for (const p of P) {
 }
 for (const id of game.chain) need.push(`next.across.${id}`, `next.same.${id}`);
 need.push('next.final');
-need.push('intro.poem', 'intro.take');
+need.push('intro.take', 'intro.mission');
+for (const p of P) need.push(`${p.id}.hint`);
 for (const c of game.candidates) need.push(`cand.${c.id}`);
 for (const k of Object.keys(game.otherOldMen)) need.push(`other.${k}`);
 for (const id of need) check(L[id] && L[id].hi && L[id].hi.trim().length > 3 && !/TODO/.test(L[id].hi), `line ${id} exists in Hindi`);
@@ -116,21 +117,28 @@ for (const [id, v] of Object.entries(L)) check(/[ऀ-ॿ]/.test(v.hi || ''), `li
 const emitted = new Set(need);
 for (const id of Object.keys(L)) check(emitted.has(id), `line ${id} is used`);
 
-// Each riddle mentions where to look (a word for the answer place) and each "next" line names its wrapper's place.
-const PLACE = { p1: ['पप्पू', 'दुकान'], p2: ['कुल्फ़ी', 'तख़्ती'], p3: ['टिकट', 'डिब्बा'], p4: ['चूड़ी', 'तख़्ती'], p5: ['फ़ोटो', 'साल'], p6: ['संतरा गोली', 'तख़्ती'] };
-for (const p of P) check(PLACE[p.id].every((w) => p.lines.hi.riddle.includes(w)), `${p.id}: riddle tells where to look (${PLACE[p.id].join(', ')})`);
+// Riddles hint, they do not tell: no answer digits, no name of the answer object; the Hint line names it plainly.
+const OBJ = { p1: ['दुकान', 'बोर्ड'], p2: ['कुल्फ़ी', 'घड़ा', 'घड़े', 'मटका', 'मटके'], p3: ['टिकट', 'डिब्बा'], p4: ['चूड़ी', 'चूड़ियाँ', 'दर्जन'], p5: ['शादी', 'स्टूडियो'], p6: ['संतरा गोली', 'दुकान'] };
+const DIGITS = { '0': 'शून्य', '1': 'एक', '2': 'दो', '3': 'तीन', '5': 'पाँच', '6': 'छह', '9': 'नौ' };
+for (const p of P) {
+  const rid = p.lines.hi.riddle;
+  check(!/[0-9०-९]/.test(rid) && !/[0-9]/.test(p.lines.en.riddle), `${p.id}: riddle has no digits`);
+  check(!OBJ[p.id].some((w) => rid.includes(w)), `${p.id}: riddle does not name the answer object (${OBJ[p.id].join(', ')})`);
+  check(rid.split(/\s+/).length <= 40, `${p.id}: riddle is short (${rid.split(/\s+/).length} words)`);
+  check(p.lines.hi.hint && p.lines.en.hint && OBJ[p.id].some((w) => p.lines.hi.hint.includes(w)), `${p.id}: the Hint names where to look`);
+}
 const WRAP = { p1: 'बोरी', p2: 'पप्पू', p3: 'कुल्फ़ी', p4: 'डिब्बे', p5: 'चूड़ी', p6: 'फ़ोटो' };
 for (const p of P) check(game.next.hi.across[p.id].includes(WRAP[p.id]) && game.next.hi.same[p.id].includes(WRAP[p.id]), `next line for ${p.id} names its wrapper place (${WRAP[p.id]})`);
 check(!Object.values(game.next.hi.same).some((s) => s.includes('उस पार')), '"same page" next lines never say "across"');
 
-section('Intro poem and book list');
+section('Mela intro, ending and book list');
 for (const lang of ['hi', 'en', 'mr', 'gu']) {
-  const p = game.intro.poem[lang];
-  check(Array.isArray(p) && p.length === 4 && p.every((l) => l.trim().length > 8), `intro poem (${lang}): 4 lines`);
   check(typeof game.intro.take[lang] === 'string' && game.intro.take[lang].length > 5, `intro "take your phone" line (${lang})`);
-  check(p.join(' ').length < 220, `intro poem (${lang}) is short enough to read in about ten seconds`);
+  check(typeof game.intro.mission[lang] === 'string' && game.intro.mission[lang].length > 10 && game.intro.mission[lang].length < 140, `intro mission line (${lang}) is short`);
+  check(game.ending && game.ending.title && game.ending.title[lang], `ending title (${lang})`);
 }
-check(/संतरा गोली/.test(game.intro.poem.hi.join(' ')) && /santra goli/i.test(game.intro.poem.en.join(' ')), 'the poem names Sanjay\'s santra goli');
+check(/संजय/.test(game.intro.mission.hi) && /संतरा गोली/.test(game.intro.mission.hi), 'the mission names Sanjay and the santra goli');
+check(/शाम|सूरज/.test(L['cand.sanjay'].hi) && /संतरा गोली/.test(L['cand.sanjay'].hi), 'Sanjay\'s ending line: the santra goli at sunset');
 // "peppermint" is gone everywhere players can see or hear
 const everything = JSON.stringify(G.lineTable(game)) + JSON.stringify(require('../public/books.json')) + require('fs').readFileSync(require('path').join(__dirname, '..', 'public', 'js', 'i18n.js'), 'utf8');
 check(!/peppermint|पीपरमिंट|पेपरमिंट|પીપરમિન્ટ/i.test(everything), 'no line or interface text says peppermint (santra goli everywhere)');

@@ -156,3 +156,15 @@ Every region was checked against a full-resolution overlay of the drafts, but th
 No other old men were found on either page (the kulfi seller, potter, toy sellers, chai seller, server and
 photographer read as middle-aged). If the final art adds any, draw a `candidate` region with candidateId
 `other_N` and add a line under `otherOldMen` in `game.json`.
+
+## Round: warm restyle, story, hints, Find Sanjay, Contribute
+- **Riddles hint, never name.** User testing found them instantly obvious. Rule now (tested): no answer object, no
+  digits, at most 40 words. The plain version moved to a Hint button, so stuck players are never stranded.
+- **Partner's view unlocks after talking**, not at once: after a first answer or 25 s. This keeps the
+  "describe what you see" moment, then rewards it with the full evidence.
+- **Find Sanjay any time, no rest after wrong men.** A wrong man answers in character and play continues; the rest
+  (diya) pause felt like punishment.
+- **Story plays once**, only on a first Start the book; always available from the book page and Profile.
+- **Warm palette for two ages**: dark brown text on white/yellow (contrast > 12:1), coral only for the main action,
+  18 px+ body type, 56 px+ buttons, one rounded type family for Latin, Devanagari and Gujarati.
+- **Indian voices only**; if a phone has none it falls back to hi-IN rather than a western English voice.

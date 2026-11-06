@@ -62,14 +62,25 @@ function textFor(id, l) {
   return t && !/^TODO/.test(t) ? t : null;
 }
 
+// Indian voices only. Order of preference for each language:
+//   1. a voice for that exact Indian locale (hi-IN, mr-IN, gu-IN, en-IN), preferring known natural voices
+//   2. any other Indian-locale voice (*-IN): e.g. the Hindi voice reads English with an Indian accent
+//   3. nothing: the phone's default voice would sound western, so we fall back to hi-IN by lang tag.
+// Never a US/UK voice. Phones without an Indian voice: install "Google Text-to-speech" with Hindi/English (India).
+const NICE = /google|swara|madhur|lekha|kalpana|hemant|heera|ravi|neerja|prabhat|veena|rishi|aarohi|manohar|dhwani|niranjan|natural|online/i;
 function pickVoice(bcp) {
   try {
-    const vs = speechSynthesis.getVoices();
-    const base = bcp.split('-')[0];
-    return vs.find((v) => v.lang === bcp) || vs.find((v) => v.lang.replace('_', '-').startsWith(base)) || vs.find((v) => v.lang.startsWith('hi')) || null;
+    const vs = speechSynthesis.getVoices().map((v) => ({ v, lang: v.lang.replace('_', '-') }));
+    const exact = vs.filter((x) => x.lang.toLowerCase() === bcp.toLowerCase());
+    const indian = vs.filter((x) => /-IN$/i.test(x.lang));
+    const best = (list) => (list.find((x) => NICE.test(x.v.name)) || list[0] || {}).v || null;
+    if (exact.length) return best(exact);
+    // English and Marathi without their own voice: the Hindi voice keeps the Indian accent.
+    if (bcp !== 'gu-IN') { const hi = indian.filter((x) => /^hi/i.test(x.lang)); if (hi.length) return best(hi); }
+    return best(indian);
   } catch (e) { return null; }
 }
-
+window.__voices = () => { try { return speechSynthesis.getVoices().filter((v) => /-IN$/i.test(v.lang.replace('_', '-'))).map((v) => v.name + ' ' + v.lang); } catch (e) { return []; } };
 function speak(text, l, token) {
   return new Promise((resolve) => {
     if (!('speechSynthesis' in window)) return setTimeout(resolve, 600 + text.length * 55);
@@ -77,7 +88,8 @@ function speak(text, l, token) {
     const u = new SpeechSynthesisUtterance(text);
     const v = pickVoice(bcp);
     if (v) { u.voice = v; u.lang = v.lang; } else u.lang = bcp;
-    u.rate = 0.92;
+    // slightly slower and warmer: easier for an older listener
+    u.rate = 0.88; u.pitch = 1;
     let done = false;
     const end = () => { if (!done) { done = true; resolve(); } };
     u.onend = end; u.onerror = end;

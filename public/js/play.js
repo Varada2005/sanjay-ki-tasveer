@@ -162,53 +162,65 @@ function onReset(b) {
   if (b.freeRoles) { role = null; side = null; if (started) exitGame(); else if (curScreen === 'side') goSide(); }
 }
 
-// ---------------- onboarding: table pairing ----------------
-async function showTableCode() {
-  $('#table-choose').hidden = true;
-  $('#table-join').hidden = true;
-  $('#table-show').hidden = false;
-  $('#table-code').textContent = table;
-  const url = `${location.origin}/play?table=${table}`;
-  try { $('#table-qr').innerHTML = await (await fetch(`/api/qr.svg?text=${encodeURIComponent(url)}`)).text(); } catch (e) {}
-  $('#table-continue').hidden = false;
-  $('#table-skip').hidden = true;
-}
+// ---------------- onboarding: join the game code from the laptop dashboard ----------------
+// Every phone types the same 4-letter code (or scans the dashboard QR, which fills it in).
 function setTable(code) {
   table = code; room = code;
   store.set('table', code);
   role = null; side = null;
   hello();
 }
-$('#table-new').onclick = () => socket.emit('host:new', {}, (res) => { if (res && res.ok) { setTable(res.room); showTableCode(); } });
-$('#table-join-open').onclick = () => { $('#table-choose').hidden = true; $('#table-join').hidden = false; $('#table-input').focus(); };
-$('#table-input').addEventListener('input', (e) => { e.target.value = e.target.value.toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 4); });
+$('#table-input').addEventListener('input', (e) => { e.target.value = e.target.value.toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 4); $('#table-err').hidden = true; });
+$('#table-input').addEventListener('keydown', (e) => { if (e.key === 'Enter') $('#table-join-go').click(); });
 $('#table-join-go').onclick = () => {
-  const c = $('#table-input').value;
-  if (!validCode(c)) { $('#table-input').classList.add('shake'); setTimeout(() => $('#table-input').classList.remove('shake'), 450); return; }
-  setTable(c); goHome();
+  const code = $('#table-input').value;
+  const bad = (msg) => { $('#table-err').textContent = msg; $('#table-err').hidden = false; $('#table-input').classList.add('shake'); setTimeout(() => $('#table-input').classList.remove('shake'), 450); };
+  if (!validCode(code)) return bad(t('tableEnter'));
+  // Only join a game the dashboard has opened, so a typo cannot split the two phones.
+  socket.timeout(5000).emit('room:check', { room: code }, (err, res) => {
+    if (err) return bad(t('tableOffline'));
+    if (!res || !res.exists) return bad(t('tableNotFound'));
+    setTable(code); goHome();
+  });
 };
 $('#table-skip').onclick = () => goHome();
-$('#table-continue').onclick = () => goHome();
 function openTableScreen() {
-  $('#table-choose').hidden = false; $('#table-join').hidden = true; $('#table-show').hidden = true;
-  $('#table-continue').hidden = true; $('#table-skip').hidden = false;
+  $('#table-input').value = table || '';
+  $('#table-err').hidden = true;
   show('table');
+  setTimeout(() => $('#table-input').focus(), 150);
 }
 
-// ---------------- home (Figma 1130:278) ----------------
+// ---------------- status for the laptop dashboard ----------------
+// Every 3 s while playing: camera or tap mode, page found or not, any camera error. Nothing else.
+let diagTimer = null;
+function sendDiag() {
+  if (!socket.connected || !role || role === 'spectator') return;
+  socket.emit('diag', {
+    mode: tracker ? 'camera' : tapView ? 'tap' : 'none',
+    found: !!(tracker && trackingOn),
+    error: cameraError || '',
+    cam: camIndex + 1,
+    device: (navigator.userAgent.match(/\(([^)]+)\)/) || [, ''])[1].slice(0, 60)
+  });
+}
+function startDiag() { clearInterval(diagTimer); diagTimer = setInterval(() => { if (started) sendDiag(); }, 3000); setTimeout(sendDiag, 1500); }
+
+// ---------------- home ----------------
 function toast(msg) {
   const el = $('#toast');
   el.textContent = msg;
   el.hidden = false;
   clearTimeout(toast.t);
-  toast.t = setTimeout(() => { el.hidden = true; }, 2200);
+  toast.t = setTimeout(() => { el.hidden = true; }, 2400);
 }
+// Where this phone is in the book: 1..5 (pages 1-4 are placeholders in this prototype). Remembered.
+const bookPage = () => Math.min(5, Math.max(1, Number(store.get('bookPage') || 1)));
+const bookStarted = () => !!store.get('bookPage') || !!(state && (state.pieces.length || state.won));
 function goHome() {
-  // The book has 5 puzzles (one per spread). In this prototype only spread 5 is playable:
-  // it counts as solved once Sanjay is found.
+  // The book has 5 puzzles (one per page). Pages 1-4 count as solved once passed; page 5 once Sanjay is found.
   const total = book.puzzles || book.spreads.length;
-  const solved = state && state.won ? 1 : 0;
-  const started = state && state.pieces.length > 0;
+  const solved = Math.min(4, bookPage() - 1) + (state && state.won ? 1 : 0);
   const pct = Math.round((solved / total) * 100);
   const cover = (b) => `<div class="fig-cover" style="background-image:url(${b.cover});background-position:${b.coverPos || 'center'}"></div>`;
   $('#home-brand').textContent = BOOKS.app.name;
@@ -216,25 +228,25 @@ function goHome() {
       ${cover(book)}
       <div class="fig-card-body">
         <div class="fig-title">${pick(book.title)}</div>
-        <div class="fig-meta">${t('nPuzzles', { n: total })} &nbsp;| ${pick(book.month)}</div>
+        <div class="fig-meta">${t('nPuzzles', { n: total })} · ${pick(book.month)}</div>
         <div class="fig-desc">${pick(book.description)}</div>
         <div class="fig-prog-row"><span>${t('nSolved', { a: solved, b: total })}</span><span>${pct}%</span></div>
         <div class="fig-prog"><i style="width:${pct}%"></i></div>
-        <button class="fig-btn" id="open-current"><span class="fig-btn-ic">${I.playLine}</span>${started ? t('resumeBtn') : t('startBtn')}</button>
+        <button class="fig-btn" id="open-current"><span class="fig-btn-ic">${I.playSolid}</span>${t('open')}</button>
       </div></div>`;
   $('#open-current').onclick = () => { if (!table) return openTableScreen(); goBook(book); };
   $('#home-previous').innerHTML = BOOKS.books.filter((b) => !b.current).map((b) => `<button class="fig-mini" data-book="${b.id}">
-      ${cover(b)}<div class="fig-mini-title">${pick(b.title)}</div><div class="fig-mini-meta">${pick(b.shortMonth || b.month)} &nbsp;·&nbsp; ${t('nPuzzles', { n: b.puzzles || 5 })}</div></button>`).join('');
+      ${cover(b)}<div class="fig-mini-title">${pick(b.title)}</div><div class="fig-mini-meta">${pick(b.shortMonth || b.month)} · ${t('nPuzzles', { n: b.puzzles || 5 })}</div></button>`).join('');
   for (const el of $$('#home-previous .fig-mini')) el.onclick = () => toast(t('notAvailable'));
-  $('#home-table').innerHTML = table ? `${t('table')} <b>${table}</b>` : `<button class="fig-link" id="pair-now">${t('tableTitle')}</button>`;
-  if (!table) $('#pair-now').onclick = openTableScreen;
+  $('#home-table').innerHTML = `<button class="code-chip" id="pair-now">${table ? `${t('table')} <b>${table}</b>` : t('tableTitle')}</button>`;
+  $('#pair-now').onclick = openTableScreen;
   show('home');
 }
-// Bottom navigation (home + profile screens)
+// Bottom navigation: Home, Contribute, Profile
 for (const b of $$('[data-nav]')) b.onclick = () => {
   if (b.dataset.nav === 'home') goHome();
   else if (b.dataset.nav === 'profile') goProfile();
-  else toast(t('comingSoonShort'));
+  else if (b.dataset.nav === 'contribute') goContrib();
 };
 
 // ---------------- profile ----------------
@@ -260,32 +272,165 @@ function goProfile() {
 $('#prof-table-btn').onclick = () => openTableScreen();
 $('#prof-subs').onclick = () => { settings.subs = !settings.subs; store.set('subs', settings.subs ? '1' : '0'); goProfile(); };
 $('#prof-tap').onclick = () => { settings.tap = !settings.tap; store.set('tap', settings.tap ? '1' : '0'); goProfile(); };
+$('#prof-story').onclick = () => playStory('profile');
 
-// ---------------- book: the 5 spreads ----------------
+// ---------------- book: story, Start the book, or any page ----------------
 let viewedBook = null;
 function goBook(b) {
   viewedBook = b;
   $('#book-title').textContent = pick(b.title);
   $('#book-month').textContent = pick(b.month);
+  $('#book-start-label').textContent = bookStarted() ? t('continueBook') : t('startBook');
   const spreads = b.spreads.map((s) => (typeof s === 'number' ? { n: s, playable: false, title: null } : s));
-  $('#book-spreads').innerHTML = spreads.map((s) => `<button class="spread-row ${s.playable ? 'playable' : 'locked'}" data-n="${s.n}">
-      <span class="spread-n">${s.n}</span>
+  const at = bookPage();
+  $('#book-spreads').innerHTML = spreads.map((s) => `<button class="spread-row ${s.playable ? 'playable' : ''} ${s.n < at ? 'done' : ''}" data-n="${s.n}">
+      <span class="spread-n">${s.n < at ? I.check : s.n}</span>
       <span class="spread-txt"><b>${s.title ? pick(s.title) : t('spread') + ' ' + s.n}</b>
-      <small>${s.playable ? (s.concluding ? t('concluding') : t('play')) : t('comingSoon')}</small></span>
-      ${s.playable ? `<span class="spread-go">${I.playSolid}</span>` : ''}</button>`).join('');
-  for (const el of $$('#book-spreads .spread-row')) el.onclick = () => (el.classList.contains('playable') ? goSide() : toast(t('comingSoon')));
+      <small>${s.concluding ? t('concluding') : s.n < at ? t('puzzleSolved') : ''}</small></span>
+      <span class="spread-go">${I.chevRight}</span></button>`).join('');
+  for (const el of $$('#book-spreads .spread-row')) el.onclick = () => openPage(Number(el.dataset.n));
   $('#book-table').innerHTML = table ? `${t('table')} <b>${table}</b>` : '';
   show('book');
 }
+$('#story-btn').onclick = () => playStory('book');
+// Start the book: from scratch the story plays first (once); otherwise carry on where this phone was.
+$('#book-start').onclick = () => {
+  if (!bookStarted() && !store.get('storySeen')) return playStory('start');
+  openPage(bookPage());
+};
+function openPage(n) {
+  store.set('bookPage', String(Math.max(Number(store.get('bookPage') || 1), n)));
+  if (n >= 5) return goSide();
+  showSpread(n);
+}
+// Pages 1-4: their puzzles are not built yet, so a "puzzle solved" card and on to the next page.
+function showSpread(n) {
+  const s = book.spreads.find((x) => x.n === n);
+  $('#sp-book').textContent = pick(book.title);
+  $('#sp-steps').innerHTML = book.spreads.map((x) => `<i class="${x.n < n ? 'done' : x.n === n ? 'now' : ''}"></i>`).join('');
+  $('#sp-num').textContent = `${t('page')} ${n}`;
+  $('#sp-title').textContent = s && s.title ? pick(s.title) : '';
+  $('#sp-next-label').textContent = n === 4 ? t('goToMela') : t('nextPage');
+  $('#sp-next').onclick = () => openPage(n + 1);
+  show('spread');
+}
 
-// ---------------- pick a side (Figma 1133:545) ----------------
+// ---------------- Rakesh's story (animatic) ----------------
+// Plays by itself only the first time someone starts the book from scratch; always available from the book page.
+let storyFrom = 'book';
+function playStory(from) {
+  storyFrom = from;
+  $('#toast').hidden = true;
+  const v = $('#story-video');
+  audio.stopAll();
+  show('story');
+  enterLandscape();
+  try { v.currentTime = 0; } catch (e) {}
+  v.play().then(() => setPlayIcon()).catch(() => setPlayIcon());
+}
+function setPlayIcon() { $('#sv-play-ic').innerHTML = $('#story-video').paused ? I.playSolid : I.pause; }
+function endStory(toGame) {
+  const v = $('#story-video');
+  try { v.pause(); } catch (e) {}
+  store.set('storySeen', '1');
+  leaveLandscape();
+  if (toGame || storyFrom === 'start') return openPage(bookPage());
+  if (storyFrom === 'profile') return goProfile();
+  goBook(viewedBook || book);
+}
+$('#sv-play').onclick = () => { const v = $('#story-video'); if (v.paused) v.play().catch(() => {}); else v.pause(); setPlayIcon(); };
+$('#sv-ff').onclick = () => { const v = $('#story-video'); try { v.currentTime = Math.min((v.duration || 0) - 0.2, v.currentTime + 10); } catch (e) {} };
+$('#sv-exit').onclick = () => endStory(false);
+$('#sv-skip').onclick = () => endStory(true);
+$('#story-video').addEventListener('ended', () => endStory(storyFrom === 'start'));
+$('#story-video').addEventListener('play', setPlayIcon);
+$('#story-video').addEventListener('pause', setPlayIcon);
+$('#story-video').addEventListener('timeupdate', () => { const v = $('#story-video'); $('#sv-fill').style.width = (v.duration ? (100 * v.currentTime) / v.duration : 0) + '%'; });
+// tap on the bar to jump
+$('#s-story .sv-bar').addEventListener('click', (e) => { const v = $('#story-video'), r = e.currentTarget.getBoundingClientRect(); if (v.duration) v.currentTime = ((e.clientX - r.left) / r.width) * v.duration; });
+
+// ---------------- Contribute: voice, photo, word ----------------
+let cKind = null, cData = null, recorder = null, recChunks = [], recTimer = null;
+function goContrib() { closeContribForm(); loadContrib(); show('contrib'); }
+async function loadContrib() {
+  let items = [];
+  try { items = await (await fetch('/api/contrib')).json(); } catch (e) {}
+  const esc = (s) => String(s || '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  $('#contrib-list').innerHTML = items.length ? items.slice(0, 30).map((it) => `<div class="c-item ${it.kind}">
+      ${it.kind === 'photo' ? `<img src="/contrib-files/${it.file}" alt="" loading="lazy">` : it.kind === 'voice' ? `<span class="c-ic">${I.mic}</span>` : `<span class="c-ic">${I.speech}</span>`}
+      <div class="c-body">${it.word ? `<b>${esc(it.word)}</b>` : ''}${it.meaning ? `<span>${esc(it.meaning)}</span>` : ''}${it.note ? `<span>${esc(it.note)}</span>` : ''}
+      ${it.kind === 'voice' ? `<audio controls preload="none" src="/contrib-files/${it.file}"></audio>` : ''}
+      <small>${esc([it.name, it.place].filter(Boolean).join(', '))}</small></div></div>`).join('') : `<p class="muted">${t('cEmpty')}</p>`;
+}
+for (const b of $$('.contrib-card')) b.onclick = () => openContribForm(b.dataset.kind);
+function openContribForm(kind) {
+  cKind = kind; cData = null;
+  $('#contrib-form').hidden = false;
+  $('#cf-title').textContent = t({ voice: 'cVoice', photo: 'cPhoto', word: 'cWord' }[kind]);
+  $('#cf-voice').hidden = kind !== 'voice'; $('#cf-photo').hidden = kind !== 'photo'; $('#cf-word').hidden = kind !== 'word';
+  $('#rec-play').hidden = true; $('#photo-prev').hidden = true; $('#rec-time').textContent = '0:00';
+  for (const el of $$('#contrib-form .field')) { el.value = ''; if (el.dataset.ph) el.placeholder = t(el.dataset.ph); }
+  $('#contrib-form').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+function closeContribForm() { stopRec(); $('#contrib-form').hidden = true; cKind = null; cData = null; }
+$('#cf-cancel').onclick = closeContribForm;
+// voice: tap to record, tap again to stop
+$('#rec-btn').onclick = async () => {
+  if (recorder && recorder.state === 'recording') return stopRec();
+  try {
+    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+    recChunks = [];
+    recorder = new MediaRecorder(stream);
+    recorder.ondataavailable = (e) => { if (e.data.size) recChunks.push(e.data); };
+    recorder.onstop = () => {
+      stream.getTracks().forEach((tr) => tr.stop());
+      const blob = new Blob(recChunks, { type: recorder.mimeType || 'audio/webm' });
+      const fr = new FileReader();
+      fr.onload = () => { cData = fr.result; $('#rec-play').src = URL.createObjectURL(blob); $('#rec-play').hidden = false; };
+      fr.readAsDataURL(blob);
+      $('#rec-btn').classList.remove('on');
+    };
+    recorder.start();
+    $('#rec-btn').classList.add('on');
+    const t0 = Date.now();
+    clearInterval(recTimer);
+    recTimer = setInterval(() => { const s = Math.floor((Date.now() - t0) / 1000); $('#rec-time').textContent = `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`; if (s >= 180) stopRec(); }, 300);
+    toast(t('cRecording'));
+  } catch (e) { toast(t('cMicNo')); }
+};
+function stopRec() { clearInterval(recTimer); if (recorder && recorder.state === 'recording') recorder.stop(); }
+// photo: shrink to max 1600 px before sending
+$('#photo-input').onchange = async (e) => {
+  const f = e.target.files[0]; if (!f) return;
+  const img = new Image(); img.src = URL.createObjectURL(f); await img.decode();
+  const k = Math.min(1, 1600 / Math.max(img.width, img.height));
+  const c = document.createElement('canvas'); c.width = Math.round(img.width * k); c.height = Math.round(img.height * k);
+  c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
+  cData = c.toDataURL('image/jpeg', 0.85);
+  $('#photo-prev').src = cData; $('#photo-prev').hidden = false;
+};
+$('#contrib-form').onsubmit = async (e) => {
+  e.preventDefault();
+  if (!cKind) return;
+  if (cKind !== 'word' && !cData) return toast(cKind === 'voice' ? t('cVoice') : t('cTakePhoto'));
+  if (cKind === 'word' && !$('#cf-wordin').value.trim()) return $('#cf-wordin').focus();
+  const body = { kind: cKind, data: cData, word: $('#cf-wordin').value, meaning: $('#cf-meaning').value, note: $('#cf-note').value, name: $('#cf-name').value, place: $('#cf-place').value, lang };
+  try {
+    const r = await fetch('/api/contrib', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+    if (!r.ok) throw new Error();
+    toast(t('cThanks'));
+    closeContribForm();
+    loadContrib();
+  } catch (err) { toast(t('cSendFail')); }
+};
+
+// ---------------- pick a side ----------------
 // Orange circle on top, blue below, matching the dots printed on the pages.
-// Tapping a circle claims that side and starts the game straight away.
 function goSide() {
   $('#side-title').textContent = pick(book.title);
   $('#sides').innerHTML = ['yellow', 'blue'].map((c) => {
     const meta = BOOKS.sides[c];
-    return `<button class="side-circle" data-side="${c}" style="--side:${meta.color}" aria-label="${pick(meta.name)}"><span class="taken-tag">${t('taken')}</span></button>`;
+    return `<button class="side-circle" data-side="${c}" style="--side:${meta.color}" aria-label="${pick(meta.name)}"><span class="side-name">${pick(meta.name)}</span><span class="taken-tag">${t('taken')}</span></button>`;
   }).join('');
   for (const el of $$('#sides .side-circle')) el.onclick = () => chooseSide(el.dataset.side, true);
   renderDots();
@@ -313,13 +458,16 @@ for (const b of $$('[data-back]')) b.onclick = () => (b.dataset.back === 'book' 
 $('#home-settings').onclick = () => openMenu();
 
 // ---------------- game bar ----------------
-// Always visible: back + book title, side colour + page number, Page Preview, settings.
-// Only the settings (language, table, camera...) open on demand.
+// Always visible: back + title, side + page, Page Preview, Hint, Find Sanjay, settings.
 $('#game-menu').onclick = () => openMenu();
 $('#pp-btn').onclick = () => { $('#page-preview').hidden = false; };
 $('#page-preview').onclick = () => { $('#page-preview').hidden = true; };
-// Back: close whatever is on top first (preview, riddle), otherwise leave the game.
+$('#hint-btn').onclick = () => openHint(sheet.puzzleId || lastPuzzle);
+$('#find-btn').onclick = openFind;
+// Back: close whatever is on top first, otherwise leave the game.
 function gameBack() {
+  if (!$('#hint-card').hidden) { closeHint(); return; }
+  if (!$('#find-view').hidden) { $('#find-view').hidden = true; return; }
   if (!$('#page-preview').hidden) { $('#page-preview').hidden = true; return; }
   if (!$('#menu').hidden) { $('#menu').hidden = true; return; }
   if (!$('#photo-view').hidden) { $('#photo-view').hidden = true; return; }
@@ -337,9 +485,10 @@ window.addEventListener('popstate', () => {
   history.pushState({ app: 2 }, '');
   if (!$('#menu').hidden) { $('#menu').hidden = true; return; }
   if (curScreen === 'play' || curScreen === 'spectator') { gameBack(); return; }
+  if (curScreen === 'story') { endStory(false); return; }
   if (curScreen === 'intro') { cancelIntro(); return; }
-  if (curScreen === 'side') { goBook(viewedBook || book); return; }
-  if (curScreen === 'book' || curScreen === 'profile' || curScreen === 'table') { goHome(); return; }
+  if (curScreen === 'side' || curScreen === 'spread') { goBook(viewedBook || book); return; }
+  if (curScreen === 'book' || curScreen === 'profile' || curScreen === 'table' || curScreen === 'contrib') { goHome(); return; }
 });
 
 function renderDots() {
@@ -361,65 +510,36 @@ function renderDots() {
 }
 $('#watch-btn').addEventListener('click', becomeSpectator);
 
-// ---------------- intro: poem, then "take your phone" ----------------
-// Runs by itself, nothing to press. The phone's voice reads each card; the card stays at least
-// as long as the minimum below and until the voice has finished, so there is always time to read.
-// ?introscale=0.05 shortens every pause (tests only).
+// ---------------- intro before the mela: take the phone, then the mission ----------------
+// Runs by itself. The phone's voice reads each card; a card stays at least as long as below
+// and until the voice has finished, so there is always time to read. ?introscale shortens it (tests).
 const INTRO_SCALE = Number(qs.get('introscale') || 1);
-const INTRO = {
-  lineGap: 1800,          // a new poem line appears every 1.8 s
-  poemMin: 10500,         // the poem stays at least this long (all 4 lines are up by ~6 s)
-  poemMax: 22000,         // ...and never longer than this, even if the voice is slow
-  takeMin: 4800,          // "take your phone" stays at least this long
-  takeMax: 9000,
-  after: 1200             // a calm beat after the voice ends, before the next card
-};
+const INTRO = { takeMin: 4800, takeMax: 9000, missionMin: 6500, missionMax: 14000, after: 1000 };
 let introRun = 0;
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms * INTRO_SCALE));
-// Wait for the voice, but never longer than maxMs.
 const voiceDone = (promise, maxMs) => Promise.race([promise.catch(() => {}), sleep(maxMs)]);
 function introBar(ms) {
   const f = $('#intro-bar-fill');
   f.style.transition = 'none'; f.style.width = '0%'; void f.offsetWidth;
   f.style.transition = `width ${ms * INTRO_SCALE}ms linear`; f.style.width = '100%';
 }
+async function introCard(my, cardId, textId, lineId, min, max) {
+  for (const id of ['#intro-take', '#intro-mission']) $(id).hidden = id !== cardId;
+  $(textId).textContent = lineText(lineId);
+  introBar(min);
+  const voice = audio.playLines([lineId], { interrupt: true, delay: 400 });
+  await Promise.all([sleep(min), voiceDone(voice, max)]);
+  if (my !== introRun) return false;
+  await sleep(INTRO.after);
+  return my === introRun;
+}
 async function startIntro() {
   const my = ++introRun;
   audio.stopAll();
   fillGameHeader();
-  const fresh = !(state && (state.pieces.length || state.won));
   show('intro');
-  if (fresh) {
-    // card 1: the poem, line by line
-    $('#intro-poem').hidden = false; $('#intro-take').hidden = true;
-    const lines = lineText('intro.poem').split('\n');
-    $('#intro-lines').innerHTML = lines.map((l) => `<div class="intro-line">${l}</div>`).join('');
-    introBar(INTRO.poemMin);
-    const voice = audio.playLines(['intro.poem'], { interrupt: true, delay: 700 });
-    const els = $$('#intro-lines .intro-line');
-    for (let i = 0; i < els.length; i++) { await sleep(i === 0 ? 500 : INTRO.lineGap); if (my !== introRun) return; els[i].classList.add('on'); }
-    const shown = INTRO.lineGap * (els.length - 1) + 500;
-    await Promise.all([sleep(Math.max(0, INTRO.poemMin - shown)), voiceDone(voice, INTRO.poemMax - shown)]);
-    if (my !== introRun) return;
-    await sleep(INTRO.after);
-    if (my !== introRun) return;
-    $('#intro-poem').classList.add('out');
-    await sleep(600);
-    if (my !== introRun) return;
-  }
-  // card 2: take the phone in your hands
-  $('#intro-poem').hidden = true; $('#intro-poem').classList.remove('out');
-  $('#intro-take').hidden = false;
-  await takeCard(my);
-}
-async function takeCard(my) {
-  $('#intro-take-text').textContent = lineText('intro.take');
-  introBar(INTRO.takeMin);
-  const voice = audio.playLines(['intro.take'], { interrupt: true, delay: 500 });
-  await Promise.all([sleep(INTRO.takeMin), voiceDone(voice, INTRO.takeMax)]);
-  if (my !== introRun) return;
-  await sleep(INTRO.after);
-  if (my !== introRun) return;
+  if (!(await introCard(my, '#intro-take', '#intro-take-text', 'intro.take', INTRO.takeMin, INTRO.takeMax))) return;
+  if (!(await introCard(my, '#intro-mission', '#intro-mission-text', 'intro.mission', INTRO.missionMin, INTRO.missionMax))) return;
   startGame();
 }
 function cancelIntro() {
@@ -429,14 +549,51 @@ function cancelIntro() {
   goSide();
 }
 $('#intro-back').onclick = cancelIntro;
-// A tap on the poem moves straight on to the next card (never required; handy when presenting).
-$('#s-intro').addEventListener('click', (e) => {
-  if (e.target.closest('#intro-back') || $('#intro-poem').hidden) return;
+// A tap moves on to the next card (never required; handy when presenting).
+$('#s-intro').addEventListener('click', async (e) => {
+  if (e.target.closest('#intro-back')) return;
   const my = ++introRun;
   audio.stopAll();
-  $('#intro-poem').hidden = true; $('#intro-take').hidden = false;
-  takeCard(my);
+  if (!$('#intro-take').hidden) {
+    if (await introCard(my, '#intro-mission', '#intro-mission-text', 'intro.mission', INTRO.missionMin, INTRO.missionMax)) startGame();
+  } else startGame();
 });
+
+// ---------------- hint card ----------------
+// The Hint button: the clear hint for the riddle that is open (or the last one opened on this phone);
+// with no riddle yet, how to play.
+let lastPuzzle = null;
+function openHint(pid) {
+  const text = pid ? lineText(`${pid}.hint`) : t('generalHint');
+  $('#hc-text').textContent = text || t('generalHint');
+  $('#hint-card').hidden = false;
+  $('#hc-say').onclick = () => (pid ? audio.playLines([`${pid}.hint`], { interrupt: true }) : null);
+  $('#hc-say').hidden = !pid;
+  if (pid) { audio.playLines([`${pid}.hint`], { interrupt: true }); act('hint', null, { puzzleId: pid }); }
+}
+function closeHint() { $('#hint-card').hidden = true; audio.stopAll(); }
+$('#hc-close').onclick = closeHint;
+$('#hint-card').addEventListener('click', (e) => { if (e.target.id === 'hint-card') closeHint(); });
+
+// ---------------- Find Sanjay: pick a face, any time ----------------
+const faceCanvases = {};
+function openFind() {
+  if (photo) { const ctx = sizeCanvas($('#fv-photo')); drawAssembled(ctx, photo, state ? state.pieces : []); }
+  const men = D.regions.filter((r) => r.type === 'candidate');
+  const grid = $('#fv-grid');
+  grid.innerHTML = '';
+  for (const r of men) {
+    const b = document.createElement('button');
+    b.className = 'fv-face';
+    const cv = document.createElement('canvas');
+    b.appendChild(cv);
+    drawCrop(cv, r.id, 90, 0.05);
+    b.onclick = () => { $('#find-view').hidden = true; act('guess', r.id); };
+    grid.appendChild(b);
+  }
+  $('#find-view').hidden = false;
+}
+$('#fv-close').onclick = () => { $('#find-view').hidden = true; };
 
 // ---------------- start / landscape ----------------
 function fillGameHeader() {
@@ -452,6 +609,7 @@ function fillGameHeader() {
 }
 async function startGame() {
   audio.unlock();
+  startDiag();
   shownTips.clear();
   delete $('#scan-tip').dataset.msg;
   started = true;
@@ -550,7 +708,7 @@ async function startView() {
         camera: profiles[camIndex],
         tiles,
         onFrame: (hit) => { updateDots(trackingOn ? tracker : null); feed(hit, 'camera'); },
-        onTracking: (on) => { trackingOn = on; if (!on) lostSince = Date.now(); updateHint(); },
+        onTracking: (on) => { trackingOn = on; if (!on) lostSince = Date.now(); updateHint(); sendDiag(); },
         onBrokenFeed: async () => {
           // Corrupted picture: try the next camera setting, a few times, then tap mode.
           await findBackCameras();
@@ -618,6 +776,8 @@ let lostSince = Date.now();
 // so it does not flicker back every time the page is lost and found again.
 const shownTips = new Set();
 function updateHint() {
+  const td = $('#track-dot');
+  if (td) { td.className = 'track-dot ' + (tapView ? 'tap' : tracker && trackingOn ? 'on' : tracker ? 'search' : 'off'); }
   const tip = $('#scan-tip');
   if (!tip) return;
   const text = tapView ? t('tapClue') : tracker && trackingOn ? t('pointAtClue') : t('scanPage');
@@ -644,7 +804,7 @@ document.addEventListener('visibilitychange', async () => {
 // The same region must stay under the crosshair (or finger) for the whole dwell.
 let cur = { id: null, since: 0, fired: false };
 function blocked() {
-  return !started || role === 'spectator' || $('#lock').classList.contains('open') || !$('#menu').hidden || !$('#rest').hidden ||
+  return !$('#hint-card').hidden || !$('#find-view').hidden || !started || role === 'spectator' || $('#lock').classList.contains('open') || !$('#menu').hidden || !$('#rest').hidden ||
     !$('#celebrate').hidden || !$('#photo-view').hidden || !$('#rotate').hidden || (state && state.resting);
 }
 
@@ -715,6 +875,7 @@ function handleReplies(replies) {
         else wrongAnswer(r);
         break;
       case 'guess':
+        $('#find-view').hidden = true;
         showFace(r.candidateId);
         audio.playLines(r.lines, { interrupt: true }).then(hideFace);
         break;
@@ -787,6 +948,8 @@ let lockDigits = [];
 function openPuzzle(r) {
   Object.assign(sheet, { puzzleId: r.puzzleId, regionId: r.regionId, len: r.codeLength, lines: r.lines });
   lockDigits = [];
+  lastPuzzle = r.puzzleId;
+  setupSwap(r);
   drawCrop($('#lock-pic'), r.regionId, 64, 1.7);
   $('#riddle').textContent = lineText(`${r.puzzleId}.riddle`);
   showClue(r.visualClue);
@@ -813,8 +976,35 @@ function wrongAnswer(r) {
   $('#riddle').classList.add('again');
   showClue(r.visualClue);
   sheet.lines = r.lines;
+  sheet.wrong = r.wrong;
+  unlockSwap();
   audio.playLines(r.lines, { interrupt: true });
 }
+
+// ---------- Partner's view ----------
+// After the two players have talked (a first answer tried, or 25 s with the riddle open), this phone
+// may look at the partner's page around where the answer is: the same evidence, seen from the other side.
+let swapTimer = null;
+function setupSwap(r) {
+  $('#swap').hidden = true;
+  const p = D.puzzles.find((x) => x.id === r.puzzleId);
+  sheet.answerSource = p ? p.answerSource : null;
+  sheet.wrong = r.wrong || 0;
+  $('#lk-swap').classList.add('locked');
+  $('#lk-swap').classList.remove('ready');
+  clearTimeout(swapTimer);
+  if (sheet.wrong > 0) unlockSwap(); else swapTimer = setTimeout(unlockSwap, 25000 * (Number(qs.get('introscale')) || 1));
+}
+function unlockSwap() { if (!sheet.answerSource) return; $('#lk-swap').classList.remove('locked'); $('#lk-swap').classList.add('ready'); }
+$('#lk-swap').onclick = () => {
+  if ($('#lk-swap').classList.contains('locked')) return toast(t('partnerLocked'));
+  const a = sheet.answerSource;
+  if (!$('#swap').hidden) { $('#swap').hidden = true; return; }
+  drawCrop($('#swap-pic'), a.regionId, 110, 2.4);
+  $('#swap-who').innerHTML = pageIcon(a.page);
+  $('#swap').hidden = false;
+};
+$('#lk-hint').onclick = () => openHint(sheet.puzzleId);
 
 function showClue(vc) {
   const el = $('#clue');
@@ -976,6 +1166,9 @@ function celebrate(withVoice) {
   const el = $('#celebrate');
   el.hidden = false;
   if (photo) { const ctx = sizeCanvas($('#celebrate-photo')); ctx.drawImage(photo.full, 0, 0); }
+  $('#find-view').hidden = true;
+  $('#end-title').textContent = pick(D.ending && D.ending.title) || '';
+  $('#end-text').textContent = lineText('cand.sanjay');
   const conf = $('#confetti');
   conf.innerHTML = '';
   for (let i = 0; i < 36; i++) {

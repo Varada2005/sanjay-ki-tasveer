@@ -69,4 +69,13 @@ I.bookOpen = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 5.2C4.6 4 
 
 I.takePhone = `<svg viewBox="0 0 160 140" aria-hidden="true"><g class="tp-lift"><path d="M64 20l16-12 16 12M64 38l16-12 16 12" fill="none" stroke="#f2a72b" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" opacity=".9"/><rect x="30" y="52" width="100" height="58" rx="10" fill="#1c0e16" stroke="#f4e7c9" stroke-width="4"/><rect x="39" y="60" width="82" height="42" rx="3" fill="#7c2344"/><circle cx="80" cy="81" r="10" fill="#f2a72b"/><path d="M30 76c-10 0-18 8-18 20s8 22 20 22h16V92" fill="#f4e7c9" stroke="#1c0e16" stroke-width="3" stroke-linejoin="round"/><path d="M130 76c10 0 18 8 18 20s-8 22-20 22h-16V92" fill="#f4e7c9" stroke="#1c0e16" stroke-width="3" stroke-linejoin="round"/></g></svg>`;
 
+I.plusCircle = `<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 8v8M8 12h8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>`;
+I.mic = `<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3" fill="currentColor"/><path d="M6 11a6 6 0 0 0 12 0M12 17v4M9 21h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>`;
+I.speech = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1h-9l-5 4v-4H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M8 10h8M8 13h5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>`;
+I.chevRight = `<svg viewBox="0 0 48 48" aria-hidden="true"><path d="M18 10l14 14-14 14" fill="none" stroke="currentColor" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+I.pause = `<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1.2" fill="currentColor"/><rect x="14" y="5" width="4" height="14" rx="1.2" fill="currentColor"/></svg>`;
+I.forward = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6l8 6-8 6zM12 6l8 6-8 6z" fill="currentColor"/></svg>`;
+I.check = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+I.bulb = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a6 6 0 0 0-3.6 10.8c.6.5 1 1.2 1 2V17h5.2v-1.2c0-.8.4-1.5 1-2A6 6 0 0 0 12 3z" fill="currentColor"/><path d="M9.6 19.5h4.8M10.4 21.5h3.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>`;
+
 export default I;

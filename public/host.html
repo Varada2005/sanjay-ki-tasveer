@@ -63,8 +63,8 @@
     <div class="card" style="margin-top:14px">
       <h2>Players</h2>
       <div class="players">
-        <div class="player"><i class="dot" id="dot-teen"></i><div><b>Teen</b> · jhoola page<br><small id="lang-teen"></small></div></div>
-        <div class="player"><i class="dot" id="dot-dadi"></i><div><b>Dadi</b> · haat page<br><small id="lang-dadi"></small></div></div>
+        <div class="player"><i class="dot" id="dot-teen"></i><div><b>Blue</b> · jhoola page<br><small id="lang-teen"></small><br><small class="diag" id="diag-teen"></small></div></div>
+        <div class="player"><i class="dot" id="dot-dadi"></i><div><b>Orange</b> · haat page<br><small id="lang-dadi"></small><br><small class="diag" id="diag-dadi"></small></div></div>
       </div>
     </div>
   </section>
@@ -117,11 +117,12 @@ function watch(code) {
     $('#code').textContent = room;
     $('#export').href = `/api/rooms/${room}/export`;
     renderQR(); render(res.state);
+    for (const d of res.diag || []) renderDiag(d);
   });
 }
 function renderQR() {
   if (!room) return;
-  const url = `${$('#base').value}/play?room=${room}`;
+  const url = `${$('#base').value}/play?table=${room}`;
   $('#url').textContent = url;
   fetch(`/api/qr.svg?text=${encodeURIComponent(url)}`).then((r) => r.text()).then((svg) => { $('#qr').innerHTML = svg; });
 }
@@ -159,6 +160,21 @@ function render(s) {
 }
 
 socket.on('host:state', render);
+// Live phone status: camera or tap mode, page found, camera errors.
+const diagLast = {};
+function renderDiag(d) {
+  if (!d || !d.role) return;
+  diagLast[d.role] = d;
+  const el = document.getElementById('diag-' + d.role);
+  if (!el) return;
+  if (!d.at) { el.textContent = ''; return; }
+  const age = Math.round((Date.now() - d.at) / 1000);
+  const what = d.mode === 'camera' ? (d.found ? 'camera · page found ✓' : 'camera · looking for the page…') : d.mode === 'tap' ? 'tap mode (no camera)' : 'not playing';
+  el.textContent = what + (d.error ? ' · ' + d.error : '') + (age > 10 ? ` · ${age}s ago` : '') + (d.device ? ' · ' + d.device : '');
+  el.style.color = d.mode === 'camera' && d.found ? 'var(--ok)' : d.error ? 'var(--accent)' : 'var(--muted)';
+}
+socket.on('host:diag', renderDiag);
+setInterval(() => { for (const d of Object.values(diagLast)) renderDiag(d); }, 5000);
 socket.on('connect', () => { if (room) watch(room); });
 $('#new').onclick = () => socket.emit('host:new', {}, (res) => watch(res.room));
 $('#reset').onclick = () => { if (confirm(`Reset progress in room ${room}? Phones stay joined.`)) socket.emit('host:reset', { room }); };

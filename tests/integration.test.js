@@ -124,7 +124,7 @@ const same = (a, b) => JSON.stringify(a) === JSON.stringify(b);
     check(same(teen.state, dadi.state), 'identical state after concurrency');
 
     // ---------------------------------------------------------------
-    section('Taken role, third device, rest on both phones');
+    section('Taken role, third device, wrong guesses continue');
     const third = new Phone(port, 'third');
     await third.join(room);
     const cl = await third.call('claim', { role: 'teen' });
@@ -133,17 +133,12 @@ const same = (a, b) => JSON.stringify(a) === JSON.stringify(b);
     check((await third.call('claim', { role: 'spectator' })).ok, 'third device becomes a spectator');
     const sp = await third.act('code', t1.wrapperRegionId, { code: t1.answer });
     check(sp.ok === false, 'spectator cannot act');
-    // two wrong guesses -> rest on both phones
-    await dadi.act('guess', 'cand_A');
-    await teen.act('guess', 'cand_B');
+    // wrong guesses from either phone: the man answers, nobody is paused
+    const w1 = await dadi.act('guess', 'cand_A');
+    const w2 = await teen.act('guess', 'cand_B');
     await settle(teen, dadi, third);
-    check(teen.state.resting && dadi.state.resting && third.state.resting, 'rest shown on both phones (and spectator)');
-    check(teen.bcasts.some((x) => x.type === 'rest') && dadi.bcasts.some((x) => x.type === 'rest'), 'rest broadcast to both phones');
-    const blocked = await dadi.act('guess', 'cand_sanjay');
-    check(blocked.replies[0].type === 'resting', 'guessing is paused during the rest');
-    await wait(TIMING.restMs + 1300);
-    await settle(teen, dadi, third);
-    check(!teen.state.resting && !dadi.state.resting && teen.state.wrongGuesses === 0, 'rest ends by itself and the count resets');
+    check(w1.replies[0].type === 'guess' && !w1.replies[0].correct && w2.replies[0].type === 'guess' && !w2.replies[0].correct, 'wrong guesses get the man\'s answer, from either phone');
+    check(!teen.state.resting && !dadi.state.resting && !teen.bcasts.some((x) => x.type === 'rest'), 'no rest after wrong guesses');
     check(same(teen.state, dadi.state) && same(dadi.state, third.state), 'teen, dadi and spectator hold identical state');
 
     // ---------------------------------------------------------------

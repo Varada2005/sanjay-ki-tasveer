@@ -60,6 +60,7 @@ async function start(opts = {}) {
 
   // ---------------- rooms + persistence ----------------
   const rooms = new Map(); // code -> state
+  const diag = new Map();  // 'CODE:role' -> latest phone status (memory only)
   const dirty = new Set();
   fs.mkdirSync(roomsDir, { recursive: true });
   for (const f of fs.readdirSync(roomsDir)) {
@@ -102,7 +103,9 @@ async function start(opts = {}) {
   // ---------------- http ----------------
   const app = express();
   app.disable('x-powered-by');
-  app.use(express.json({ limit: '1mb' }));
+  // Contributions carry a photo or a voice clip, so that one route accepts more.
+  const jsonSmall = express.json({ limit: '1mb' }), jsonBig = express.json({ limit: '15mb' });
+  app.use((req, res, next) => (req.path === '/api/contrib' ? jsonBig : jsonSmall)(req, res, next));
   const noStore = (res) => res.set('Cache-Control', 'no-store');
   app.get('/', (req, res) => res.redirect('/host'));
     app.get('/favicon.ico', (req, res) => res.type('image/png').sendFile(path.join(ROOT, 'public', 'favicon.png')));
@@ -153,6 +156,41 @@ async function start(opts = {}) {
     res.set('Content-Disposition', `attachment; filename="room-${st.code}-${new Date().toISOString().replace(/[:.]/g, '-')}.json"`);
     res.json(G.hostState(st));
   });
+  // ---------------- Contribute: voices, photos of old objects, regional words ----------------
+  // A shared reference library for players, designers and illustrators. Stored on the server's disk.
+  const contribDir = opts.contribDir || process.env.CONTRIB_DIR || path.join(ROOT, 'data', 'contrib');
+  const contribFiles = path.join(contribDir, 'files');
+  fs.mkdirSync(contribFiles, { recursive: true });
+  const contribIndex = path.join(contribDir, 'index.json');
+  const readContrib = () => { try { return JSON.parse(fs.readFileSync(contribIndex, 'utf8')); } catch (e) { return []; } };
+  const clip = (v, n) => String(v == null ? '' : v).replace(/[<>]/g, '').trim().slice(0, n);
+  app.post('/api/contrib', (req, res) => {
+    const b = req.body || {};
+    const kind = ['voice', 'photo', 'word'].includes(b.kind) ? b.kind : null;
+    if (!kind) return res.status(400).json({ error: 'kind must be voice, photo or word' });
+    const item = { id: Date.now().toString(36) + Math.random().toString(36).slice(2, 6), kind, at: Date.now(),
+      name: clip(b.name, 60), place: clip(b.place, 60), lang: clip(b.lang, 10), title: clip(b.title, 120), note: clip(b.note, 600),
+      word: clip(b.word, 80), meaning: clip(b.meaning, 300) };
+    if (kind === 'word' && !item.word) return res.status(400).json({ error: 'word missing' });
+    if (kind !== 'word') {
+      const m = /^data:(audio\/[a-z0-9.+-]+|image\/(?:jpeg|png|webp))(?:;[^,]*)?;base64,(.+)$/i.exec(String(b.data || ''));
+      if (!m) return res.status(400).json({ error: 'file missing' });
+      const ext = { 'image/jpeg': 'jpg', 'image/png': 'png', 'image/webp': 'webp' }[m[1]] || (/mp4|aac|m4a/.test(m[1]) ? 'm4a' : /ogg/.test(m[1]) ? 'ogg' : 'webm');
+      const buf = Buffer.from(m[2], 'base64');
+      if (buf.length > 12 * 1024 * 1024) return res.status(413).json({ error: 'file too large' });
+      item.file = `${item.id}.${ext}`;
+      item.mime = m[1];
+      fs.writeFileSync(path.join(contribFiles, item.file), buf);
+    }
+    const all = readContrib();
+    all.push(item);
+    fs.writeFileSync(contribIndex, JSON.stringify(all, null, 1));
+    res.json({ ok: true, item });
+  });
+  app.get('/api/contrib', (req, res) => { noStore(res); res.json(readContrib().slice().reverse()); });
+  app.use('/contrib-files', express.static(contribFiles));
+  app.get('/contrib', (req, res) => res.sendFile(path.join(ROOT, 'public', 'contrib.html')));
+
   app.get('/healthz', (req, res) => res.json({ ok: true, rooms: rooms.size }));
 
   let server;
@@ -197,6 +235,21 @@ async function start(opts = {}) {
       if (!wasConnected) st.log.push({ t: Date.now(), role, type: 'connect' });
     };
 
+    // Phones only join a game the dashboard opened (so a typo cannot split the two phones).
+    socket.on('room:check', ({ room } = {}, ack = () => {}) => {
+      const code = String(room || '').toUpperCase().trim();
+      ack({ exists: /^[A-Z0-9]{4}$/.test(code) && rooms.has(code) });
+    });
+
+    // Live status from a phone for the dashboard: camera/tap, page found, errors. Not stored.
+    socket.on('diag', (d = {}) => {
+      const st = getRoom(socket.data.room, false);
+      const role = socket.data.role;
+      if (!st || !G.ROLES.includes(role) || st.players[role].clientId !== socket.data.clientId) return;
+      diag.set(st.code + ':' + role, { at: Date.now(), mode: String(d.mode || '').slice(0, 10), found: !!d.found, error: String(d.error || '').slice(0, 120), cam: Number(d.cam) || 0, device: String(d.device || '').slice(0, 60) });
+      io.to(`host:${st.code}`).emit('host:diag', { role, ...diag.get(st.code + ':' + role) });
+    });
+
     socket.on('claim', ({ role, lang } = {}, ack = () => {}) => {
       const st = getRoom(socket.data.room, false);
       if (!st) return ack({ ok: false, error: 'no_room' });
@@ -235,8 +288,8 @@ async function start(opts = {}) {
       if (!st || !G.ROLES.includes(role)) return ack({ ok: false, replies: [{ type: 'ignored', reason: 'not_player' }] });
       if (st.players[role].clientId !== socket.data.clientId) return ack({ ok: false, replies: [{ type: 'ignored', reason: 'role_lost' }] });
       const type = String(ev.type || '');
-      if (!['hook', 'code', 'guess', 'ambient'].includes(type)) return ack({ ok: false, replies: [{ type: 'ignored', reason: 'bad_type' }] });
-      const { replies, broadcast } = G.applyEvent(data, st, { type, role, regionId: String(ev.regionId || ''), code: ev.code, via: ev.via }, Date.now());
+      if (!['hook', 'code', 'guess', 'ambient', 'hint'].includes(type)) return ack({ ok: false, replies: [{ type: 'ignored', reason: 'bad_type' }] });
+      const { replies, broadcast } = G.applyEvent(data, st, { type, role, regionId: String(ev.regionId || ''), code: ev.code, via: ev.via, puzzleId: String(ev.puzzleId || '') }, Date.now());
       for (const b of broadcast) io.to(`room:${st.code}`).emit('bcast', b);
       for (const b of broadcast) io.to(`host:${st.code}`).emit('bcast', b);
       ack({ ok: true, replies });
@@ -265,7 +318,7 @@ async function start(opts = {}) {
       socket.data.host = true;
       for (const r of socket.rooms) if (r.startsWith('host:')) socket.leave(r);
       socket.join(`host:${st.code}`);
-      ack({ ok: true, room: st.code, state: G.hostState(st) });
+      ack({ ok: true, room: st.code, state: G.hostState(st), diag: G.ROLES.map((r) => ({ role: r, ...(diag.get(st.code + ':' + r) || {}) })) });
     });
     socket.on('host:reset', ({ room, freeRoles } = {}, ack = () => {}) => {
       const st = getRoom(room, false);

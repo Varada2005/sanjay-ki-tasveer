@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <link rel="icon" href="/favicon.png" type="image/png">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
-<meta name="theme-color" content="#1c0e16">
+<meta name="theme-color" content="#FFC21A">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -13,7 +13,7 @@
 <title>Kahani Akhbaar</title>
 <link rel="stylesheet" href="/css/play.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&family=Noto+Serif+Devanagari:wght@500;600;700&family=Noto+Serif+Gujarati:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Baloo+Bhai+2:wght@500;600;700;800&display=swap">
 <link rel="stylesheet" href="/css/app.css">
 <link rel="stylesheet" href="/css/figma.css">
 <link rel="stylesheet" href="/css/theme.css">
@@ -33,40 +33,67 @@
     <div class="langs" id="langs"></div>
   </section>
 
-  <!-- Onboarding 2: pair the two phones once (table code) -->
+  <!-- Onboarding 2: join the game shown on the laptop dashboard (one code for every phone) -->
   <section id="s-table" class="screen app">
     <h2 data-t="tableTitle"></h2>
     <p class="muted" data-t="tableBody"></p>
-    <div id="table-choose" class="stack">
-      <button class="btn primary" id="table-new" data-t="tableStart"></button>
-      <button class="btn" id="table-join-open" data-t="tableJoin"></button>
-    </div>
-    <div id="table-show" class="stack center" hidden>
-      <div class="muted" data-t="tableCodeIs"></div>
-      <div class="table-code" id="table-code"></div>
-      <div class="qr" id="table-qr"></div>
-      <p class="muted small" data-t="tableScan"></p>
-    </div>
-    <div id="table-join" class="stack center" hidden>
-      <div class="muted" data-t="tableEnter"></div>
-      <input id="table-input" class="room-input" maxlength="4" autocapitalize="characters" autocomplete="off" spellcheck="false" aria-label="table code">
+    <div id="table-join" class="stack center">
+      <input id="table-input" class="room-input" maxlength="4" autocapitalize="characters" autocomplete="off" spellcheck="false" aria-label="game code">
+      <div class="muted small join-err" id="table-err" hidden></div>
       <button class="btn primary" id="table-join-go" data-t="join"></button>
     </div>
-    <div class="row-end"><button class="btn ghost" id="table-skip" data-t="skip"></button><button class="btn primary" id="table-continue" data-t="continue" hidden></button></div>
+    <div class="row-end"><button class="btn ghost" id="table-skip" data-t="skip"></button></div>
   </section>
 
-  <!-- Home (Figma 1130:278): resume this month's book, previously played books, bottom nav -->
+  <!-- Home: this month's book, previous books, bottom nav -->
   <section id="s-home" class="screen app top fig">
-    <header class="fig-top"><h1 class="fig-app" id="home-brand"></h1><button class="fig-icon" id="home-settings" aria-label="settings"><span data-icon="gear"></span></button></header>
+    <header class="fig-top"><h1 class="fig-app" id="home-brand"></h1><div class="top-right"><div id="home-table"></div><button class="fig-icon" id="home-settings" aria-label="settings"><span data-icon="gear"></span></button></div></header>
     <h2 class="fig-resume-h"><span data-icon="bookOpen" class="fig-tri book"></span><span data-t="bookOfMonth"></span></h2>
     <div id="home-current"></div>
     <h2 class="fig-h2" data-t="previouslyPlayed"></h2>
     <div id="home-previous" class="fig-grid"></div>
-    <div class="fig-table" id="home-table"></div>
     <nav class="fig-nav">
       <button class="on" data-nav="home"><span data-icon="home"></span><span data-t="home"></span></button>
-      <button id="nav-search"><span data-icon="search"></span><span data-t="search"></span></button>
-      <button id="nav-profile" data-nav="profile"><span data-icon="user"></span><span data-t="profile"></span></button>
+      <button data-nav="contribute"><span data-icon="plusCircle"></span><span data-t="contribute"></span></button>
+      <button data-nav="profile"><span data-icon="user"></span><span data-t="profile"></span></button>
+    </nav>
+  </section>
+
+  <!-- Contribute: voices, photos of old objects, words from your language -->
+  <section id="s-contrib" class="screen app top fig">
+    <header class="fig-top"><h1 class="fig-app" data-t="contribute"></h1></header>
+    <p class="contrib-intro" data-t="contribIntro"></p>
+    <div class="contrib-cards">
+      <button class="contrib-card voice" data-kind="voice"><span class="cc-ic" data-icon="mic"></span><b data-t="cVoice"></b><small data-t="cVoiceSub"></small></button>
+      <button class="contrib-card photo" data-kind="photo"><span class="cc-ic" data-icon="camera"></span><b data-t="cPhoto"></b><small data-t="cPhotoSub"></small></button>
+      <button class="contrib-card word" data-kind="word"><span class="cc-ic" data-icon="speech"></span><b data-t="cWord"></b><small data-t="cWordSub"></small></button>
+    </div>
+    <form id="contrib-form" class="contrib-form" hidden>
+      <h2 id="cf-title"></h2>
+      <div id="cf-voice" class="cf-part">
+        <button type="button" class="rec-btn" id="rec-btn" aria-label="record"><span data-icon="mic"></span></button>
+        <div class="rec-time" id="rec-time">0:00</div>
+        <audio id="rec-play" controls hidden></audio>
+      </div>
+      <div id="cf-photo" class="cf-part">
+        <label class="photo-pick"><input type="file" id="photo-input" accept="image/*" capture="environment" hidden><span data-icon="camera"></span><span data-t="cTakePhoto"></span></label>
+        <img id="photo-prev" alt="" hidden>
+      </div>
+      <div id="cf-word" class="cf-part">
+        <input id="cf-wordin" class="field" maxlength="80" data-ph="cWordPh">
+        <textarea id="cf-meaning" class="field" rows="2" maxlength="300" data-ph="cMeaningPh"></textarea>
+      </div>
+      <input id="cf-note" class="field" maxlength="200" data-ph="cNotePh">
+      <div class="cf-row"><input id="cf-name" class="field" maxlength="60" data-ph="cNamePh"><input id="cf-place" class="field" maxlength="60" data-ph="cPlacePh"></div>
+      <p class="cf-consent" data-t="cConsent"></p>
+      <div class="cf-actions"><button type="button" class="btn ghost" id="cf-cancel" data-t="cancel"></button><button type="submit" class="btn primary" id="cf-send" data-t="send"></button></div>
+    </form>
+    <h2 class="fig-h2 small" data-t="cRecent"></h2>
+    <div id="contrib-list" class="contrib-list"></div>
+    <nav class="fig-nav">
+      <button data-nav="home"><span data-icon="home"></span><span data-t="home"></span></button>
+      <button class="on" data-nav="contribute"><span data-icon="plusCircle"></span><span data-t="contribute"></span></button>
+      <button data-nav="profile"><span data-icon="user"></span><span data-t="profile"></span></button>
     </nav>
   </section>
 
@@ -78,45 +105,73 @@
     <h2 class="fig-h2 small" data-t="language"></h2>
     <div class="chips" id="prof-langs"></div>
     <h2 class="fig-h2 small" data-t="table"></h2>
-    <div class="prof-row"><span class="muted" data-t="tableBody"></span></div>
     <button class="fig-btn ghost" id="prof-table-btn" data-t="changeTable"></button>
     <h2 class="fig-h2 small" data-t="settings"></h2>
     <button class="prof-toggle" id="prof-subs"></button>
     <button class="prof-toggle" id="prof-tap"></button>
+    <button class="prof-toggle" id="prof-story" data-t="watchStory"></button>
     <div class="fig-table" data-t="about"></div>
     <nav class="fig-nav">
       <button data-nav="home"><span data-icon="home"></span><span data-t="home"></span></button>
-      <button data-nav="search"><span data-icon="search"></span><span data-t="search"></span></button>
+      <button data-nav="contribute"><span data-icon="plusCircle"></span><span data-t="contribute"></span></button>
       <button class="on" data-nav="profile"><span data-icon="user"></span><span data-t="profile"></span></button>
     </nav>
   </section>
 
-  <!-- Book: its 5 spreads, each with a title -->
+  <!-- Book: Rakesh's story, a big Start button, or start from any of the 5 pages -->
   <section id="s-book" class="screen app top fig">
     <header class="fig-bar"><button class="fig-back" data-back="home" aria-label="back"><span data-icon="chev"></span></button><h1 id="book-title"></h1><span class="fig-bar-pad"></span></header>
     <div class="book-sub" id="book-month"></div>
+    <button class="story-card" id="story-btn"><span class="story-thumb"><span class="story-play" data-icon="playSolid"></span></span><span class="story-txt"><b data-t="watchStory"></b><small data-t="watchStorySub"></small></span></button>
+    <button class="big-start" id="book-start"><span data-icon="playSolid" class="bs-ic"></span><span id="book-start-label"></span></button>
+    <div class="any-label" data-t="startAny"></div>
     <div id="book-spreads" class="spread-list"></div>
     <div class="fig-table" id="book-table"></div>
   </section>
 
-  <!-- Pick a side (Figma 1133:545): orange and blue circles; tapping one starts the game -->
+  <!-- Rakesh's story (animatic): play / pause, forward 10 s, exit, skip to the game -->
+  <section id="s-story" class="screen story">
+    <video id="story-video" playsinline preload="metadata" src="/assets/story/rakesh.mp4"></video>
+    <div class="sv-top"><button class="sv-btn" id="sv-exit" aria-label="exit"><span data-icon="close"></span></button><button class="sv-skip" id="sv-skip"><span data-t="skipToGame"></span><span data-icon="chevRight" class="sv-skip-ic"></span></button></div>
+    <div class="sv-bottom">
+      <button class="sv-btn big" id="sv-play" aria-label="play"><span data-icon="pause" id="sv-play-ic"></span></button>
+      <div class="sv-bar"><i id="sv-fill"></i></div>
+      <button class="sv-btn" id="sv-ff" aria-label="forward 10 seconds"><span data-icon="forward"></span></button>
+    </div>
+  </section>
+
+  <!-- Pages 1 to 4 (puzzles not built yet): a solved card, then on to the next page -->
+  <section id="s-spread" class="screen app fig spread-screen">
+    <header class="fig-bar"><button class="fig-back" data-back="book" aria-label="back"><span data-icon="chev"></span></button><h1 id="sp-book"></h1><span class="fig-bar-pad"></span></header>
+    <div class="sp-steps" id="sp-steps"></div>
+    <div class="sp-card">
+      <div class="sp-num" id="sp-num"></div>
+      <div class="sp-title" id="sp-title"></div>
+      <div class="sp-solved"><span class="sp-tick" data-icon="check"></span><span data-t="puzzleSolved"></span></div>
+      <p class="muted small" data-t="placeholderNote"></p>
+    </div>
+    <button class="big-start" id="sp-next"><span id="sp-next-label"></span><span data-icon="chevRight" class="bs-ic"></span></button>
+  </section>
+
+  <!-- Pick a side: orange and blue circles; tapping one starts the game -->
   <section id="s-side" class="screen app fig">
     <header class="fig-bar"><button class="fig-back" data-back="book" aria-label="back"><span data-icon="chev"></span></button><h1 id="side-title"></h1><span class="fig-bar-pad"></span></header>
+    <h2 class="side-q" data-t="chooseSide"></h2>
     <div class="sides" id="sides"></div>
     <div class="partner-line"><i class="dot" id="side-partner-dot"></i><span id="side-partner"></span></div>
     <button id="watch-btn" class="fig-link" data-t="watch" hidden></button>
   </section>
 
-  <!-- Before the scanner: a short poem, then "take your phone in your hands". Runs by itself. -->
+  <!-- Before the scanner: take the phone, then the mission. Runs by itself. -->
   <section id="s-intro" class="screen app intro">
     <button class="fig-back intro-back" id="intro-back" aria-label="back"><span data-icon="chev"></span></button>
-    <div class="intro-card" id="intro-poem">
-      <span class="intro-mark" data-icon="peppermint"></span>
-      <div class="intro-lines" id="intro-lines"></div>
-    </div>
-    <div class="intro-card" id="intro-take" hidden>
+    <div class="intro-card" id="intro-take">
       <div class="intro-phone" data-icon="takePhone"></div>
       <div class="intro-take-text" id="intro-take-text"></div>
+    </div>
+    <div class="intro-card" id="intro-mission" hidden>
+      <span class="intro-mark" data-icon="peppermint"></span>
+      <div class="intro-take-text" id="intro-mission-text"></div>
     </div>
     <div class="intro-bar"><i id="intro-bar-fill"></i></div>
   </section>
@@ -129,7 +184,6 @@
     <div id="dots"></div>
     <div id="hint" class="hint" data-icon="hint"></div>
     <div id="crosshair"><svg viewBox="0 0 100 100"><circle class="bg" cx="50" cy="50" r="40"/><circle id="ring" class="ring" cx="50" cy="50" r="40" pathLength="100"/><path d="M50 36v28M36 50h28" class="cross"/></svg></div>
-    <!-- Your page, small, in the corner, and what to do now -->
     <div id="page-preview" class="page-preview" hidden><div class="pp-card"><img id="page-preview-img" alt=""><i class="pp-dot" id="page-preview-dot"></i></div></div>
     <div id="scan-tip" class="scan-tip"></div>
     <div id="debug-text" hidden></div>
@@ -140,19 +194,20 @@
     <canvas id="spectator-photo"></canvas>
   </section>
 
-  <!-- Floating game bar: collapsed = side colour + page number; tap to expand into options -->
+  <!-- Game bar: back + title, side + page, Page Preview, Hint, Find Sanjay, settings; pieces at the bottom -->
   <div id="topbar" hidden>
-    <div class="fbar" id="fbar" role="button" aria-label="menu">
+    <div class="fbar" id="fbar">
       <button class="fb-back" id="game-back" aria-label="back"><span data-icon="chev"></span></button>
       <span class="fb-title" id="game-title"></span>
-      <span class="gh-side"><i class="gh-dot" id="game-dot"></i><span id="game-page"></span></span>
+      <span class="gh-side"><i class="gh-dot" id="game-dot"></i><span id="game-page"></span><i class="track-dot" id="track-dot" title="page"></i></span>
     </div>
     <div class="fb-extra">
       <button class="fb-pill" id="pp-btn" data-t="pagePreview"></button>
+      <button class="fb-pill light" id="hint-btn"><span data-icon="bulb" class="fb-ic"></span><span data-t="hint"></span></button>
+      <button class="fb-pill find" id="find-btn"><span data-icon="search" class="fb-ic"></span><span data-t="findSanjay"></span></button>
       <button class="fb-round" id="game-menu" aria-label="settings"><span data-icon="gear"></span></button>
       <i id="partner-dot" class="dot"></i>
     </div>
-    <!-- torn-photo pieces, bottom centre -->
     <div id="strip"></div>
   </div>
 
@@ -162,7 +217,26 @@
 
   <div id="subtitle" hidden></div>
   <div id="face-bubble" hidden><img alt=""></div>
-  <!-- Puzzle sheet: opens when a wrapper is scanned -->
+
+  <!-- Hint card (from the Hint button) -->
+  <div id="hint-card" class="overlay" hidden>
+    <div class="hc-box">
+      <div class="hc-head"><span data-icon="bulb" class="hc-ic"></span><b data-t="hint"></b><button class="hc-close" id="hc-close" aria-label="close"><span data-icon="close"></span></button></div>
+      <canvas id="hc-pic" hidden></canvas>
+      <p id="hc-text"></p>
+      <button class="hc-say" id="hc-say"><span data-icon="sound"></span><span data-t="listen"></span></button>
+    </div>
+  </div>
+
+  <!-- Find Sanjay: tap the face you think is him -->
+  <div id="find-view" class="overlay" hidden>
+    <div class="fv-box">
+      <div class="fv-head"><b data-t="whoIsSanjay"></b><button class="hc-close" id="fv-close" aria-label="close"><span data-icon="close"></span></button></div>
+      <div class="fv-row"><canvas id="fv-photo"></canvas><div class="fv-grid" id="fv-grid"></div></div>
+    </div>
+  </div>
+
+  <!-- Puzzle sheet: opens when a santra goli is scanned -->
   <div id="lock-backdrop" hidden></div>
   <div id="lock" aria-hidden="true">
     <div class="grab"></div>
@@ -172,7 +246,13 @@
         <div id="riddle" class="riddle"></div>
         <button id="replay" class="replay" aria-label="replay"><span data-icon="sound"></span></button>
       </div>
-      <!-- After 3 wrong answers: a picture of where to look on the partner's page -->
+      <div class="lk-tools" id="lk-tools">
+        <button class="lk-tool" id="lk-hint"><span data-icon="bulb"></span><span data-t="hint"></span></button>
+        <button class="lk-tool locked" id="lk-swap"><span data-icon="swap"></span><span data-t="partnerView"></span></button>
+      </div>
+      <!-- Partner's view: the other page around where the answer is (after you have talked) -->
+      <div id="swap" class="swap" hidden><span class="who" id="swap-who"></span><canvas id="swap-pic"></canvas></div>
+      <!-- After 3 wrong answers: the exact spot on the partner's page -->
       <div id="clue" class="clue" hidden><span class="who" id="clue-who"></span><canvas id="clue-pic"></canvas></div>
       <div id="done" class="done" hidden>
         <div id="done-answer" class="done-answer"></div>
@@ -197,7 +277,11 @@
   <!-- Overlays -->
   <div id="photo-view" class="overlay" hidden><canvas id="photo-canvas"></canvas></div>
   <div id="reveal" class="overlay clear" hidden></div>
-  <div id="celebrate" class="overlay" hidden><canvas id="celebrate-photo"></canvas><div id="confetti"></div></div>
+  <div id="celebrate" class="overlay sunset" hidden>
+    <div class="sun"></div>
+    <div class="end-box"><div class="end-title" id="end-title"></div><canvas id="celebrate-photo"></canvas><p class="end-text" id="end-text"></p></div>
+    <div id="confetti"></div>
+  </div>
   <div id="rest" class="overlay" hidden><div class="diya" data-icon="diya"></div></div>
 
   <!-- Settings: from the home gear, the game gear, or a 3 s long-press on the photo strip -->

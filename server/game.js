@@ -164,8 +164,9 @@ function applyEvent(data, state, ev, now = Date.now()) {
     replies.push({ type: 'ignored', reason: 'no_role' });
     return out();
   }
-  const rr = regionRole(data, regionId);
-  if (!rr || rr.region.page !== role) {
+  const rr = ev.type === 'hint' ? { kind: 'hint', region: { page: role } } : regionRole(data, regionId);
+  // A phone acts on its own page only; the exception is a guess at Sanjay, made from the "Find Sanjay" picker on either phone.
+  if (!rr || (rr.region.page !== role && !(ev.type === 'guess' && rr.kind === 'candidate'))) {
     // A phone may only act on things printed on its own page.
     replies.push({ type: 'ignored', reason: 'bad_region', regionId });
     return out();
@@ -192,6 +193,14 @@ function applyEvent(data, state, ev, now = Date.now()) {
       } else {
         replies.push(puzzleReply('puzzle', p, { lines: [`${p.id}.riddle`] }));
       }
+      break;
+    }
+    case 'hint': {
+      // Hint button: logged for the dashboard; the hint text itself lives on the phone.
+      const p = data.puzzleById[ev.puzzleId];
+      if (!p || p.page !== role) break;
+      log({ type: 'hint', puzzleId: p.id });
+      replies.push({ type: 'hint', puzzleId: p.id });
       break;
     }
     case 'ambient': {
@@ -248,7 +257,8 @@ function applyEvent(data, state, ev, now = Date.now()) {
         state.wrongGuesses += 1;
         log({ type: 'guess_wrong', candidateId: cid, regionId, wrongGuesses: state.wrongGuesses });
         replies.push({ type: 'guess', candidateId: cid, correct: false, lines: [lineForCandidate(cid)] });
-        if (state.wrongGuesses >= data.game.timing.maxWrongGuesses) {
+        // maxWrongGuesses 0 = never rest: the man answers and play continues.
+        if (data.game.timing.maxWrongGuesses > 0 && state.wrongGuesses >= data.game.timing.maxWrongGuesses) {
           state.restUntil = now + data.game.timing.restMs;
           log({ type: 'rest_start', until: state.restUntil });
           broadcast.push({ type: 'rest', ms: data.game.timing.restMs });
@@ -279,7 +289,7 @@ function lineTable(game) {
     }
     // The poem + "take your phone" shown before the scanner starts (spoken, so the voice paces the reading).
     if (game.intro) {
-      if (game.intro.poem && game.intro.poem[lang]) put('intro.poem', lang, game.intro.poem[lang].join('\n'));
+      if (game.intro.mission && game.intro.mission[lang]) put('intro.mission', lang, game.intro.mission[lang]);
       if (game.intro.take && game.intro.take[lang]) put('intro.take', lang, game.intro.take[lang]);
     }
     for (const c of game.candidates) put(`cand.${c.id}`, lang, ((c.lines || {})[lang] || {}).voice);
@@ -299,7 +309,8 @@ function clientData(data) {
     regions: data.regionsFile.regions,
     pageSize: data.regionsFile.pageSize,
     puzzles: g.puzzles.map((p) => ({ id: p.id, page: p.page, wrapperRegionId: p.wrapperRegionId, codeLength: p.answer.length, answerSource: { page: p.answerSource.page, regionId: p.answerSource.regionId } })),
-    lines: lineTable(g)
+    lines: lineTable(g),
+    ending: g.ending || null
   };
 }
 
