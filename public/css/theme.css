@@ -217,6 +217,7 @@ body.in-game .slot.filled { background: #fff; box-shadow: 0 0 0 3px var(--sun), 
 #lk-swap.locked { opacity: .5; }
 #lk-swap.ready { background: var(--sky); color: #fff; animation: pop .5s; }
 #lock.solved .lk-tools, #lock.solved .swap { display: none; }
+#done-hint { background: var(--sun); margin-left: 6px; }
 .swap { display: flex; align-items: center; gap: 10px; margin-top: 10px; animation: rise .3s; }
 .swap[hidden] { display: none; }
 .swap canvas { height: clamp(70px, 26dvh, 130px); max-width: 82%; }

@@ -287,6 +287,8 @@ function lineTable(game) {
     for (const kind of ['across', 'same']) for (const [k, v] of Object.entries(nx[kind] || {})) {
       if (k === 'final') put('next.final', lang, v); else put(`next.${kind}.${k}`, lang, v);
     }
+    // The plain "where next" for the Hint button (the spoken line is a "What am I?" riddle).
+    for (const [k, v] of Object.entries((game.nav || {})[lang] || {})) put(`nav.${k}`, lang, v);
     // The poem + "take your phone" shown before the scanner starts (spoken, so the voice paces the reading).
     if (game.intro) {
       if (game.intro.mission && game.intro.mission[lang]) put('intro.mission', lang, game.intro.mission[lang]);
@@ -306,6 +308,7 @@ function clientData(data) {
     languages: g.languages,
     timing: g.timing,
     slots: g.slots,
+    chain: g.chain,
     regions: data.regionsFile.regions,
     pageSize: data.regionsFile.pageSize,
     puzzles: g.puzzles.map((p) => ({ id: p.id, page: p.page, wrapperRegionId: p.wrapperRegionId, codeLength: p.answer.length, answerSource: { page: p.answerSource.page, regionId: p.answerSource.regionId } })),

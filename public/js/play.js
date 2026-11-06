@@ -567,13 +567,28 @@ $('#s-intro').addEventListener('click', async (e) => {
 // The Hint button: the clear hint for the riddle that is open (or the last one opened on this phone);
 // with no riddle yet, how to play.
 let lastPuzzle = null;
+// Where the next santra goli is (or 'final'): the next unsolved one in Sanjay's day after the last solved.
+function nextTarget() {
+  if (!state || !state.solved || !state.solved.length || !D.chain) return null;
+  const chain = D.chain, last = state.solved[state.solved.length - 1];
+  for (let i = 1; i <= chain.length; i++) { const id = chain[(chain.indexOf(last) + i) % chain.length]; if (!state.solved.includes(id)) return id; }
+  return 'final';
+}
 function openHint(pid) {
-  const text = pid ? lineText(`${pid}.hint`) : t('generalHint');
+  // an open, unsolved riddle: its clearer hint; otherwise the plain "where next"; otherwise how to play
+  const lockOpen = $('#lock').classList.contains('open'), solvedView = $('#lock').classList.contains('solved');
+  const nx = nextTarget();
+  let lineId = null;
+  if (pid && lockOpen && !solvedView) lineId = `${pid}.hint`;
+  else if (nx) lineId = `nav.${nx}`;
+  else if (pid) lineId = `${pid}.hint`;
+  const text = lineId ? lineText(lineId) : '';
   $('#hc-text').textContent = text || t('generalHint');
   $('#hint-card').hidden = false;
-  $('#hc-say').onclick = () => (pid ? audio.playLines([`${pid}.hint`], { interrupt: true }) : null);
-  $('#hc-say').hidden = !pid;
-  if (pid) { audio.playLines([`${pid}.hint`], { interrupt: true }); act('hint', null, { puzzleId: pid }); }
+  $('#hc-say').onclick = () => (text ? audio.playLines([lineId], { interrupt: true }) : null);
+  $('#hc-say').hidden = !text;
+  if (text) audio.playLines([lineId], { interrupt: true });
+  if (text && lineId.endsWith('.hint')) act('hint', null, { puzzleId: pid });
 }
 function closeHint() { $('#hint-card').hidden = true; audio.stopAll(); }
 $('#hc-close').onclick = closeHint;
@@ -1035,6 +1050,7 @@ $('#lk-swap').onclick = () => {
   $('#swap').hidden = false;
 };
 $('#lk-hint').onclick = () => openHint(sheet.puzzleId);
+$('#done-hint').onclick = () => openHint(sheet.puzzleId);
 
 function showClue(vc) {
   const el = $('#clue');
