@@ -309,3 +309,11 @@ body.in-game .slot.filled { background: #fff; box-shadow: 0 0 0 3px var(--sun), 
 #subtitle { background: rgba(255, 255, 255, .96); color: var(--ink); font: 700 18px/1.4 var(--font); border-radius: 20px; box-shadow: var(--shadow-lg); }
 .swap canvas { height: clamp(60px, 20dvh, 110px); }
 body.in-game .fig-toast { top: calc(66px + var(--safe-top)); bottom: auto; white-space: normal; max-width: 80vw; text-align: center; }
+/* solved card: never slides under the top bar; arrow, Hint and close sit in one row */
+@media (orientation: landscape) {
+  body.in-game #lock.solved .lock-left { justify-content: safe center; overflow-y: auto; }
+  body.in-game #lock .done-answer { font-size: clamp(26px, 9dvh, 40px); line-height: 1; margin: 0 0 4px; }
+  body.in-game #lock .done-text { font-size: clamp(14px, 4.4dvh, 18px); margin-bottom: 6px; }
+}
+.done-next { display: flex; align-items: center; justify-content: center; gap: 10px; flex-wrap: wrap; }
+#lock .done-close { position: static; margin: 0 0 0 4px; flex: none; }

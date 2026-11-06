@@ -328,41 +328,41 @@
   "next": {
     "hi": {
       "across": {
-        "p1": "मेरा पेट अनाज से भरा है, पर मैं कभी खाती नहीं। मैं मेले तक आई, पर एक क़दम नहीं चली। मुझ पर एक नाम लिखा है, पर वो मेरा नहीं। मैं कौन? उस पार, मुझ पर है अगली गोली।",
-        "p2": "मेरे फूल हवा में नाचते हैं, पर मेरा कोई बाग़ नहीं। मेरे पास ढेरों खिलौने हैं, पर कोई बच्चा मेरा नहीं। मेरा एक नंबर है, पर मैं कोई घर नहीं। मैं कौन? उस पार, मेरे पास है अगली गोली।",
-        "p3": "मैं धूप में खड़ा हूँ, पर मेरे अंदर सर्दी है। मेरा पेट मिट्टी का है, पर उसमें पानी नहीं। मेरे पास आधी गुलाबी पर्ची पड़ी है। मैं कौन? उस पार, मेरे पास है अगली गोली।",
-        "p4": "मैं रोज़ आसमान छूता हूँ, पर उड़ता नहीं। मैं घूमता रहता हूँ, पर कहीं पहुँचता नहीं। मेरा नंबर तुम्हें फटी पर्ची ने बताया था। मैं कौन? उस पार, मुझसे बँधी है अगली गोली।",
-        "p5": "मैं ज़मीन पर बिछी हूँ, पर मुझ पर कोई सोता नहीं। मुझ पर खनखन सजी है, पर मैं ख़ुद चुप रहती हूँ। मेरा रंग बैंगनी है, पर मैं कोई फूल नहीं। मैं कौन? उस पार, मुझ पर है अगली गोली।",
-        "p6": "मैं पल को रोक लेता हूँ, पर मैं घड़ी नहीं। मेरी दीवारों पर चेहरे हँसते हैं, पर आवाज़ नहीं आती। मैं कौन? उस पार, मेरे सामने ज़मीन पर है अगली गोली।",
+        "p1": "मेरा पेट अनाज से भरा है, पर मैं कभी खाती नहीं। मैं मेले तक आई, पर एक क़दम नहीं चली। मुझ पर एक नाम लिखा है, पर वो मेरा नहीं। मैं कौन?",
+        "p2": "मेरे फूल हवा में नाचते हैं, पर मेरा कोई बाग़ नहीं। मेरे पास ढेरों खिलौने हैं, पर कोई बच्चा मेरा नहीं। मेरा एक नंबर है, पर मैं कोई घर नहीं। मैं कौन?",
+        "p3": "मैं धूप में खड़ा हूँ, पर मेरे अंदर सर्दी है। मेरा पेट मिट्टी का है, पर उसमें पानी नहीं। मेरे पास आधी गुलाबी पर्ची पड़ी है। मैं कौन?",
+        "p4": "मैं रोज़ आसमान छूता हूँ, पर उड़ता नहीं। मैं घूमता रहता हूँ, पर कहीं पहुँचता नहीं। मेरा नंबर तुम्हें फटी पर्ची ने बताया था। मैं कौन?",
+        "p5": "मैं ज़मीन पर बिछी हूँ, पर मुझ पर कोई सोता नहीं। मुझ पर खनखन सजी है, पर मैं ख़ुद चुप रहती हूँ। मेरा रंग बैंगनी है, पर मैं कोई फूल नहीं। मैं कौन?",
+        "p6": "मैं पल को रोक लेता हूँ, पर मैं घड़ी नहीं। मेरी दीवारों पर चेहरे हँसते हैं, पर आवाज़ नहीं आती। मैं कौन?",
         "final": "मेरी पूरी फ़ोटो जुड़ गई! अब बताओ: मैं मिठास के पास खड़ा हूँ, पर उसे बेचता नहीं। मेरे सिर पर आग का रंग है, पर गर्मी नहीं। मैं हँसता हूँ, पर किसी ने चुटकुला नहीं सुनाया। मैं कौन? फ़ोटो से चेहरा मिलाओ, और \"संजय को ढूँढो\" दबाओ।"
       },
       "same": {
-        "p1": "मेरा पेट अनाज से भरा है, पर मैं कभी खाती नहीं। मैं मेले तक आई, पर एक क़दम नहीं चली। मुझ पर एक नाम लिखा है, पर वो मेरा नहीं। मैं कौन? इसी पन्ने पर, मुझ पर है अगली गोली।",
-        "p2": "मेरे फूल हवा में नाचते हैं, पर मेरा कोई बाग़ नहीं। मेरे पास ढेरों खिलौने हैं, पर कोई बच्चा मेरा नहीं। मेरा एक नंबर है, पर मैं कोई घर नहीं। मैं कौन? इसी पन्ने पर, मेरे पास है अगली गोली।",
-        "p3": "मैं धूप में खड़ा हूँ, पर मेरे अंदर सर्दी है। मेरा पेट मिट्टी का है, पर उसमें पानी नहीं। मेरे पास आधी गुलाबी पर्ची पड़ी है। मैं कौन? इसी पन्ने पर, मेरे पास है अगली गोली।",
-        "p4": "मैं रोज़ आसमान छूता हूँ, पर उड़ता नहीं। मैं घूमता रहता हूँ, पर कहीं पहुँचता नहीं। मेरा नंबर तुम्हें फटी पर्ची ने बताया था। मैं कौन? इसी पन्ने पर, मुझसे बँधी है अगली गोली।",
-        "p5": "मैं ज़मीन पर बिछी हूँ, पर मुझ पर कोई सोता नहीं। मुझ पर खनखन सजी है, पर मैं ख़ुद चुप रहती हूँ। मेरा रंग बैंगनी है, पर मैं कोई फूल नहीं। मैं कौन? इसी पन्ने पर, मुझ पर है अगली गोली।",
-        "p6": "मैं पल को रोक लेता हूँ, पर मैं घड़ी नहीं। मेरी दीवारों पर चेहरे हँसते हैं, पर आवाज़ नहीं आती। मैं कौन? इसी पन्ने पर, मेरे सामने ज़मीन पर है अगली गोली।",
+        "p1": "मेरा पेट अनाज से भरा है, पर मैं कभी खाती नहीं। मैं मेले तक आई, पर एक क़दम नहीं चली। मुझ पर एक नाम लिखा है, पर वो मेरा नहीं। मैं कौन?",
+        "p2": "मेरे फूल हवा में नाचते हैं, पर मेरा कोई बाग़ नहीं। मेरे पास ढेरों खिलौने हैं, पर कोई बच्चा मेरा नहीं। मेरा एक नंबर है, पर मैं कोई घर नहीं। मैं कौन?",
+        "p3": "मैं धूप में खड़ा हूँ, पर मेरे अंदर सर्दी है। मेरा पेट मिट्टी का है, पर उसमें पानी नहीं। मेरे पास आधी गुलाबी पर्ची पड़ी है। मैं कौन?",
+        "p4": "मैं रोज़ आसमान छूता हूँ, पर उड़ता नहीं। मैं घूमता रहता हूँ, पर कहीं पहुँचता नहीं। मेरा नंबर तुम्हें फटी पर्ची ने बताया था। मैं कौन?",
+        "p5": "मैं ज़मीन पर बिछी हूँ, पर मुझ पर कोई सोता नहीं। मुझ पर खनखन सजी है, पर मैं ख़ुद चुप रहती हूँ। मेरा रंग बैंगनी है, पर मैं कोई फूल नहीं। मैं कौन?",
+        "p6": "मैं पल को रोक लेता हूँ, पर मैं घड़ी नहीं। मेरी दीवारों पर चेहरे हँसते हैं, पर आवाज़ नहीं आती। मैं कौन?",
         "final": "मेरी पूरी फ़ोटो जुड़ गई! अब बताओ: मैं मिठास के पास खड़ा हूँ, पर उसे बेचता नहीं। मेरे सिर पर आग का रंग है, पर गर्मी नहीं। मैं हँसता हूँ, पर किसी ने चुटकुला नहीं सुनाया। मैं कौन? फ़ोटो से चेहरा मिलाओ, और \"संजय को ढूँढो\" दबाओ।"
       }
     },
     "en": {
       "across": {
-        "p1": "My belly is full of grain, but I never eat. I came all the way to the mela, but never took a step. A name is written on me, but it isn't mine. What am I? Across, the next santra goli sits on me.",
-        "p2": "My flowers dance in the wind, but I have no garden. I am full of toys, but no child is mine. I have a number, but I am not a house. What am I? Across, the next santra goli is with me.",
-        "p3": "I stand in the sun, but there is winter inside me. My belly is clay, but it holds no water. Half a pink slip lies beside me. What am I? Across, the next santra goli is beside me.",
-        "p4": "I touch the sky every day, but never fly. I go round and round, but never arrive. The torn slip told you my number. What am I? Across, the next santra goli is tied to me.",
-        "p5": "I lie on the ground, but nobody sleeps on me. Jingling things sit on me, but I stay quiet. I am purple, but I am no flower. What am I? Across, the next santra goli is on me.",
-        "p6": "I can stop a moment, but I am not a clock. Faces smile on my walls, but make no sound. What am I? Across, the next santra goli is on the ground in front of me.",
+        "p1": "My belly is full of grain, but I never eat. I came all the way to the mela, but never took a step. A name is written on me, but it isn't mine. What am I?",
+        "p2": "My flowers dance in the wind, but I have no garden. I am full of toys, but no child is mine. I have a number, but I am not a house. What am I?",
+        "p3": "I stand in the sun, but there is winter inside me. My belly is clay, but it holds no water. Half a pink slip lies beside me. What am I?",
+        "p4": "I touch the sky every day, but never fly. I go round and round, but never arrive. The torn slip told you my number. What am I?",
+        "p5": "I lie on the ground, but nobody sleeps on me. Jingling things sit on me, but I stay quiet. I am purple, but I am no flower. What am I?",
+        "p6": "I can stop a moment, but I am not a clock. Faces smile on my walls, but make no sound. What am I?",
         "final": "My photo is complete! Now tell me: I stand beside the sweets, but I don't sell them. My head is the colour of fire, but it isn't hot. I laugh, though no one told a joke. Who am I? Match my face, and press \"Find Sanjay\"."
       },
       "same": {
-        "p1": "My belly is full of grain, but I never eat. I came all the way to the mela, but never took a step. A name is written on me, but it isn't mine. What am I? On this page, the next santra goli sits on me.",
-        "p2": "My flowers dance in the wind, but I have no garden. I am full of toys, but no child is mine. I have a number, but I am not a house. What am I? On this page, the next santra goli is with me.",
-        "p3": "I stand in the sun, but there is winter inside me. My belly is clay, but it holds no water. Half a pink slip lies beside me. What am I? On this page, the next santra goli is beside me.",
-        "p4": "I touch the sky every day, but never fly. I go round and round, but never arrive. The torn slip told you my number. What am I? On this page, the next santra goli is tied to me.",
-        "p5": "I lie on the ground, but nobody sleeps on me. Jingling things sit on me, but I stay quiet. I am purple, but I am no flower. What am I? On this page, the next santra goli is on me.",
-        "p6": "I can stop a moment, but I am not a clock. Faces smile on my walls, but make no sound. What am I? On this page, the next santra goli is on the ground in front of me.",
+        "p1": "My belly is full of grain, but I never eat. I came all the way to the mela, but never took a step. A name is written on me, but it isn't mine. What am I?",
+        "p2": "My flowers dance in the wind, but I have no garden. I am full of toys, but no child is mine. I have a number, but I am not a house. What am I?",
+        "p3": "I stand in the sun, but there is winter inside me. My belly is clay, but it holds no water. Half a pink slip lies beside me. What am I?",
+        "p4": "I touch the sky every day, but never fly. I go round and round, but never arrive. The torn slip told you my number. What am I?",
+        "p5": "I lie on the ground, but nobody sleeps on me. Jingling things sit on me, but I stay quiet. I am purple, but I am no flower. What am I?",
+        "p6": "I can stop a moment, but I am not a clock. Faces smile on my walls, but make no sound. What am I?",
         "final": "My photo is complete! Now tell me: I stand beside the sweets, but I don't sell them. My head is the colour of fire, but it isn't hot. I laugh, though no one told a joke. Who am I? Match my face, and press \"Find Sanjay\"."
       }
     },
@@ -670,22 +670,22 @@
   },
   "nav": {
     "hi": {
-      "p1": "अब पप्पू की बैलगाड़ी पे लदी बोरी पर, मेरी अगली संतरा गोली ढूँढो।",
-      "p2": "अब पप्पू की खिलौनों वाली दुकान पर, मेरी अगली संतरा गोली ढूँढो।",
-      "p3": "अब कुल्फ़ी के मटके के पास, गुलाबी टिकट के साथ, मेरी अगली संतरा गोली ढूँढो।",
-      "p4": "अब झूले के सोलह नंबर डिब्बे पर, मेरी अगली संतरा गोली ढूँढो।",
-      "p5": "अब चूड़ी वालियों की चटाई पर, मेरी अगली संतरा गोली ढूँढो।",
-      "p6": "अब फ़ोटो वाले की दुकान के सामने, ज़मीन पर, मेरी अगली संतरा गोली ढूँढो।",
-      "final": "संजय संतरा गोली की दुकान के पास खड़े हैं: लाल पगड़ी, नीली क़मीज़, ज़ोर से हँसते हुए। फ़ोटो से मिलाओ और \"संजय को ढूँढो\" दबाओ।"
+      "p1": "सोचो: अनाज, बैलों की सवारी, किसी और का नाम।",
+      "p2": "सोचो: हवा में नाचते फूल, खिलौने, दोस्त का नंबर।",
+      "p3": "सोचो: धूप में ठंडक, मिट्टी, गुलाबी पर्ची।",
+      "p4": "सोचो: आसमान, गोल-गोल चक्कर, फटी पर्ची का अंक।",
+      "p5": "सोचो: ज़मीन पर बिछी, खनखन, बैंगनी रंग।",
+      "p6": "सोचो: रुका हुआ पल, दीवार पर चेहरे, दरवाज़े के आगे की ज़मीन।",
+      "final": "सोचो: मिठास के पास, आग के रंग का सिर, सबसे ज़ोर की हँसी।"
     },
     "en": {
-      "p1": "Now find my next santra goli on the PAPPU sack on the bullock cart.",
-      "p2": "Now find my next santra goli at Pappu's toy stall.",
-      "p3": "Now find my next santra goli at the kulfi stall, beside the pink ticket.",
-      "p4": "Now find my next santra goli on cabin sixteen of the giant wheel.",
-      "p5": "Now find my next santra goli on the bangle sellers' mat.",
-      "p6": "Now find my next santra goli on the ground in front of the photo studio.",
-      "final": "Sanjay stands beside the santra goli shop: red turban, blue shirt, laughing out loud. Match the photo and press \"Find Sanjay\"."
+      "p1": "Think: grain, a ride pulled by oxen, someone else's name.",
+      "p2": "Think: flowers that dance in the wind, toys, a friend's number.",
+      "p3": "Think: cold in the sun, clay, a pink slip.",
+      "p4": "Think: the sky, round and round, the torn slip's digit.",
+      "p5": "Think: lies on the ground, jingling, purple.",
+      "p6": "Think: a moment held still, faces on the wall, the ground before the door.",
+      "final": "Think: beside the sweets, a head the colour of fire, the loudest laugh."
     },
     "mr": {
       "p1": "TODO",

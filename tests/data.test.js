@@ -130,13 +130,16 @@ for (const p of P) {
 }
 const WRAP = { p1: 'बोरी', p2: 'पप्पू', p3: 'कुल्फ़ी', p4: 'डिब्बे', p5: 'चूड़ी', p6: 'फ़ोटो' };
 for (const p of P) {
-  check(game.nav.hi[p.id].includes(WRAP[p.id]), `Hint for the way to ${p.id} names its place plainly (${WRAP[p.id]})`);
+  const NAMES = /पप्पू|बोरी|कुल्फ़ी|मटका|चूड़ी|फ़ोटो वाले|स्टूडियो|डिब्बे|झूले|बैलगाड़ी|दुकान|चटाई|पालना|संतरा गोली|उस पार|पन्ने/;
+  const NAMES_EN = /pappu|sack|kulfi|bangle|studio|cabin|wheel|cart|stall|shop|mat\b|santra goli|across|page/i;
+  const kw = game.nav.hi[p.id];
+  check(kw.startsWith('सोचो:') && kw.split(',').length >= 3 && !NAMES.test(kw) && !NAMES_EN.test(game.nav.en[p.id]), `Hint for the way to ${p.id} is only keywords, no object, no santra goli`);
   const nx = game.next.hi.across[p.id];
-  check(!nx.includes(WRAP[p.id]) && !/पप्पू|बोरी|कुल्फ़ी|मटका|चूड़ी|फ़ोटो वाले|स्टूडियो|डिब्बे|झूले/.test(nx), `the spoken way to ${p.id} is a riddle: it names no object`);
-  check(/मैं कौन\?/.test(nx) && /What am I\?/.test(game.next.en.across[p.id]), `the way to ${p.id} asks "What am I?"`);
-  check(!/[0-9०-९]/.test(nx) && nx.split(/\s+/).length <= 45, `the way to ${p.id} has no digits and is short (${nx.split(/\s+/).length} words)`);
+  check(!NAMES.test(nx) && !NAMES_EN.test(game.next.en.across[p.id].replace('the mela', '')), `the spoken way to ${p.id} is a riddle: no object, no santra goli, no "across"`);
+  check(/मैं कौन\?$/.test(nx) && /What am I\?$/.test(game.next.en.across[p.id]), `the way to ${p.id} ends at "What am I?"`);
+  check(!/[0-9०-९]/.test(nx) && nx.split(/\s+/).length <= 40, `the way to ${p.id} has no digits and is short (${nx.split(/\s+/).length} words)`);
 }
-check(/मैं कौन\?/.test(game.next.hi.across.final) && game.nav.hi.final.includes('लाल पगड़ी'), 'the last one asks "Who am I?"; its Hint describes Sanjay plainly');
+check(/मैं कौन\?/.test(game.next.hi.across.final) && game.nav.hi.final.startsWith('सोचो:') && !/पगड़ी|क़मीज़|संजय/.test(game.nav.hi.final), 'the last one asks "Who am I?"; its Hint is only keywords');
 check(!Object.values(game.next.hi.same).some((s) => s.includes('उस पार')), '"same page" next lines never say "across"');
 
 section('Mela intro, ending and book list');

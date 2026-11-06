@@ -121,42 +121,43 @@ Mela intro (after Start the book reaches page 5 and a side is chosen): "अब �
 
 After a riddle is solved, Sanjay does not say where the next santra goli is. The object it sits on speaks a short
 "I have..., but..." riddle ending in "मैं कौन?" (What am I?). The players guess the object, then find it on the page
-shown by the arrow. The Hint button (game bar, or the bulb on the solved card) says the place plainly.
+shown by the arrow. The riddle never says "santra goli" or "across"; the arrow shows whose page. The Hint button (game bar, or the bulb
+on the solved card) gives only three keywords, never the object.
 
-**To santra goli 1**: Pappu's sack on the bullock cart (orange page)
-> मेरा पेट अनाज से भरा है, पर मैं कभी खाती नहीं। मैं मेले तक आई, पर एक क़दम नहीं चली। मुझ पर एक नाम लिखा है, पर वो मेरा नहीं। मैं कौन? उस पार, मुझ पर है अगली गोली।
+**To santra goli 1**
+> मेरा पेट अनाज से भरा है, पर मैं कभी खाती नहीं। मैं मेले तक आई, पर एक क़दम नहीं चली। मुझ पर एक नाम लिखा है, पर वो मेरा नहीं। मैं कौन?
 
-Hint: "अब पप्पू की बैलगाड़ी पे लदी बोरी पर, मेरी अगली संतरा गोली ढूँढो।"
+Hint: "सोचो: अनाज, बैलों की सवारी, किसी और का नाम।" (answer: Pappu's sack on the bullock cart (orange page))
 
-**To santra goli 2**: Pappu's toy stall (blue page)
-> मेरे फूल हवा में नाचते हैं, पर मेरा कोई बाग़ नहीं। मेरे पास ढेरों खिलौने हैं, पर कोई बच्चा मेरा नहीं। मेरा एक नंबर है, पर मैं कोई घर नहीं। मैं कौन? उस पार, मेरे पास है अगली गोली।
+**To santra goli 2**
+> मेरे फूल हवा में नाचते हैं, पर मेरा कोई बाग़ नहीं। मेरे पास ढेरों खिलौने हैं, पर कोई बच्चा मेरा नहीं। मेरा एक नंबर है, पर मैं कोई घर नहीं। मैं कौन?
 
-Hint: "अब पप्पू की खिलौनों वाली दुकान पर, मेरी अगली संतरा गोली ढूँढो।"
+Hint: "सोचो: हवा में नाचते फूल, खिलौने, दोस्त का नंबर।" (answer: Pappu's toy stall (blue page))
 
-**To santra goli 3**: the kulfi counter by the pink ticket half (orange page)
-> मैं धूप में खड़ा हूँ, पर मेरे अंदर सर्दी है। मेरा पेट मिट्टी का है, पर उसमें पानी नहीं। मेरे पास आधी गुलाबी पर्ची पड़ी है। मैं कौन? उस पार, मेरे पास है अगली गोली।
+**To santra goli 3**
+> मैं धूप में खड़ा हूँ, पर मेरे अंदर सर्दी है। मेरा पेट मिट्टी का है, पर उसमें पानी नहीं। मेरे पास आधी गुलाबी पर्ची पड़ी है। मैं कौन?
 
-Hint: "अब कुल्फ़ी के मटके के पास, गुलाबी टिकट के साथ, मेरी अगली संतरा गोली ढूँढो।"
+Hint: "सोचो: धूप में ठंडक, मिट्टी, गुलाबी पर्ची।" (answer: the kulfi counter by the pink ticket half (orange page))
 
-**To santra goli 4**: giant-wheel cabin 16 (blue page)
-> मैं रोज़ आसमान छूता हूँ, पर उड़ता नहीं। मैं घूमता रहता हूँ, पर कहीं पहुँचता नहीं। मेरा नंबर तुम्हें फटी पर्ची ने बताया था। मैं कौन? उस पार, मुझसे बँधी है अगली गोली।
+**To santra goli 4**
+> मैं रोज़ आसमान छूता हूँ, पर उड़ता नहीं। मैं घूमता रहता हूँ, पर कहीं पहुँचता नहीं। मेरा नंबर तुम्हें फटी पर्ची ने बताया था। मैं कौन?
 
-Hint: "अब झूले के सोलह नंबर डिब्बे पर, मेरी अगली संतरा गोली ढूँढो।"
+Hint: "सोचो: आसमान, गोल-गोल चक्कर, फटी पर्ची का अंक।" (answer: giant-wheel cabin 16 (blue page))
 
-**To santra goli 5**: the bangle sellers' purple mat (orange page)
-> मैं ज़मीन पर बिछी हूँ, पर मुझ पर कोई सोता नहीं। मुझ पर खनखन सजी है, पर मैं ख़ुद चुप रहती हूँ। मेरा रंग बैंगनी है, पर मैं कोई फूल नहीं। मैं कौन? उस पार, मुझ पर है अगली गोली।
+**To santra goli 5**
+> मैं ज़मीन पर बिछी हूँ, पर मुझ पर कोई सोता नहीं। मुझ पर खनखन सजी है, पर मैं ख़ुद चुप रहती हूँ। मेरा रंग बैंगनी है, पर मैं कोई फूल नहीं। मैं कौन?
 
-Hint: "अब चूड़ी वालियों की चटाई पर, मेरी अगली संतरा गोली ढूँढो।"
+Hint: "सोचो: ज़मीन पर बिछी, खनखन, बैंगनी रंग।" (answer: the bangle sellers' purple mat (orange page))
 
-**To santra goli 6**: the ground in front of the photo studio (blue page)
-> मैं पल को रोक लेता हूँ, पर मैं घड़ी नहीं। मेरी दीवारों पर चेहरे हँसते हैं, पर आवाज़ नहीं आती। मैं कौन? उस पार, मेरे सामने ज़मीन पर है अगली गोली।
+**To santra goli 6**
+> मैं पल को रोक लेता हूँ, पर मैं घड़ी नहीं। मेरी दीवारों पर चेहरे हँसते हैं, पर आवाज़ नहीं आती। मैं कौन?
 
-Hint: "अब फ़ोटो वाले की दुकान के सामने, ज़मीन पर, मेरी अगली संतरा गोली ढूँढो।"
+Hint: "सोचो: रुका हुआ पल, दीवार पर चेहरे, दरवाज़े के आगे की ज़मीन।" (answer: the ground in front of the photo studio (blue page))
 
-**To Sanjay**: Sanjay himself
+**To Sanjay**
 > मेरी पूरी फ़ोटो जुड़ गई! अब बताओ: मैं मिठास के पास खड़ा हूँ, पर उसे बेचता नहीं। मेरे सिर पर आग का रंग है, पर गर्मी नहीं। मैं हँसता हूँ, पर किसी ने चुटकुला नहीं सुनाया। मैं कौन? फ़ोटो से चेहरा मिलाओ, और "संजय को ढूँढो" दबाओ।
 
-Hint: "संजय संतरा गोली की दुकान के पास खड़े हैं: लाल पगड़ी, नीली क़मीज़, ज़ोर से हँसते हुए। फ़ोटो से मिलाओ और "संजय को ढूँढो" दबाओ।"
+Hint: "सोचो: मिठास के पास, आग के रंग का सिर, सबसे ज़ोर की हँसी।" (answer: Sanjay himself)
 
 ## The final: which man is Sanjay?
 
@@ -177,6 +178,6 @@ after three pieces (red, moustache, scar) only Sanjay fits. Wrong guesses never 
 - A wrong answer always repeats that wrapper's riddle; the picture clue appears exactly from the 3rd miss and shows
   the answer spot on the other page.
 - No riddle contains digits or names its answer object; each is one couplet of at most 22 words and has a Hint that names the place.
-- Each "where next" line is a "What am I?" riddle: no object named, no digits; its Hint names the place.
+- Each "where next" line is a "What am I?" riddle: no object named, no digits; its Hint is keywords only.
 - The chain alternates pages.
 - 102,600 random games from every starting wrapper, with misses and wrong guesses, all finish.
