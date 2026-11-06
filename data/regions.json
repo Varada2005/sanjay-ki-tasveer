@@ -951,23 +951,23 @@
    "page": "dadi",
    "type": "candidate",
    "candidateId": "sanjay",
-   "note": "SANJAY: white-haired old man in the white cap and orange kurta, behind the counter of the santra goli shop (LEFT man).",
+   "note": "SANJAY: old man in the red turban and blue shirt, laughing, standing beside the santra goli shop counter.",
    "polygon": [
     [
-     0.4298,
-     0.408
+     0.486,
+     0.39
     ],
     [
-     0.4848,
-     0.408
+     0.527,
+     0.39
     ],
     [
-     0.4848,
-     0.5259
+     0.527,
+     0.62
     ],
     [
-     0.4298,
-     0.5259
+     0.486,
+     0.62
     ]
    ]
   },
@@ -976,23 +976,23 @@
    "page": "dadi",
    "type": "candidate",
    "candidateId": "A",
-   "note": "A: man in the red turban and blue shirt beside the santra goli shop (RIGHT man).",
+   "note": "A: the santra goli shopkeeper in the white cap and orange kurta, behind the counter (LEFT man).",
    "polygon": [
     [
-     0.4876,
-     0.3925
+     0.4298,
+     0.408
     ],
     [
-     0.5253,
-     0.3925
+     0.4848,
+     0.408
     ],
     [
-     0.5253,
-     0.6153
+     0.4848,
+     0.5259
     ],
     [
-     0.4876,
-     0.6153
+     0.4298,
+     0.5259
     ]
    ]
   },

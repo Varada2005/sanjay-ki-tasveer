@@ -194,7 +194,7 @@ body.in-game .slot.filled { background: #fff; box-shadow: 0 0 0 3px var(--sun), 
   body.in-game #lock { background: var(--cream); color: var(--ink); }
   body.in-game #lock .riddle-card { background: var(--card); color: var(--ink); border-radius: 26px; padding: 14px 16px; box-shadow: var(--shadow); }
   body.in-game #lock .riddle-card::after { display: none; }
-  body.in-game #lock .riddle { font: 700 clamp(15px, 4.4dvh, 20px)/1.45 var(--font); color: var(--ink); padding: 0; }
+  body.in-game #lock .riddle { font: 700 clamp(17px, 5.4dvh, 25px)/1.45 var(--font); color: var(--ink); padding: 0; }
   body.in-game #lock .replay { background: var(--sun); color: var(--ink); }
   body.in-game #lock #lock-pic { border: 3px solid var(--sun); border-radius: 12px; }
   body.in-game #lock .lock-right { background: var(--sun); border-radius: 28px; box-shadow: none; }

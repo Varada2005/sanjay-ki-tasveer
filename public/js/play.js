@@ -16,6 +16,10 @@ const store = {
 };
 const MIN_REGION_PX2 = 250;   // a region smaller than ~16x16 css px on screen is ignored (santra goli zones are small)
 const GRACE_MS = 220;         // the aim may slip off a target for this long without restarting the hold
+const SETTLE_MS = 450;        // after the page is (re)found or the tracker switches tile, the pose jumps: wait
+const SMOOTH = 0.35;          // camera aim is averaged over frames (0..1, lower = steadier)
+const HOOK_CORE = 0.8;        // to START a hold on a santra goli, aim inside the inner 80 % of its circle
+const COOLDOWN = { hook: 3500, candidate: 9000, ambient: 15000 }; // the same spot will not fire again this soon
 const vibrate = (p) => { try { navigator.vibrate && navigator.vibrate(p); } catch (e) {} };
 
 // ---------------- state ----------------
@@ -133,7 +137,7 @@ function flushPending() {
 socket.on('state', applyState);
 socket.on('bcast', (b) => {
   if (b.type === 'piece') revealPiece(b.piece);
-  else if (b.type === 'celebrate') celebrate(true);
+  else if (b.type === 'celebrate') celebrate(b.by === role);
   else if (b.type === 'reset') onReset(b);
 });
 
@@ -803,6 +807,26 @@ document.addEventListener('visibilitychange', async () => {
 // ---------------- dwell engine ----------------
 // The same region must stay under the crosshair (or finger) for the whole dwell.
 let cur = { id: null, since: 0, fired: false };
+const cooldownUntil = {};
+let aim = null, aimTile = -1, settleUntil = 0;
+// Average the camera aim; drop it while the pose is settling (just found, or a tile switch).
+function steadyHit(hit) {
+  const now = performance.now();
+  if (!hit) { aim = null; return null; }
+  const tile = tracker ? tracker.active : 0;
+  if (tile !== aimTile || !aim) { aimTile = tile; aim = { u: hit.u, v: hit.v }; settleUntil = now + SETTLE_MS; }
+  else if (Math.hypot(hit.u - aim.u, hit.v - aim.v) > 0.06) { aim = { u: hit.u, v: hit.v }; settleUntil = now + SETTLE_MS * 0.6; } // a jump: start over
+  else { aim.u += (hit.u - aim.u) * SMOOTH; aim.v += (hit.v - aim.v) * SMOOTH; }
+  return now < settleUntil ? null : { u: aim.u, v: aim.v };
+}
+// Is the aim near the middle of a santra goli (its anchor dot)?
+function inCore(region, hit) {
+  if (region.type !== 'hook' || !region.anchor) return true;
+  const xs = region.polygon.map((p) => p[0]);
+  const rad = (Math.max(...xs) - Math.min(...xs)) / 2;
+  const asp = (D.pageSize && D.pageSize[region.page]) ? D.pageSize[region.page][1] / D.pageSize[region.page][0] : 1544 / 2178;
+  return Math.hypot(hit.u - region.anchor[0], (hit.v - region.anchor[1]) * asp) <= rad * HOOK_CORE;
+}
 function blocked() {
   return !$('#hint-card').hidden || !$('#find-view').hidden || !started || role === 'spectator' || $('#lock').classList.contains('open') || !$('#menu').hidden || !$('#rest').hidden ||
     !$('#celebrate').hidden || !$('#photo-view').hidden || !$('#rotate').hidden || (state && state.resting);
@@ -817,9 +841,13 @@ function screenArea(region) {
 function feed(hit, source) {
   if (settings.debug) drawDebug(hit, source);
   if (blocked()) { setRing(0); cur = { id: null, since: 0, fired: false }; return; }
+  if (source === 'camera') hit = steadyHit(hit);
   let region = hit ? regionAt(D.regions, role, hit.u, hit.v) : null;
   if (region && screenArea(region) < MIN_REGION_PX2) region = null;
   const now = performance.now();
+  // a new hold on a santra goli must begin near its centre; once holding, the whole circle counts
+  if (region && region.id !== cur.id && source === 'camera' && !inCore(region, hit)) region = null;
+  if (region && cooldownUntil[region.id] > now) { setRing(0); cur = { id: region.id, since: now, fired: true, lastIn: now }; return; }
   // Jitter forgiveness: a hand shake or one lost frame must not restart the hold.
   if (region) cur.lastIn = now;
   else if (cur.id && now - (cur.lastIn || 0) < GRACE_MS) region = regionsById[cur.id];
@@ -832,7 +860,7 @@ function feed(hit, source) {
   const need = region.type === 'candidate' ? D.timing.candidateDwellMs : D.timing.dwellMs;
   const p = (now - cur.since) / need;
   setRing(Math.min(1, p));
-  if (p >= 1) { cur.fired = true; setRing(0); trigger(region); }
+  if (p >= 1) { cur.fired = true; setRing(0); cooldownUntil[region.id] = now + (COOLDOWN[region.type] || 3000); trigger(region); }
 }
 
 let ringVal = -1;
@@ -876,11 +904,12 @@ function handleReplies(replies) {
         break;
       case 'guess':
         $('#find-view').hidden = true;
+        if (r.correct && !r.afterWin) break; // the celebration shows and says Sanjay's line
         showFace(r.candidateId);
         audio.playLines(r.lines, { interrupt: true }).then(hideFace);
         break;
       case 'ambient':
-        audio.ambient(r.sound);
+        if (!audio.isBusy()) audio.ambient(r.sound);
         break;
       case 'resting':
         $('#rest').hidden = false;
@@ -978,7 +1007,8 @@ function wrongAnswer(r) {
   sheet.lines = r.lines;
   sheet.wrong = r.wrong;
   unlockSwap();
-  audio.playLines(r.lines, { interrupt: true });
+  audio.stopAll();
+  audio.wrongBuzz();
 }
 
 // ---------- Partner's view ----------
@@ -1030,6 +1060,7 @@ function showDone(r) {
 }
 
 function closeLock() {
+  if (sheet.regionId) cooldownUntil[sheet.regionId] = performance.now() + COOLDOWN.hook;
   if ($('#lock').classList.contains('open')) audio.stopAll();
   document.body.classList.remove('puzzle-open', 'puzzle-solved');
   $('#lock').classList.remove('open', 'busy');

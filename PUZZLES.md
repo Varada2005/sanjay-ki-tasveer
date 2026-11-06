@@ -51,50 +51,42 @@ Who finds the number: the other player, on their page.
 
 Generated from `data/game.json`; English versions are in the same file. Since user testing (riddles were "hear it
 and know it"), every riddle **hints and never names**: no answer object (kulfi, pot, bangles, wedding, dozen...)
-and no digits. Each is four short lines, at most 40 words. A **Hint** button (riddle screen and game bar) shows and
+and no digits. Each is one rhyming couplet, at most 22 words. A **Hint** button (riddle screen and game bar) shows and
 speaks a plain hint that does name the place.
 
 **1. बैलगाड़ी की बोरी** (answer 23)
-> बोरी पे लिखा नाम, विलायती ज़बान में,
-> वही नाम उस पार है, अपनी ज़बान में।
-> नाम के संग जो गिनती, वहीं था मेरा ठौर,
-> उसी से खुलेगा, यादों का अगला दौर।
+> बोरी पे नाम विलायती, उस पार वही देसी लिखा,
+> उस नाम का साथी अंक ही, मेरा पहला पता।
 
 Hint: "बोरी पर अंग्रेज़ी में PAPPU लिखा है। उस पार पप्पू की दुकान का बोर्ड पढ़िए: नाम के नीचे एक अंक है।"
 
 Right: "तेईस! पप्पू की दुकान। वहीं से मैंने रंगीन फिरकी ली थी, याद है राकेश?"
 
-Persona check. *Dadi (60):* "विलायती ज़बान" is an everyday phrase for English for her generation; she says it aloud and points the teen at the sack. *Teen (15):* Reads PAPPU on the sack at once, but has to ask "our own language?" before looking for the Hindi पप्पू board. *They discuss:* Which board carries the same name, and which number sits with it.
+Persona check. *Dadi (60):* "विलायती" is an everyday word for English for her generation; she says it aloud and points the teen at the sack. *Teen (15):* Reads PAPPU on the sack at once, but has to ask what "देसी लिखा" means before looking for the Hindi पप्पू board. *They discuss:* Which board carries the same name, and which number sits with it.
 
 **2. पप्पू की फिरकी** (answer 15)
-> फिरकी लेकर धूप में, गला गया जब सूख,
-> मिट्टी में जो जमी थी, उसने मिटाई भूख।
-> उस ठंडक का मोल जो, उस पार लिखा है जो,
-> वही अंक है चाबी, ढूँढो, पढ़ो, लिखो।
+> फिरकी के बाद धूप में, मिट्टी की ठंडक खाई,
+> उस पार उसका मोल पढ़ो, वही चाबी है भाई।
 
 Hint: "मिट्टी के घड़े में ठंडी कुल्फ़ी जमती है। उस पार कुल्फ़ी वाले की तख़्ती पर उसका दाम लिखा है।"
 
 Right: "पंद्रह रुपये! घड़े वाली कुल्फ़ी, बिल्कुल बचपन वाली।"
 
-Persona check. *Dadi (60):* "Something set cold in clay" means matka kulfi to her straight away; she remembers the price of one as a child. *Teen (15):* Thinks of a water pot or lassi first. The pinwheel and "sweet hunger" make them look for food stalls together. *They discuss:* Kulfi or lassi? Which sign shows a price?
+Persona check. *Dadi (60):* "मिट्टी की ठंडक" (coolness from clay) means matka kulfi to her straight away; she remembers the price of one as a child. *Teen (15):* Thinks of a water pot or lassi first. "Ate the coolness" makes them look for food stalls together. *They discuss:* Kulfi or lassi? Which sign shows a price?
 
 **3. फटा टिकट** (answer 16)
-> गुलाबी पर्ची फट गई, आधी उड़ गई दूर,
-> जहाँ बच्चे बीन रहे, गोलियाँ भरपूर।
-> उस टुकड़े का अंक लो, आसमानी चक्के पे जाओ,
-> उसी अंक पे ख़त्म जो घर, उसका नंबर लाओ।
+> आधी पर्ची यहाँ पड़ी, आधी बच्चों के पास,
+> उसका अंक जिस पालने के अंत में, वही नंबर ख़ास।
 
 Hint: "यह झूले के टिकट का आधा है। बाक़ी आधा, जिस पर 6 लिखा है, उस पार गोलियाँ बीनते बच्चों के पास पड़ा है। झूले का कौन-सा डिब्बा 6 पर ख़त्म होता है?"
 
 Right: "सोलह! उसी डिब्बे से पूरा मेला दिखता था।"
 
-Persona check. *Dadi (60):* Knows the pink slip is a ride ticket but not where the other half went; the teen spots the children picking up sweets. *Teen (15):* "The wheel in the sky" is the giant wheel. The two-step logic (half ticket digit, then the cabin ending in it) is the part they talk through. *They discuss:* The hardest riddle: two steps. The Hint names the ticket and the 6 if they are stuck.
+Persona check. *Dadi (60):* Knows the pink slip is a ride ticket but not where the other half went; the teen spots the children picking up sweets. *Teen (15):* "पालना" (cradle) is what the giant-wheel cabins are called; Dadi knows the word. The two-step logic (half ticket digit, then the cabin ending in it) is the part they talk through. *They discuss:* The hardest riddle: two steps. The Hint names the ticket and the 6 if they are stuck.
 
 **4. सोलह नंबर डिब्बा** (answer 50)
-> सबसे ऊँचे घर से, दिखी खनखन की क़तार,
-> बहना की कलाई को, लिए बारह, एक बार।
-> बारह का जो मोल लिखा, रंगों की उस दीवार,
-> वही अंक है चाबी, सोचो दो-चार बार।
+> ऊपर से दिखी खनखन, बहना की कलाई के नाम,
+> बारह का जो मोल लिखा, वही है अगला काम।
 
 Hint: "खनखन करती हैं चूड़ियाँ, और बारह का एक दर्जन होता है। उस पार चूड़ियों की दुकान के पास एक दर्जन का दाम लिखा है।"
 
@@ -103,10 +95,8 @@ Right: "पचास रुपये दर्जन! दीदी के लि
 Persona check. *Dadi (60):* "खनखन" and "बहना की कलाई" say bangles to her at once; "बारह" as one dozen is natural to her. *Teen (15):* Gets "jingling row" only with the wrist line; does not link twelve to "हर दर्जन" on the board, so Dadi explains. *They discuss:* Twelve of what, and how is a price per dozen written.
 
 **5. चूड़ियों की चटाई** (answer 1982)
-> चूड़ियाँ देख याद आई, दीदी की वो शाम,
-> माला डली, फ़ोटो खिंची, गूँजा सबका नाम।
-> उस पार वो याद टँगी, कोने में है साल,
-> वही साल लिखो यहाँ, जिसने बदला हाल।
+> खनखन से याद आई, दीदी की माला वाली रात,
+> उस पार वो पल टँगा है, कोने में उस बरस की बात।
 
 Hint: "माला और फ़ोटो, ये दीदी की शादी है। उस पार फ़ोटो स्टूडियो में शादी की पुरानी फ़ोटो टँगी है, उसके कोने में साल लिखा है।"
 
@@ -115,10 +105,8 @@ Right: "उन्नीस सौ बयासी! दीदी की शाद
 Persona check. *Dadi (60):* Garland plus photo means a wedding; she connects it to Didi before the teen does. *Teen (15):* Looks for a garland on the page and finds the jaimala photo at the studio; reads the year in the corner. *They discuss:* Whose wedding, and which corner carries the year.
 
 **6. फ़ोटो वाले के सामने** (answer 530)
-> नन्हा था जिस फ़ोटो में, अब बूढ़ा हो गया,
-> नारंगी गोली का शौक़, फिर भी न खो गया।
-> जहाँ मिलती है वो, वो खुलती किस बेला,
-> वही वक़्त है चाबी, उसी घड़ी मैं अकेला।
+> उस तस्वीर का नन्हा, अब भी नारंगी मिठास का दीवाना,
+> जहाँ वो बिकती, किस घड़ी खुलती? वही वक़्त लिख जाना।
 
 Hint: "नारंगी गोली, वही संतरा गोली। उस पार संतरा गोली की दुकान पर लिखा है कि वो कब खुलती है।"
 
@@ -134,20 +122,20 @@ Mela intro (after Start the book reaches page 5 and a side is chosen): "अब �
 
 | Man | Page / where | red head-cloth | eyebrow scar | curled moustache | murki | mole | gap tooth |
 |---|---|---|---|---|---|---|---|
-| **Sanjay** | Orange page, white cap and orange kurta, behind the santra goli shop counter | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| A | Dadi, RIGHT man at the santra goli stall | ✓ | ✓ | ✓ | | | ✓ |
+| **Sanjay** | Orange page, red turban and blue shirt, standing beside the santra goli shop counter | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| A | Dadi, the shopkeeper in the white cap and orange kurta behind the santra goli counter | | ✓ | ✓ | | | ✓ |
 | B | Teen, red turban eating ice gola | ✓ | | ✓ | ✓ | ✓ | |
 | C | Dadi, red turban playing chaupar | ✓ | ✓ | | ✓ | | |
 | D | Teen, white Gandhi cap, handing out santra goli | | ✓ | ✓ | | ✓ | ✓ |
 | E | Teen, red cap behind Pappu's counter (Pappu) | ✓ | | | | ✓ | ✓ |
 
-Pieces come in chain order: red head-cloth, moustache, eyes, murki, mole, gap tooth. Red alone fits five men;
-after four pieces (red, moustache, scar, murki) only Sanjay fits. Wrong guesses never pause the game.
+Pieces come in chain order: red head-cloth, moustache, eyes, murki, mole, gap tooth. Red alone fits four men;
+after three pieces (red, moustache, scar) only Sanjay fits. Wrong guesses never pause the game.
 
 ## Checked by `npm test`
 - Every answer typed at every wrapper: only its own answer opens it and gives exactly its own piece.
 - A wrong answer always repeats that wrapper's riddle; the picture clue appears exactly from the 3rd miss and shows
   the answer spot on the other page.
-- No riddle contains digits or names its answer object; each is at most 40 words and has a Hint that names the place.
+- No riddle contains digits or names its answer object; each is one couplet of at most 22 words and has a Hint that names the place.
 - Each "next" line names the place of its wrapper; the chain alternates pages.
 - 102,600 random games from every starting wrapper, with misses and wrong guesses, all finish.

@@ -65,12 +65,12 @@
       ],
       "lines": {
         "hi": {
-          "riddle": "बोरी पे लिखा नाम, विलायती ज़बान में,\nवही नाम उस पार है, अपनी ज़बान में।\nनाम के संग जो गिनती, वहीं था मेरा ठौर,\nउसी से खुलेगा, यादों का अगला दौर।",
+          "riddle": "बोरी पे नाम विलायती, उस पार वही देसी लिखा,\nउस नाम का साथी अंक ही, मेरा पहला पता।",
           "solved": "तेईस! पप्पू की दुकान। वहीं से मैंने रंगीन फिरकी ली थी, याद है राकेश?",
           "hint": "बोरी पर अंग्रेज़ी में PAPPU लिखा है। उस पार पप्पू की दुकान का बोर्ड पढ़िए: नाम के नीचे एक अंक है।"
         },
         "en": {
-          "riddle": "A name on the sack, in a foreign hand,\nAcross, the same name, in the script of our land.\nThe count beside it was where I would stay,\nThat number opens the rest of my day.",
+          "riddle": "A foreign name on the sack; across, the same in our own hand.\nThe number that stands with that name: that's where my day began.",
           "solved": "Twenty-three! Pappu's stall. That's where I bought the pinwheel, remember, Rakesh?",
           "hint": "The sack says PAPPU in English. Across, read the board on Pappu's stall: there is a number under the name."
         },
@@ -111,12 +111,12 @@
       ],
       "lines": {
         "hi": {
-          "riddle": "फिरकी लेकर धूप में, गला गया जब सूख,\nमिट्टी में जो जमी थी, उसने मिटाई भूख।\nउस ठंडक का मोल जो, उस पार लिखा है जो,\nवही अंक है चाबी, ढूँढो, पढ़ो, लिखो।",
+          "riddle": "फिरकी के बाद धूप में, मिट्टी की ठंडक खाई,\nउस पार उसका मोल पढ़ो, वही चाबी है भाई।",
           "solved": "पंद्रह रुपये! घड़े वाली कुल्फ़ी, बिल्कुल बचपन वाली।",
           "hint": "मिट्टी के घड़े में ठंडी कुल्फ़ी जमती है। उस पार कुल्फ़ी वाले की तख़्ती पर उसका दाम लिखा है।"
         },
         "en": {
-          "riddle": "Pinwheel in hand, the sun dried me through,\nSomething set cold in clay cooled me too.\nAcross, what that coolness cost is shown,\nThat number is the key: find it, type it in.",
+          "riddle": "After the pinwheel, the sun; the clay gave me something cold.\nAcross, read what it cost: that is the key you hold.",
           "solved": "Fifteen rupees! Kulfi from the clay pot, just like when we were kids.",
           "hint": "Kulfi sets cold in a big clay pot. Across, the kulfi seller's sign shows its price."
         },
@@ -165,12 +165,12 @@
       ],
       "lines": {
         "hi": {
-          "riddle": "गुलाबी पर्ची फट गई, आधी उड़ गई दूर,\nजहाँ बच्चे बीन रहे, गोलियाँ भरपूर।\nउस टुकड़े का अंक लो, आसमानी चक्के पे जाओ,\nउसी अंक पे ख़त्म जो घर, उसका नंबर लाओ।",
+          "riddle": "आधी पर्ची यहाँ पड़ी, आधी बच्चों के पास,\nउसका अंक जिस पालने के अंत में, वही नंबर ख़ास।",
           "solved": "सोलह! उसी डिब्बे से पूरा मेला दिखता था।",
           "hint": "यह झूले के टिकट का आधा है। बाक़ी आधा, जिस पर 6 लिखा है, उस पार गोलियाँ बीनते बच्चों के पास पड़ा है। झूले का कौन-सा डिब्बा 6 पर ख़त्म होता है?"
         },
         "en": {
-          "riddle": "A pink slip tore; half flew away,\nTo where the children pick sweets up from the ground.\nTake its digit to the wheel in the sky,\nThe car that ends with it: bring me its number.",
+          "riddle": "Half a pink slip lies here; the other half is with the children at play.\nThe cradle that ends in its digit: that is my number today.",
           "solved": "Sixteen! From that cabin you could see the whole mela.",
           "hint": "This is half of a giant-wheel ticket. The other half, showing 6, lies across where children pick up sweets. Which cabin ends in 6?"
         },
@@ -211,12 +211,12 @@
       ],
       "lines": {
         "hi": {
-          "riddle": "सबसे ऊँचे घर से, दिखी खनखन की क़तार,\nबहना की कलाई को, लिए बारह, एक बार।\nबारह का जो मोल लिखा, रंगों की उस दीवार,\nवही अंक है चाबी, सोचो दो-चार बार।",
+          "riddle": "ऊपर से दिखी खनखन, बहना की कलाई के नाम,\nबारह का जो मोल लिखा, वही है अगला काम।",
           "solved": "पचास रुपये दर्जन! दीदी के लिए हरी-लाल चूड़ियाँ।",
           "hint": "खनखन करती हैं चूड़ियाँ, और बारह का एक दर्जन होता है। उस पार चूड़ियों की दुकान के पास एक दर्जन का दाम लिखा है।"
         },
         "en": {
-          "riddle": "From the highest seat I saw a jingling row,\nTwelve for my sister's wrists, all in one go.\nWhat twelve cost is written by those colours bright,\nThat number is the key; think it through right.",
+          "riddle": "From the top I saw a jingling row, for my sister's wrists, twelve in all.\nWhat twelve of them cost across the way: that number is your call.",
           "solved": "Fifty rupees a dozen! Red and green bangles for Didi.",
           "hint": "The jingling things are bangles, and twelve is a dozen. Across, by the bangle stall, the price of a dozen is written."
         },
@@ -257,12 +257,12 @@
       ],
       "lines": {
         "hi": {
-          "riddle": "चूड़ियाँ देख याद आई, दीदी की वो शाम,\nमाला डली, फ़ोटो खिंची, गूँजा सबका नाम।\nउस पार वो याद टँगी, कोने में है साल,\nवही साल लिखो यहाँ, जिसने बदला हाल।",
+          "riddle": "खनखन से याद आई, दीदी की माला वाली रात,\nउस पार वो पल टँगा है, कोने में उस बरस की बात।",
           "solved": "उन्नीस सौ बयासी! दीदी की शादी। उसी दिन हम दोनों आख़िरी बार साथ नाचे थे।",
           "hint": "माला और फ़ोटो, ये दीदी की शादी है। उस पार फ़ोटो स्टूडियो में शादी की पुरानी फ़ोटो टँगी है, उसके कोने में साल लिखा है।"
         },
         "en": {
-          "riddle": "Bangles brought back my sister's big day,\nGarlands, a photo, the band at play.\nAcross, that memory hangs, its year in a corner,\nType that year, the one that changed everything.",
+          "riddle": "That jingle brought back Didi's garland night.\nAcross, that moment hangs; its year sits in a corner, small and tight.",
           "solved": "Nineteen eighty-two! Didi's wedding, the last time you and I danced together.",
           "hint": "Garlands and a photo: it is a wedding. Across, an old wedding photo hangs at the photo studio, with the year in its corner."
         },
@@ -303,12 +303,12 @@
       ],
       "lines": {
         "hi": {
-          "riddle": "नन्हा था जिस फ़ोटो में, अब बूढ़ा हो गया,\nनारंगी गोली का शौक़, फिर भी न खो गया।\nजहाँ मिलती है वो, वो खुलती किस बेला,\nवही वक़्त है चाबी, उसी घड़ी मैं अकेला।",
+          "riddle": "उस तस्वीर का नन्हा, अब भी नारंगी मिठास का दीवाना,\nजहाँ वो बिकती, किस घड़ी खुलती? वही वक़्त लिख जाना।",
           "solved": "साढ़े पाँच! हर शाम ढलते सूरज के साथ, मैं वहीं होता हूँ।",
           "hint": "नारंगी गोली, वही संतरा गोली। उस पार संतरा गोली की दुकान पर लिखा है कि वो कब खुलती है।"
         },
         "en": {
-          "riddle": "The little boy in that photo has turned grey,\nBut the orange sweet still makes his day.\nWhere it is sold, when does it open its door?\nThat time is the key; I am there, alone, once more.",
+          "riddle": "The little boy in that picture still loves the orange sweet.\nWhere it is sold, when does it open? That time is where we meet.",
           "solved": "Half past five! Every evening, with the setting sun, I am there.",
           "hint": "The orange sweet is santra goli. Across, the santra goli shop has a sign saying when it opens."
         },
@@ -412,7 +412,7 @@
       "id": "sanjay",
       "page": "dadi",
       "isSanjay": true,
-      "label": "Sanjay (white cap, orange kurta, at the santra goli shop)",
+      "label": "Sanjay (red turban, blue shirt, standing beside the santra goli shop)",
       "features": {
         "red_headcloth": true,
         "eyebrow_scar": true,
@@ -439,9 +439,9 @@
     {
       "id": "A",
       "page": "dadi",
-      "label": "A (red turban, blue shirt, beside the santra goli shop)",
+      "label": "A (white cap, orange kurta, the santra goli shopkeeper)",
       "features": {
-        "red_headcloth": true,
+        "red_headcloth": false,
         "eyebrow_scar": true,
         "curled_moustache": true,
         "murki": false,
@@ -450,10 +450,10 @@
       },
       "lines": {
         "hi": {
-          "voice": "नहीं बेटा, मैं तो बस गोली लेने आया था। संजय? वो तो यहीं कहीं होगा!"
+          "voice": "नहीं बेटा, मैं तो बस गोलियाँ बेचता हूँ। तू जिसे ढूँढ रहा है, वो रोज़ शाम यहीं मेरे पास खड़ा मिलता है!"
         },
         "en": {
-          "voice": "No, child, I only came for santra goli. Sanjay? He must be around here somewhere!"
+          "voice": "No, child, I only sell the sweets. The one you are looking for stands right here beside me every evening!"
         },
         "mr": {
           "voice": "TODO"

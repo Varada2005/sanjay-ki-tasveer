@@ -10,6 +10,8 @@ let subtitleCb = () => {};
 let queue = Promise.resolve();
 let currentEl = null;
 let stopToken = 0;
+let busy = 0;
+export const isBusy = () => busy > 0;
 const missing = new Set();
 window.__missingLines = missing;
 
@@ -127,11 +129,13 @@ async function playOne(id, token) {
 
 // Lines play one after another; a new call waits for the previous ones.
 export function playLines(ids, { interrupt = false, delay = 0 } = {}) {
-  if (interrupt) stopAll();
+  // Android drops or doubles an utterance spoken in the same tick as cancel(): leave a short gap.
+  if (interrupt) { stopAll(); delay = Math.max(delay, 150); }
   const token = stopToken;
   queue = queue.then(async () => {
     if (delay) await new Promise((r) => setTimeout(r, delay));
-    for (const id of ids) await playOne(id, token);
+    busy++;
+    try { for (const id of ids) await playOne(id, token); } finally { busy--; }
   });
   return queue;
 }
@@ -179,6 +183,7 @@ export function pieceBell() {
   bell(660, t, 0.2, 2.2); bell(990, t + 0.18, 0.14, 2.0); bell(1320, t + 0.36, 0.1, 1.8);
   try { navigator.vibrate && navigator.vibrate([40, 60, 40]); } catch (e) {}
 }
+export function wrongBuzz() { const c = ac(); if (!c) return; const t = c.currentTime + 0.01; tone(220, t, 0.16, { vol: 0.12, type: 'triangle' }); tone(180, t + 0.15, 0.22, { vol: 0.12, type: 'triangle' }); }
 export function softBlip() { const c = ac(); if (!c) return; tone(520, c.currentTime + 0.01, 0.12, { vol: 0.05 }); }
 
 const AMBIENT = {

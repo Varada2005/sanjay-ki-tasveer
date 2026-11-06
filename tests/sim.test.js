@@ -138,9 +138,9 @@ const sanjay = game.candidates.find((c) => c.isSanjay);
 const others = game.candidates.filter((c) => !c.isSanjay);
 check(FEATS.every((f) => sanjay.features[f]), 'Sanjay has all 6 features');
 check(others.every((c) => !FEATS.every((f) => c.features[f])), 'no other candidate has all 6 features');
-check(game.candidates.filter((c) => c.features.red_headcloth).length === 5, '5 of 6 men wear red on the head');
+check(game.candidates.filter((c) => c.features.red_headcloth).length === 4, '4 of 6 men wear red on the head');
 const identifies = (set) => !others.some((c) => set.every((f) => c.features[f]));
-const expected = { 3: [7, 20], 4: [12, 15], 5: [6, 6], 6: [1, 1] };
+const expected = { 3: [10, 20], 4: [13, 15], 5: [6, 6], 6: [1, 1] };
 for (let k = 1; k <= 6; k++) {
   const cs = combos(FEATS, k);
   const n = cs.filter(identifies).length;

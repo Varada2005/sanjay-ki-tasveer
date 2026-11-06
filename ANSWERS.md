@@ -11,7 +11,7 @@ Both pages are the hand-drawn final art. Full story and riddles: [PUZZLES.md](PU
 | 5 | On the bangle sellers' purple mat (**orange**) | "1982" in the corner of the wedding photo at the Jaimala studio (blue) | **1982** | Didi's wedding year | Photo studio |
 | 6 | On the ground in front of the Jaimala studio (**blue**) | Sign "5:30 से खुला" on the santra goli shop (orange) | **530** | When the shop opens; he waits there | Find Sanjay |
 
-**Sanjay:** orange (haat) page, the white-haired old man in the white cap and orange kurta behind the santra goli shop
+**Sanjay:** orange (haat) page, the laughing old man in the red turban and blue shirt standing beside the santra goli shop
 counter (the LEFT man). Point the orange-side phone at him.
 
 Wrong answer: the riddle repeats. 3rd wrong answer: the riddle plus a picture of where to look.

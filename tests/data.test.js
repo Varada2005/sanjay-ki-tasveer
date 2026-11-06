@@ -97,11 +97,11 @@ for (const p of P) {
   need.push(`${p.id}.riddle`, `${p.id}.solved`);
   const rid = p.lines.hi.riddle;
   const rows = rid.split('\n');
-  check(rows.length === 4, `${p.id}: riddle has 4 lines (2 rhyming couplets)`);
+  check(rows.length === 2, `${p.id}: riddle is one rhyming couplet (2 lines)`);
   // rhyme check: the last two letters of each couplet's lines match (Devanagari, ignoring punctuation)
   const end = (s) => s.replace(/[।,?!.\s]+$/u, '').slice(-2);
   const rhymes = (a, b) => end(a) === end(b) || end(a).slice(-1) === end(b).slice(-1);
-  check(rhymes(rows[0], rows[1]) && rhymes(rows[2], rows[3]), `${p.id}: both couplets rhyme (${end(rows[0])}/${end(rows[1])}, ${end(rows[2])}/${end(rows[3])})`);
+  check(rhymes(rows[0], rows[1]), `${p.id}: the couplet rhymes (${end(rows[0])}/${end(rows[1])})`);
   for (const lang of ['mr', 'gu']) check(!!p.lines[lang], `${p.id}: ${lang} placeholder exists`);
 }
 for (const id of game.chain) need.push(`next.across.${id}`, `next.same.${id}`);
@@ -124,7 +124,7 @@ for (const p of P) {
   const rid = p.lines.hi.riddle;
   check(!/[0-9०-९]/.test(rid) && !/[0-9]/.test(p.lines.en.riddle), `${p.id}: riddle has no digits`);
   check(!OBJ[p.id].some((w) => rid.includes(w)), `${p.id}: riddle does not name the answer object (${OBJ[p.id].join(', ')})`);
-  check(rid.split(/\s+/).length <= 40, `${p.id}: riddle is short (${rid.split(/\s+/).length} words)`);
+  check(rid.split(/\s+/).length <= 22, `${p.id}: riddle is short (${rid.split(/\s+/).length} words)`);
   check(p.lines.hi.hint && p.lines.en.hint && OBJ[p.id].some((w) => p.lines.hi.hint.includes(w)), `${p.id}: the Hint names where to look`);
 }
 const WRAP = { p1: 'बोरी', p2: 'पप्पू', p3: 'कुल्फ़ी', p4: 'डिब्बे', p5: 'चूड़ी', p6: 'फ़ोटो' };
